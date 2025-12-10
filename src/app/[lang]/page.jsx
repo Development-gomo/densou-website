@@ -20,7 +20,7 @@ export default async function HomePage({ params }) {
   return (
     <>
       <Header lang={lang} currentSlug="/" />
-      <main>
+      <main id="home">
         <PageBuilder sections={acf.page_builder} lang={lang} />
       </main>
     </>

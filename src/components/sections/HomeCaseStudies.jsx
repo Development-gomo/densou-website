@@ -49,7 +49,7 @@ export default function HomeCaseStudies({ data, lang = "en" }) {
   if (!cases.length) return null;
 
   return (
-    <section className="pt-12 md:pt-20">
+    <section id="case-section" className="pt-12 md:pt-20">
       {/* FULL WIDTH WRAPPER */}
       <div className="w-full px-6 web-width">
         {/* SUB HEADING */}

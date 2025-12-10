@@ -66,6 +66,12 @@ i, em {
   .heading-xl h1 em, .heading-xl p em, .heading-xl p i {
     line-height: 58px;
   }
+  section#case-section {
+    padding-bottom: 80px;
+  }
+  main#home section#case-section {
+    padding-bottom: 0px;
+  }
 }
 
 /* Medium Screens */
@@ -77,6 +83,7 @@ i, em {
   .heading-xl h1 em, .heading-xl p em, .heading-xl p i {
     line-height: 70px;
   }
+
 }
 
 /* Large Desktop */
