@@ -1,0 +1,220 @@
+// src/lib/wp.js
+export const WP_BASE = "https://gomowebb.com/densou/wp-json";
+
+// Generic fetch helper with safety
+export async function fetchWP(endpoint) {
+  try {
+    const url = `${WP_BASE}${endpoint.startsWith("/") ? "" : "/"}${endpoint}`;
+    const res = await fetch(url, { cache: "no-store" });
+    return await res.json();
+  } catch (err) {
+   // console.error("⚠️ Fetch error:", err.message);
+    return null;
+  }
+}
+
+// Pages
+async function getSingleEntry(endpoint, slug, lang = "en") {
+  if (!slug) return null;
+
+  try {
+    const url = `/wp/v2/${endpoint}?slug=${encodeURIComponent(slug)}&lang=${lang}`;
+    const entries = await fetchWP(url);
+
+    if (!Array.isArray(entries) || entries.length === 0) {
+      // console.warn(`⚠️ No ${endpoint} entry found for slug "${slug}" and lang "${lang}"`);
+      return null;
+    }
+
+    return (
+      entries.find((entry) => entry.lang === lang) ||
+      entries.find((entry) => entry.slug === slug) ||
+      entries[0]
+    );
+  } catch (err) {
+   // console.error(`⚠️ getSingleEntry failed for ${endpoint}:`, err.message);
+    return null;
+  }
+}
+
+export async function getPageBySlug(slug, lang = "en") {
+  return getSingleEntry("pages", slug, lang);
+}
+
+export async function getServiceBySlug(slug, lang = "en") {
+  return getSingleEntry("services", slug, lang);
+}
+
+export async function getCaseStudyBySlug(slug, lang = "en") {
+  return getSingleEntry("case_study", slug, lang);
+}
+
+export async function getPostBySlug(slug, lang = "en") {
+  return getSingleEntry("posts", slug, lang);
+}
+
+export async function getMediaById(id) {
+  if (!id) return null;
+  try {
+    return await fetchWP(`/wp/v2/media/${id}`);
+  } catch (err) {
+   // console.error("⚠️ getMediaById failed:", err.message);
+    return null;
+  }
+}
+
+// Menus
+export async function getMenu(lang = "en") {
+  const menu = await fetchWP(`/myroutes/v1/menus?lang=${lang}`);
+  if (!menu) console.warn(`⚠️ Menu not found for ${lang}`);
+  return menu;
+}
+
+// Footer widgets
+export async function getFooterWidgets(lang = "en") {
+  const footer = await fetchWP(`/myroutes/v1/footer-widgets?lang=${lang}`);
+  if (!footer) console.warn(`⚠️ Footer widgets missing for ${lang}`);
+  return footer;
+}
+
+export async function getThemeOptions(lang = "en") {
+  const options = await fetchWP(`/densou/v1/theme-options?lang=${lang}`);
+  if (!options) console.warn(`⚠️ Theme options endpoint returned empty response for lang ${lang}`);
+  return options;
+}
+
+async function getEntryById(endpoint, id, lang = "en") {
+  if (!id) return null;
+  try {
+    return await fetchWP(`/wp/v2/${endpoint}/${id}?lang=${lang}`);
+  } catch (err) {
+    console.error(`⚠️ getEntryById failed for ${endpoint}:`, err.message);
+    return null;
+  }
+}
+
+// Get translated slug for other languages
+export async function getTranslations(pageId) {
+  const data = await fetchWP(`/wp/v2/pages/${pageId}`);
+  return data?.translations || null;
+}
+
+// Get a page by ID (for finding translated slugs)
+export async function getPageById(id, lang) {
+  return await getEntryById("pages", id, lang);
+}
+
+export async function getServiceById(id, lang) {
+  return await getEntryById("services", id, lang);
+}
+
+export async function getAllServices(lang = "en") {
+  return await fetchWP(`/wp/v2/services?lang=${lang}&per_page=100&_embed`);
+}
+
+export async function getCaseStudies(lang = "en") {
+  return await fetchWP(`/wp/v2/case_study?lang=${lang}&per_page=100&_embed`);
+}
+
+export async function getAllPosts(lang) {
+  return fetchWP(`/wp/v2/posts?lang=${lang}&per_page=10&_embed`);
+}
+
+export async function getCaseStudyById(id, lang) {
+  return await getEntryById("case_study", id, lang);
+}
+
+// Get translations for any entry type - try custom endpoint first, then fallback
+export async function getEntryTranslations(entryId, entryType = "pages", lang = "en") {
+  // Try custom endpoint first (works for all post types if WordPress endpoint supports it)
+  const customTranslations = await fetchWP(`/myroutes/v1/translations/${entryId}?lang=${lang}`);
+  if (customTranslations && Object.keys(customTranslations).length > 0) {
+    return customTranslations;
+  }
+  
+  // Fallback: get the entry and extract translations
+  const entry = await fetchWP(`/wp/v2/${entryType}/${entryId}`);
+  return entry?.translations || entry?.wpml_translations || entry?.icl_translations || null;
+}
+
+// Get translations for a page - try custom endpoint first, then fallback
+export async function getPageTranslations(pageId, lang) {
+  return getEntryTranslations(pageId, "pages", lang);
+}
+
+// Get translation by slug - more direct approach (works for pages)
+export async function getTranslationBySlug(slug, currentLang, targetLang, postType = "page") {
+  const translation = await fetchWP(`/myroutes/v1/translation-by-slug?slug=${encodeURIComponent(slug)}&lang=${currentLang}&target_lang=${targetLang}&post_type=${postType}`);
+  return translation;
+}
+
+// Get all entries of a type in a language (for finding translations)
+export async function getAllEntriesByType(endpoint, lang = "en") {
+  try {
+    const entries = await fetchWP(`/wp/v2/${endpoint}?lang=${lang}&per_page=100`);
+    return Array.isArray(entries) ? entries : [];
+  } catch (err) {
+    console.error(`⚠️ getAllEntriesByType failed for ${endpoint}:`, err.message);
+    return [];
+  }
+}
+
+// Find translation by checking all entries in alternate language
+// This works by finding entries that share the same translation group
+export async function findTranslationByEntry(entryId, entryType, currentLang, targetLang) {
+  try {
+    // First, try to get the entry's translation metadata
+    const entry = await fetchWP(`/wp/v2/${entryType}/${entryId}`);
+    
+    // Check for translation relationships
+    const translations = entry?.translations || 
+                        entry?.wpml_translations || 
+                        entry?.icl_translations;
+    
+    if (translations && translations[targetLang]) {
+      const translatedId = typeof translations[targetLang] === 'number' 
+        ? translations[targetLang]
+        : translations[targetLang]?.id || translations[targetLang]?.element_id;
+      
+      if (translatedId) {
+        const translatedEntry = await getEntryById(entryType, translatedId, targetLang);
+        if (translatedEntry) {
+          return translatedEntry;
+        }
+      }
+    }
+    
+    // Alternative: Query all entries in target language and find by translation_of or element_id
+    // This is a fallback if direct translation metadata isn't available
+    const allEntries = await getAllEntriesByType(entryType, targetLang);
+    
+    // Try to find entry with matching translation relationship
+    // WPML stores this in various ways, so we check multiple possibilities
+    for (const altEntry of allEntries) {
+      const altTranslations = altEntry?.translations || 
+                             altEntry?.wpml_translations || 
+                             altEntry?.icl_translations;
+      
+      if (altTranslations && altTranslations[currentLang]) {
+        const currentId = typeof altTranslations[currentLang] === 'number'
+          ? altTranslations[currentLang]
+          : altTranslations[currentLang]?.id || altTranslations[currentLang]?.element_id;
+        
+        if (currentId === entryId) {
+          return altEntry;
+        }
+      }
+    }
+    
+    return null;
+  } catch (err) {
+    console.error(`⚠️ findTranslationByEntry failed:`, err.message);
+    return null;
+  }
+}
+
+// Alternative: Get page by slug in alternate language (if WPML uses same slug structure)
+export async function getPageBySlugInLang(slug, lang) {
+  const page = await getPageBySlug(slug, lang);
+  return page;
+}

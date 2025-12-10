@@ -1,0 +1,381 @@
+// src/components/major/Footer.jsx
+
+import React from "react";
+import Link from "next/link";
+import Image from "next/image";
+import { getFooterWidgets, getThemeOptions } from "@/lib/api";
+
+import LinkedInPng from "../../../public/linkedin.png";
+import XPng from "../../../public/x.png";
+import ArrowSvgB from "../../../public/right-arrow-black.png";
+
+// Map icons
+const SOCIAL_ICON_MAP = {
+  linkedin: LinkedInPng,
+  x: XPng,
+};
+
+// Helpers
+function stripHtml(text = "") {
+  return text
+    .replace(/<[^>]*>?/gm, "")
+    .replace(/\s+/g, " ")
+    .trim();
+}
+
+function extractLinksFromHtml(html) {
+  if (!html) return [];
+  const matches = Array.from(
+    html.matchAll(/<a[^>]*href="([^"]*)"[^>]*>(.*?)<\/a>/gim)
+  );
+
+  return matches
+    .map((m) => ({
+      href: m[1] || "#",
+      label: stripHtml(m[2]) || "Link",
+    }))
+    .filter((item) => item.label);
+}
+
+function extractOfficesFromHtml(html) {
+  if (!html) return [];
+  const normalized = html.replace(/\\n/g, "");
+  const blocks = [];
+  const regex = /<strong>(.*?)<\/strong>([\s\S]*?)(?=<strong>|$)/gi;
+  let match;
+
+  while ((match = regex.exec(normalized)) !== null) {
+    const title = stripHtml(match[1]);
+    const lines = match[2]
+      .split(/<br\s*\/?>/i)
+      .map((line) => stripHtml(line))
+      .filter(Boolean);
+
+    if (title) blocks.push({ title, lines });
+  }
+
+  return blocks;
+}
+
+export default async function Footer({ lang = "en" }) {
+  // Fetch WP theme options + footer widgets
+  const [widgets, themeOptions] = await Promise.all([
+    getFooterWidgets(lang),
+    getThemeOptions(lang),
+  ]);
+
+  // ================================
+  //   GET IN TOUCH SECTION DATA
+  // ================================
+  const contactBlock = themeOptions?.get_in_touch || {};
+  const {
+    sub_heading,
+    heading,
+    short_description,
+    cta_text,
+    cta_url,
+    column_i_text,
+    column_ii_text,
+    column_iii_text,
+    column_i_image,
+    column_ii_image,
+    column_iii_image,
+    right_top,
+    right_bottom,
+  } = contactBlock;
+
+  // FOOTER DATA
+  const quickLinks = extractLinksFromHtml(widgets?.quick_links);
+  const services = extractLinksFromHtml(widgets?.services).map((s) => s.label);
+  const offices = extractOfficesFromHtml(widgets?.offices);
+
+  const servicesTitle = widgets?.services_title || "Services";
+  const officesTitle = widgets?.offices_title || "Offices";
+
+  const footerLogo = themeOptions?.footer?.footer_logo;
+  const copyrightText = themeOptions?.footer?.copyrights_text;
+
+  // Social links
+  const socialLinks = [];
+  if (themeOptions?.social?.linkedin) {
+    socialLinks.push(["linkedin", themeOptions.social.linkedin]);
+  }
+  if (themeOptions?.social?.x) {
+    socialLinks.push(["x", themeOptions.social.x]);
+  }
+
+  const hasMainContent =
+    quickLinks.length > 0 || services.length > 0 || offices.length > 0;
+
+  const hasBottomRow = footerLogo || copyrightText || socialLinks.length > 0;
+
+  return (
+    <>
+      <section
+        id="cta-section"
+        className="bg-[#151B5D] text-white pt-12 lg:pt-20 border-solid border-b border-[#9293a066] relative"
+      >
+        <div className="web-width px-4 flex flex-col lg:flex-row gap-8 lg:gap-[50px]">
+          {/* First Column with max-width 415px */}
+          <div className="max-w-[415px] w-full">
+            {sub_heading && (
+              <div className="flex items-center gap-2 mb-3">
+                <span className="h-2 w-2 rounded-full bg-[#00FEC3]"></span>
+                <span className="subheading-label text-white/70 uppercase">
+                  {sub_heading}
+                </span>
+              </div>
+            )}
+
+            {heading && (
+              <h2 className="section-heading text-white">{heading}</h2>
+            )}
+
+            {short_description && (
+              <div className="mt-6 text-white/80 max-w-md leading-[26px]">
+                {short_description}
+              </div>
+            )}
+
+            {cta_text && cta_url && (
+              <Link
+                href={cta_url.startsWith("/") ? `/${lang}${cta_url}` : cta_url}
+                className=" mt-8
+                      gap-3 group relative inline-flex items-center
+                      rounded-sm bg-[#00FEC3] px-6 py-4 text-white
+                      transition-all duration-300 hover:bg-[#00FEC3]
+                      w-[154px] overflow-hidden select-none
+                    "
+              >
+                {/* LEFT DOT */}
+                <span className="relative w-6 flex items-center justify-center">
+                  <span
+                    className="
+                          absolute h-2 w-2 rounded-full bg-[#191F68]
+                          transition-all duration-300 ease-out
+                          group-hover:opacity-0 group-hover:-translate-x-1
+                        "
+                  ></span>
+                </span>
+
+                {/* TEXT */}
+                <span
+                  className="text-black 
+                        flex-1 text-[16px] leading-none
+                        transition-all duration-300 ease-out
+                        group-hover:-translate-x-4
+                        whitespace-nowrap
+                      "
+                >
+                  {cta_text}
+                </span>
+
+                {/* ARROW */}
+                <span className="relative w-4 flex items-center justify-center">
+                  <span
+                    className="
+                          w-4 absolute opacity-0 -translate-x-4
+                          transition-all duration-300 ease-out
+                          group-hover:opacity-100 group-hover:-translate-x-2
+                        "
+                  >
+                    <Image src={ArrowSvgB} width={13} height={13} alt="arrow" />
+                  </span>
+                </span>
+              </Link>
+            )}
+          </div>
+
+          <div className="grid grid-cols-3 gap-2">
+            <div className="relative">
+              {column_i_text && (
+                <div className="h-[195px] bg-[#272D7E] mb-[8px] rounded-sm p-3 lg:p-6 flex items-end mt-5 lg:mt-35 text-white/80 leading-[26px]">
+                  <i>{column_i_text}</i>
+                </div>
+              )}
+              {column_i_image?.url && (
+                <Image
+                  src={column_i_image.url}
+                  alt="right-top"
+                  width={275}
+                  height={130}
+                  className="rounded-sm object-cover img-120"
+                />
+              )}
+            </div>
+            <div className="relative">
+              {column_ii_image?.url && (
+                <Image
+                  src={column_ii_image.url}
+                  alt="right-top"
+                  width={275}
+                  height={215}
+                  className="mt-6 lg:mt-20 rounded-sm object-cover"
+                />
+              )}
+              {column_ii_text && (
+                <div className="h-[195px] lg:h-[175px] bg-[#272D7E] mt-[8px] rounded-sm p-3 lg:p-6 flex items-end text-white/80 leading-[26px]">
+                  <i>{column_ii_text}</i>
+                </div>
+              )}
+            </div>
+            <div className="relative">
+              {column_iii_text && (
+                <div className="h-[195px] lg:h-[205px] bg-[#272D7E] mt-[25px] mb-[8px] rounded-sm p-3 lg:p-6 flex items-end text-white/80 leading-[26px]">
+                  <i>{column_iii_text}</i>
+                </div>
+              )}
+              {column_iii_image?.url && (
+                <Image
+                  src={column_iii_image.url}
+                  alt="right-top"
+                  width={275}
+                  height={215}
+                  className="rounded-sm object-cover"
+                />
+              )}
+              <div className="hidden lg:block h-[17px] bg-[#272D7E] rounded-sm  mt-[8px]"></div>
+            </div>
+
+            <div className="hidden lg:block absolute right-[5.5%] top-[60px] cta-fix">
+              {right_top?.url && (
+                <Image
+                  src={right_top.url}
+                  alt=""
+                  width={45}
+                  height={215}
+                  className="rounded-sm object-cover"
+                />
+              )}
+              <div className="h-[215px] bg-[#272D7E] rounded-sm mb-[8px]  mt-[8px]"></div>
+              {right_bottom?.url && (
+                <Image
+                  src={right_bottom.url}
+                  alt=""
+                  width={45}
+                  height={75}
+                  className=" rounded-sm object-cover"
+                />
+              )}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* =====================================================
+          EXISTING FOOTER SECTION
+         ===================================================== */}
+      <footer className="bg-[#151B5D] text-white relative z-10">
+        <div className="mx-auto w-full web-width px-4 pb-12 md:pt-22 sm:pt-10">
+          {/* ============ MAIN FOOTER CONTENT ============ */}
+          {hasMainContent && (
+            <div className="grid md:grid-cols-2 gap-12 pb-12">
+              {/* QUICK LINKS */}
+              {quickLinks.length > 0 && (
+                <div>
+                  <ul className="space-y-4 py-4 max-w-96">
+                    {quickLinks.map((item) => (
+                      <li
+                        key={item.label}
+                        className="flex items-center justify-between text-2xl border-b border-white/10 pb-2"
+                      >
+                        <Link href={item.href} className="hover:text-white/70">
+                          {item.label}
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+
+              {/* SERVICES + OFFICES */}
+              {(services.length > 0 || offices.length > 0) && (
+                <div className="grid grid-cols-2 gap-10">
+                  {/* SERVICES */}
+                  {services.length > 0 && (
+                    <div>
+                      <p className="mb-6 text-xs uppercase tracking-[0.17px] text-white/60">
+                        {servicesTitle}
+                      </p>
+                      <ul className="space-y-2 text-base text-white/80">
+                        {services.map((service) => (
+                          <li key={service}>{service}</li>
+                        ))}
+                      </ul>
+                    </div>
+                  )}
+
+                  {/* OFFICES */}
+                  {offices.length > 0 && (
+                    <div>
+                      <p className="mb-6 text-xs uppercase tracking-[0.17px] text-white/60">
+                        {officesTitle}
+                      </p>
+                      <div className="space-y-6 text-sm">
+                        {offices.map((office) => (
+                          <div key={office.title}>
+                            <p className="mb-2 font-semibold uppercase">
+                              {office.title}
+                            </p>
+                            <ul className="space-y-1 text-white/80">
+                              {office.lines.map((line, i) => (
+                                <li key={i}>{line}</li>
+                              ))}
+                            </ul>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+                </div>
+              )}
+            </div>
+          )}
+
+          {/* ============ BOTTOM ROW ============ */}
+          {hasBottomRow && (
+            <div className="grid md:grid-cols-2 items-center gap-10 mt-6">
+              {/* LOGO */}
+              <div>
+                {footerLogo?.url && (
+                  <div className="relative h-[44px] w-[240px] opacity-80">
+                    <Image
+                      src={footerLogo.url}
+                      alt="Footer Logo"
+                      fill
+                      className="object-contain"
+                    />
+                  </div>
+                )}
+              </div>
+
+              {/* COPYRIGHT + SOCIAL */}
+              <div className="flex justify-between items-center">
+                {copyrightText && (
+                  <p className="text-sm text-white/70">{copyrightText}</p>
+                )}
+
+                {/* SOCIAL */}
+                <div className="flex gap-3">
+                  {socialLinks.map(([network, url]) => {
+                    const IconSrc = SOCIAL_ICON_MAP[network];
+                    return (
+                      <Link key={network} href={url} target="_blank">
+                        <Image
+                          src={IconSrc}
+                          width={31}
+                          height={31}
+                          alt={network}
+                        />
+                      </Link>
+                    );
+                  })}
+                </div>
+              </div>
+            </div>
+          )}
+        </div>
+      </footer>
+    </>
+  );
+}

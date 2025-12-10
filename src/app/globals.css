@@ -1,0 +1,212 @@
+@import "tailwindcss";
+
+/* ==========================================
+   BASE ROOT (optional future branding setup)
+========================================== */
+:root {
+  --font-primary: "Instrument Sans", system-ui, sans-serif;
+  --font-serif: "Tinos", serif;
+
+  --color-dark: #2B2B2B;
+  --color-light: #FFFFFF;
+  --color-grey: #9192A0;
+  --color-accent: #00FEC3;
+  --color-brand: #151B5D;
+}
+
+body {
+  font-family: var(--font-primary);
+  font-weight: 400;
+}
+
+/* Global heading tags default */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-primary);
+  font-weight: 500;
+}
+
+/* Global container */
+.web-width {
+  max-width: 1280px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+i, em {
+  font-family: var(--font-serif) !important;
+  font-style: italic;
+}
+/* ==========================================
+   HERO HEADING (heading-xl)
+   Mobile-first → larger breakpoints added
+========================================== */
+.heading-xl h1, .heading-xl p  {
+  font-family: var(--font-primary);
+  font-weight: 500;
+  font-size: 34px;
+  line-height: 40px;
+  color: var(--color-light);
+}
+
+.heading-xl p i,
+.heading-xl p em,
+.heading-xl h1 em {
+  font-family: var(--font-serif) !important;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 38px;
+}
+
+/* Tablet */
+@media (min-width: 768px) {
+  .heading-xl h1,.heading-xl p  {
+    font-size: 50px;
+    line-height: 58px;
+  }
+  .heading-xl h1 em, .heading-xl p em, .heading-xl p i {
+    line-height: 58px;
+  }
+}
+
+/* Medium Screens */
+@media (min-width: 1024px) {
+  .heading-xl h1,.heading-xl p  {
+    font-size: 60px;
+    line-height: 72px;
+  }
+  .heading-xl h1 em, .heading-xl p em, .heading-xl p i {
+    line-height: 70px;
+  }
+}
+
+/* Large Desktop */
+@media (min-width: 1280px) {
+  .heading-xl p,
+  .heading-xl h1  {
+    font-size: 100px;
+    line-height: 100px;
+  }
+  .heading-xl p i,
+  .heading-xl p em,
+  .heading-xl h1  em {
+    line-height: 100px;
+  }
+}
+
+/* ==========================================
+   BODY TEXT
+========================================== */
+.body-text {
+  font-family: var(--font-primary);
+  font-size: 16px;
+  line-height: 26px;
+  color: var(--color-dark);
+}
+
+/* Hero variation (white text) */
+.hero .body-text {
+  color: #fff;
+  font-size: 18px;
+}
+
+/* ==========================================
+   ABOUT SECTION TYPOGRAPHY
+========================================== */
+
+/* Label with dot */
+.subheading-label {
+  font-size: 12px;
+  line-height: 24px;
+  font-weight: 500;
+  letter-spacing: 0.6px;
+  color: var(--color-grey);
+}
+
+.subheading-label.text-white {
+  color: #fff;
+}
+/* Main H2 title */
+.section-heading {
+  font-size: 28px;
+  line-height: 34px;
+  font-weight: 500;
+}
+
+/* Tablet */
+@media (min-width: 768px) {
+  .section-heading {
+    font-size: 40px;
+    line-height: 48px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .img-120 { 
+    height: 120px;
+  }
+}
+/* Desktop */
+@media (min-width: 1280px) {
+  .section-heading {
+    font-size: 64px;
+    line-height: 70px;
+  }
+}
+
+
+
+/* Content heading */
+.content-heading {
+  font-size: 22px;
+  line-height: 30px;
+  font-weight: 500;
+  color: var(--color-dark);
+}
+
+/* Desktop */
+@media (min-width: 1280px) {
+  .content-heading {
+    font-size: 32px;
+    line-height: 40px;
+  }
+}
+
+/* One-liner */
+.left-oneliner {
+  font-size: 18px;
+  line-height: 24px;
+  font-weight: 500;
+}
+
+/* ==========================================
+   SLIDER TEXT (client logos)
+========================================== */
+.caption-text {
+  font-family: var(--font-primary);
+  font-size: 12px;
+  line-height: 18px;
+  color: #fff;
+}
+
+.client-title {
+  font-family: var(--font-primary);
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 24px;
+  color: #fff;
+}
+
+.ticker-wrapper img {
+  height: 38px !important;
+  width: auto !important;
+}
+
+@media screen and (max-width: 767px) {
+ .heading-xl h1  {
+    font-size: 50px;
+    line-height: 58px;
+  }
+  .heading-xl h1  em {
+    line-height: 58px;
+  } 
+}
