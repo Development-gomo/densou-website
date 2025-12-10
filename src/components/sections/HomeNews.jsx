@@ -46,7 +46,7 @@ export default function HomeNews({ data, lang = "en" }) {
     .slice(0, 2);
 
   return (
-    <section className="py-24 web-width px-4">
+    <section className="py-24 web-width px-6">
       {/* SUB HEADING */}
       {sub_heading && (
         <div className="flex items-center gap-2 mb-4">

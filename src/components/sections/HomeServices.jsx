@@ -53,7 +53,7 @@ export default function HomeServices({ data, lang = "en" }) {
   return (
     <section className="py-10 md:py-20">
       {/* FULL WIDTH WRAPPER */}
-      <div className="w-full px-4 web-width ">
+      <div className="w-full px-6 web-width">
 
       {/* SUB HEADING */}
       {sub_heading && (
@@ -135,7 +135,7 @@ export default function HomeServices({ data, lang = "en" }) {
           320: { slidesPerView: 1.1 },
           640: { slidesPerView: 1.3 },
           1024: { slidesPerView: 2.2 },
-          1280: { slidesPerView: 3.6 },
+          1280: { slidesPerView: 3.7 },
         }}
       >
         {services.map((service) => {

@@ -35,7 +35,7 @@ export default function HomeCounter({ data, lang = "en" }) {
       {/* DARK GRADIENT LAYER */}
       <div className="absolute inset-0 bg-black/00 -z-10"></div>
 
-      <div className="web-width px-4 grid lg:grid-cols-2 gap-2 items-center">
+      <div className="web-width px-6 grid lg:grid-cols-2 gap-2 items-center">
 
         {/* LEFT CONTENT */}
         <div>

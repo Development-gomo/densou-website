@@ -51,7 +51,7 @@ export default function HomeCaseStudies({ data, lang = "en" }) {
   return (
     <section className="pt-12 md:pt-20">
       {/* FULL WIDTH WRAPPER */}
-      <div className="w-full px-4 web-width">
+      <div className="w-full px-6 web-width">
         {/* SUB HEADING */}
         {sub_heading && (
           <div className="flex items-center gap-2 mb-4">

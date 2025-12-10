@@ -20,7 +20,7 @@ export default function AboutUs({ data }) {
   } = data;
 
   return (
-    <section  id="next" className="py-12 md:py-32 web-width px-4">
+    <section  id="next" className="py-12 md:py-32 web-width px-6">
       
       {/* SUB HEADING WITH DOT */}
       <div className="flex items-center gap-2 mb-4">

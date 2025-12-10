@@ -70,7 +70,7 @@ export default function Header({ lang = "en", currentSlug = "" }) {
 
   return (
     <header className={headerClasses}>
-      <div className="web-width mx-auto px-4 py-4 flex items-center justify-between">
+      <div className="web-width mx-auto px-6 py-4 flex items-center justify-between">
 
         {/* LOGO */}
         <Link href={`/${lang}`} className="flex relative h-[32px] w-[100px] md:h-[40px] md:w-[100px]">

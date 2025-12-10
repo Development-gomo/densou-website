@@ -115,7 +115,7 @@ export default async function Footer({ lang = "en" }) {
         id="cta-section"
         className="bg-[#151B5D] text-white pt-12 lg:pt-20 border-solid border-b border-[#9293a066] relative"
       >
-        <div className="web-width px-4 flex flex-col lg:flex-row gap-8 lg:gap-[50px]">
+        <div className="web-width px-6 flex flex-col lg:flex-row gap-8 lg:gap-[50px]">
           {/* First Column with max-width 415px */}
           <div className="max-w-[415px] w-full">
             {sub_heading && (
@@ -266,7 +266,7 @@ export default async function Footer({ lang = "en" }) {
           EXISTING FOOTER SECTION
          ===================================================== */}
       <footer className="bg-[#151B5D] text-white relative z-10">
-        <div className="mx-auto w-full web-width px-4 pb-12 md:pt-22 sm:pt-10">
+        <div className="mx-auto w-full web-width px-6 pb-12 pt-8  md:pt-22">
           {/* ============ MAIN FOOTER CONTENT ============ */}
           {hasMainContent && (
             <div className="grid md:grid-cols-2 gap-12 pb-12">
