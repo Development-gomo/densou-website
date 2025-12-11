@@ -52,7 +52,7 @@ export default function HomeCounter({ data, lang = "en" }) {
 
           {/* MAIN HEADING */}
           <div
-            className="heading-xl section-heading text-white mb-6"
+            className="section-heading text-white mb-6"
             dangerouslySetInnerHTML={{ __html: heading }}
           />
 
