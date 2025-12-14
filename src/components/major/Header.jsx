@@ -8,17 +8,17 @@ import Image from "next/image";
 import ArrowSvg from "../../../public/right-arrow.svg";
 import DownSvg from "../../../public/down-arrow.svg";
 import ArrowSvgB from "../../../public/right-arrow-black.png";
-import {getMenu, getThemeOptions, getTranslationBySlug} from "@/lib/api";
-
+import { getMenu, getThemeOptions, getTranslationBySlug } from "@/lib/api";
 
 export default function Header({ lang = "en", currentSlug = "" }) {
   const [menu, setMenu] = useState(null);
   const [options, setOptions] = useState(null);
-  const [altLangUrl, setAltLangUrl] = useState(`/${lang === "en" ? "da" : "en"}`);
+  const [altLangUrl, setAltLangUrl] = useState(
+    `/${lang === "en" ? "da" : "en"}`
+  );
   const [scrolled, setScrolled] = useState(false);
   const isLoading = !menu;
   const isHeaderLoading = !menu || !options;
-
 
   // Fetch menu + theme options client-side
   useEffect(() => {
@@ -43,21 +43,23 @@ export default function Header({ lang = "en", currentSlug = "" }) {
   }, []);
 
   // Sticky header classes
-  const headerClasses =
-    scrolled
-      ? "fixed top-0 w-full z-50 text-white transition-all duration-300  py-4 bg-[var(--color-brand)] shadow-md"
-      : "fixed top-0 w-full z-50 text-white transition-all duration-300 bg-transparent  py-8";
+  const headerClasses = scrolled
+    ? "fixed top-0 w-full z-50 text-white transition-all duration-300  py-4 bg-[var(--color-brand)] shadow-md"
+    : "fixed top-0 w-full z-50 text-white transition-all duration-300 bg-transparent  py-8";
 
   // Mobile menu state
   const [mobileOpen, setMobileOpen] = useState(false);
   const [openSubmenu, setOpenSubmenu] = useState(null);
 
-
   useEffect(() => {
     async function fetchAltLangUrl() {
       try {
         const altLang = lang === "en" ? "da" : "en";
-        const translation = await getTranslationBySlug(currentSlug, lang, altLang);
+        const translation = await getTranslationBySlug(
+          currentSlug,
+          lang,
+          altLang
+        );
         if (translation?.slug) {
           setAltLangUrl(`/${altLang}/${translation.slug}`);
         }
@@ -74,9 +76,11 @@ export default function Header({ lang = "en", currentSlug = "" }) {
   return (
     <header className={headerClasses}>
       <div className="web-width mx-auto px-6 flex items-center justify-between">
-
         {/* LOGO */}
-        <Link href={`/${lang}`} className="flex relative h-[32px] w-[100px] md:h-[40px] md:w-[100px]">
+        <Link
+          href={`/${lang}`}
+          className="flex relative h-[32px] w-[100px] md:h-[40px] md:w-[100px]"
+        >
           {options?.logo_light?.url && (
             <Image
               src={options.logo_light.url}
@@ -92,46 +96,57 @@ export default function Header({ lang = "en", currentSlug = "" }) {
         {/* DESKTOP MENU */}
         <nav className="hidden md:flex items-center gap-8 ">
           {/* Centered glass menu wrapper */}
-            <div className="
+          <div
+            className="
               backdrop-blur-xl bg-white/20 
               px-8 py-4 rounded-full shadow-lg 
               flex items-center gap-8 lg:absolute lg:left-1/3
-            ">
-              <ul className="flex items-center gap-9 relative">
-                  {isLoading ? (
-                    // SKELETON MENU (no jump)
-                    <>
-                      {[1,2,3,4,5].map(i => (
-                        <li
-                          key={"sk-"+i}
-                          className="w-[80px] h-[18px] rounded-full bg-white/30 animate-pulse"
-                        />
-                      ))}
-                    </>
-                  ) : (
-                    // REAL MENU
-                    menu.main.map((item) => (
-                      <li key={item.id} className="relative group">
-
-                        <Link
-                          href={item.url.startsWith("/") ? `/${lang}${item.url}` : item.url}
-                          className="
+            "
+          >
+            <ul className="flex items-center gap-9 relative">
+              {isLoading ? (
+                // SKELETON MENU (no jump)
+                <>
+                  {[1, 2, 3, 4, 5].map((i) => (
+                    <li
+                      key={"sk-" + i}
+                      className="w-[80px] h-[18px] rounded-full bg-white/30 animate-pulse"
+                    />
+                  ))}
+                </>
+              ) : (
+                // REAL MENU
+                menu.main.map((item) => (
+                  <li key={item.id} className="relative group">
+                    <Link
+                      href={
+                        item.url.startsWith("/")
+                          ? `/${lang}${item.url}`
+                          : item.url
+                      }
+                      className="
                             text-white/90 text-[15px] font-medium
                             hover:text-white transition flex items-center gap-2
                           "
-                        >
-                          {item.title}
+                    >
+                      {item.title}
 
-                          {item.children?.length > 0 && (
-                            <span className="transition-transform duration-300 group-hover:rotate-180">
-                              <Image src={DownSvg} alt="arrow" width={13} height={13} />
-                            </span>
-                          )}
-                        </Link>
+                      {item.children?.length > 0 && (
+                        <span className="transition-transform duration-300 group-hover:rotate-180">
+                          <Image
+                            src={DownSvg}
+                            alt="arrow"
+                            width={13}
+                            height={13}
+                          />
+                        </span>
+                      )}
+                    </Link>
 
-                        {/* SUBMENU */}
-                        {item.children?.length > 0 && (
-                          <ul className="
+                    {/* SUBMENU */}
+                    {item.children?.length > 0 && (
+                      <ul
+                        className="
                             absolute left-1/2 top-[20px] mt-1 
                             -translate-x-1/2 min-w-[180px]
                             backdrop-blur-xl bg-white/20
@@ -140,31 +155,32 @@ export default function Header({ lang = "en", currentSlug = "" }) {
                             group-hover:opacity-100 group-hover:pointer-events-auto
                             transition-all duration-300
                             z-[200]
-                          ">
-                            {item.children.map((sub) => (
-                              <li key={sub.id}>
-                                <Link
-                                  href={sub.url.startsWith("/") ? `/${lang}${sub.url}` : sub.url}
-                                  className="
+                          "
+                      >
+                        {item.children.map((sub) => (
+                          <li key={sub.id}>
+                            <Link
+                              href={
+                                sub.url.startsWith("/")
+                                  ? `/${lang}${sub.url}`
+                                  : sub.url
+                              }
+                              className="
                                     block px-3 py-2 text-white/90 text-sm
                                     hover:text-white hover:bg-white/10 transition
                                   "
-                                >
-                                  {sub.title}
-                                </Link>
-                              </li>
-                            ))}
-                          </ul>
-                        )}
-
-                      </li>
-                    ))
-                  )}
-
-                </ul>
-
-            </div>
-
+                            >
+                              {sub.title}
+                            </Link>
+                          </li>
+                        ))}
+                      </ul>
+                    )}
+                  </li>
+                ))
+              )}
+            </ul>
+          </div>
 
           {/* Language Switcher */}
           <Link
@@ -173,65 +189,75 @@ export default function Header({ lang = "en", currentSlug = "" }) {
           >
             {lang === "en" ? "DA" : "EN"}
           </Link>
-          
+
           {/* CTA BUTTON */}
-              {(!options?.button_text || !options?.button_url) ? (
-                
-                // SKELETON PLACEHOLDER (prevents jump)
-                <div className="w-[135px] h-[42px] rounded-sm bg-white/20 animate-pulse"></div>
-
-              ) : (
-
-                // REAL BUTTON (unchanged HTML as requested)
-                <Link
-                  href={
-                    options.button_url.startsWith("/")
-                      ? `/${lang}${options.button_url}`
-                      : options.button_url
-                  }
-                  className={`gap-3 group relative inline-flex items-center select-none 
+          {!options?.button_text || !options?.button_url ? (
+            // SKELETON PLACEHOLDER (prevents jump)
+            <div className="w-[135px] h-[42px] rounded-sm bg-white/20 animate-pulse"></div>
+          ) : (
+            // REAL BUTTON (unchanged HTML as requested)
+            <Link
+              href={
+                options.button_url.startsWith("/")
+                  ? `/${lang}${options.button_url}`
+                  : options.button_url
+              }
+              className={`gap-3 group relative inline-flex items-center select-none 
                     rounded-sm px-6 py-4 text-white 
                     transition-all duration-300  
                     w-[150px] overflow-hidden
-                      ${scrolled ? "bg-[var(--color-accent)]" : "bg-[var(--color-brand)]"}`}>
-
-                  {/* LEFT SLOT (dot area, fixed width) */}
-                  <span className="relative w-6 flex items-center justify-center">
-                    <span
-                      className={`
+                      ${
+                        scrolled
+                          ? "bg-[var(--color-accent)]"
+                          : "bg-[var(--color-brand)]"
+                      }`}
+            >
+              {/* LEFT SLOT (dot area, fixed width) */}
+              <span className="relative w-6 flex items-center justify-center">
+                <span
+                  className={`
                         absolute h-2 w-2 rounded-full
                         transition-all duration-300 ease-out
                         group-hover:opacity-0 group-hover:-translate-x-1
-                         ${scrolled ? "bg-[var(--color-brand)]" : "bg-[var(--color-accent)]"}`}></span>
-                  </span>
+                         ${
+                           scrolled
+                             ? "bg-[var(--color-brand)]"
+                             : "bg-[var(--color-accent)]"
+                         }`}
+                ></span>
+              </span>
 
-                  {/* TEXT (slides left on hover) */}
-                  <span
-                      className={`
+              {/* TEXT (slides left on hover) */}
+              <span
+                className={`
                       flex-1 text-[16px] leading-none
                       transition-all duration-300 ease-out 
                       group-hover:-translate-x-4
                       whitespace-nowrap
-                      ${scrolled ? "text-[var(--color-brand)]" : "text-white"}`}>
-                    {options.button_text}
-                  </span>
+                      ${scrolled ? "text-[var(--color-brand)]" : "text-white"}`}
+              >
+                {options.button_text}
+              </span>
 
-                  {/* RIGHT SLOT (arrow area, fixed width) */}
-                  <span className="relative w-4 flex items-center justify-center">
-                    <span
-                      className="
+              {/* RIGHT SLOT (arrow area, fixed width) */}
+              <span className="relative w-4 flex items-center justify-center">
+                <span
+                  className="
                         w-4 absolute text-[16px]
                         opacity-0 -translate-x-4
                         transition-all duration-300 ease-out
                         group-hover:opacity-100 group-hover:-translate-x-2
                       "
-                    >
-                      {scrolled ? <Image src={ArrowSvgB} alt="arrow" width={13} height={13} /> : <Image src={ArrowSvg} alt="arrow" width={13} height={13} />}
-                      
-                    </span>
-                  </span>
-                </Link>
-              )} 
+                >
+                  {scrolled ? (
+                    <Image src={ArrowSvgB} alt="arrow" width={13} height={13} />
+                  ) : (
+                    <Image src={ArrowSvg} alt="arrow" width={13} height={13} />
+                  )}
+                </span>
+              </span>
+            </Link>
+          )}
         </nav>
 
         {/* MOBILE MENU BUTTON */}
@@ -241,153 +267,207 @@ export default function Header({ lang = "en", currentSlug = "" }) {
         >
           ☰
         </button>
-      </div>
+        {/* MOBILE SLIDE-IN MENU */}
+        {mobileOpen && (
+          <div className="fixed inset-0 z-[60] bg-black/60 backdrop-blur-sm md:hidden">
+            <div className="absolute right-0 top-0 h-full w-72 bg-[var(--color-brand)] shadow-xl flex flex-col">
+              {/* HEADER */}
+              <div className="p-6 flex items-center justify-between">
+                <span className="text-white font-semibold">Menu</span>
+                <button
+                  className="text-white text-3xl"
+                  onClick={() => {
+                    setMobileOpen(false);
+                    setOpenSubmenu(null);
+                  }}
+                >
+                  ✕
+                </button>
+              </div>
 
-      {/* MOBILE SLIDE-IN MENU */}
-      {mobileOpen && (
-        <div className="fixed inset-0 z-[60] bg-black/60 backdrop-blur-sm md:hidden">
-          <div className="absolute right-0 top-0 min-h-screen w-72 bg-[var(--color-brand)] p-6 shadow-xl">
+              {/* CONTENT (SLIDING PANELS) */}
+              <div className="relative flex-1 overflow-hidden px-6">
+                {/* MAIN MENU PANEL */}
+                <div
+                  className={`absolute inset-0 flex flex-col gap-5 transition-transform duration-300 ${
+                    openSubmenu ? "-translate-x-full" : "translate-x-0"
+                  }`}
+                >
+                  {menu?.main?.map((item) => {
+                    const hasChildren = item.children?.length > 0;
 
-            {/* Close */}
-            <button
-              className="text-white text-3xl mb-6"
-              onClick={() => setMobileOpen(false)}
-            >
-              ✕
-            </button>
+                    const parentHref = item.url.startsWith("/")
+                      ? `/${lang}${item.url}`
+                      : item.url;
 
-            {/* Menu Items */}
-            <div className="flex flex-col gap-5">
-              {menu?.main?.map((item) => {
-  const hasChildren = item.children?.length > 0;
-  const isOpen = openSubmenu === item.id;
+                    return (
+                      <div
+                        key={item.id}
+                        className="flex items-center justify-between"
+                      >
+                        {/* Parent link */}
+                        <Link
+                          href={parentHref}
+                          className="text-white text-lg px-6"
+                          onClick={() => {
+                            setMobileOpen(false);
+                            setOpenSubmenu(null);
+                          }}
+                        >
+                          {item.title}
+                        </Link>
 
-  return (
-    <div key={item.id} className="flex flex-col gap-2">
-      
-      {/* Parent item */}
-      <button
-        type="button"
-        onClick={() => {
-          if (hasChildren) {
-            setOpenSubmenu(isOpen ? null : item.id);
-          } else {
-            setMobileOpen(false);
-          }
-        }}
-        className="flex items-center justify-between text-white text-lg w-full"
-      >
-        <span>{item.title}</span>
+                        {/* Arrow → open submenu */}
+                        {hasChildren && (
+                          <button
+                            type="button"
+                            onClick={() => setOpenSubmenu(item.id)}
+                            className="mr-6"
+                          >
+                            <Image
+                              src={DownSvg}
+                              alt="arrow"
+                              width={16}
+                              height={16}
+                              className="-rotate-90"
+                            />
+                          </button>
+                        )}
+                      </div>
+                    );
+                  })}
+                </div>
 
-        {hasChildren && (
-          <span
-            className={`transition-transform duration-300 ${
-              isOpen ? "rotate-180" : ""
-            }`}
-          >
-            <Image src={DownSvg} alt="arrow" width={14} height={14} />
-          </span>
-        )}
-      </button>
+                {/* SUBMENU PANEL */}
+                {menu?.main?.map((item) => {
+                  if (openSubmenu !== item.id) return null;
 
-      {/* Submenu */}
-      {hasChildren && (
-        <div
-          className={`
-            overflow-hidden transition-all duration-300
-            ${isOpen ? "max-h-96 opacity-100" : "max-h-0 opacity-0"}
-          `}
-        >
-          <div className="ml-4 mt-2 flex flex-col gap-3">
-            {item.children.map((sub) => (
-              <Link
-                key={sub.id}
-                href={
-                  sub.url.startsWith("/")
-                    ? `/${lang}${sub.url}`
-                    : sub.url
-                }
-                className="text-white/80 text-base hover:text-white transition"
-                onClick={() => {
-                  setMobileOpen(false);
-                  setOpenSubmenu(null);
-                }}
-              >
-                {sub.title}
-              </Link>
-            ))}
-          </div>
-        </div>
-      )}
-    </div>
-  );
-})}
+                  return (
+                    <div
+                      key={`submenu-${item.id}`}
+                      className="absolute inset-0 flex flex-col gap-5 transition-transform duration-300 translate-x-0 px-6"
+                    >
+                      {/* Back */}
+                      <button
+                        className="text-white/80 text-sm flex items-center gap-2"
+                        onClick={() => setOpenSubmenu(null)}
+                      >
+                        <Image
+                              src={DownSvg}
+                              alt="arrow"
+                              width={16}
+                              height={16}
+                              className="rotate-90"
+                            /> Back
+                      </button>
 
+                      {/* Parent title */}
+                      <Link
+                        href={
+                          item.url.startsWith("/")
+                            ? `/${lang}${item.url}`
+                            : item.url
+                        }
+                        className="text-white text-lg font-semibold"
+                        onClick={() => {
+                          setMobileOpen(false);
+                          setOpenSubmenu(null);
+                        }}
+                      >
+                        {item.title}
+                      </Link>
 
-              {/* CTA BUTTON */}
-              {options?.button_text && (
+                      {/* Children */}
+                      <div className="mt-2 flex flex-col gap-4">
+                        {item.children.map((sub) => (
+                          <Link
+                            key={sub.id}
+                            href={
+                              sub.url.startsWith("/")
+                                ? `/${lang}${sub.url}`
+                                : sub.url
+                            }
+                            className="text-white/80 text-base hover:text-white transition"
+                            onClick={() => {
+                              setMobileOpen(false);
+                              setOpenSubmenu(null);
+                            }}
+                          >
+                            {sub.title}
+                          </Link>
+                        ))}
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+
+              {/* FOOTER (STATIC) */}
+              <div className="p-6 border-t border-white/10 flex flex-col gap-4">
+               {/* Language Switcher */}
                 <Link
-                  href={
-                    options.button_url.startsWith("/")
-                      ? `/${lang}${options.button_url}`
-                      : options.button_url
-                  }
-                  className={`gap-3 group relative inline-flex items-center select-none 
-                    rounded-sm px-6 py-4 text-white 
-                    transition-all duration-300  
-                    w-[150px] overflow-hidden
-                    bg-[var(--color-accent)]`}>
+                  href={altLangUrl}
+                  className="text-white/80 mb-4"
+                  onClick={() => {
+                    setMobileOpen(false);
+                    setOpenSubmenu(null);
+                  }}
+                >
+                  {lang === "en" ? "DA" : "EN"}
+                </Link>
 
-                  {/* LEFT SLOT (dot area, fixed width) */}
-                  <span className="relative w-6 flex items-center justify-center">
-                    <span
-                      className={`
-                        absolute h-2 w-2 rounded-full
-                        transition-all duration-300 ease-out
-                        group-hover:opacity-0 group-hover:-translate-x-1
-                        bg-[var(--color-brand)]`}></span>
-                  </span>
-
-                  {/* TEXT (slides left on hover) */}
-                  <span
-                      className={`
-                      flex-1 text-[16px] leading-none
-                      transition-all duration-300 ease-out 
-                      group-hover:-translate-x-4
-                      whitespace-nowrap
-                     text-[var(--color-brand)]`}>
-                    {options.button_text}
-                  </span>
-
-                  {/* RIGHT SLOT (arrow area, fixed width) */}
-                  <span className="relative w-4 flex items-center justify-center">
+                {/* CTA */}
+                {options?.button_text && (
+                  <Link
+                    href={
+                      options.button_url.startsWith("/")
+                        ? `/${lang}${options.button_url}`
+                        : options.button_url
+                    }
+                    className="gap-3 group relative inline-flex items-center
+                      rounded-sm bg-[var(--color-accent)] px-6 py-4 text-white
+                      transition-all duration-300 hover:bg-[var(--color-accent)]
+                      w-[154px] overflow-hidden select-none"
+                    onClick={() => {
+                      setMobileOpen(false);
+                      setOpenSubmenu(null);
+                    }}
+                  >
+                    <span className="relative w-6 flex items-center justify-center">
                     <span
                       className="
-                        w-4 absolute text-[16px]
-                        opacity-0 -translate-x-4
-                        transition-all duration-300 ease-out
-                        group-hover:opacity-100 group-hover:-translate-x-2
-                      "
-                    >
-                      <Image src={ArrowSvgB} alt="arrow" width={13} height={13} />
-                      
-                    </span>
+                            absolute h-2 w-2 rounded-full bg-[#191F68]
+                            transition-all duration-300 ease-out
+                            group-hover:opacity-0 group-hover:-translate-x-1
+                          "
+                    ></span>
                   </span>
-                </Link>
-              )}
-
-              {/* Language Switcher */}
-              <Link
-                href={altLangUrl}
-                className="mt-6 text-white/80 text-sm"
-                onClick={() => setMobileOpen(false)}
-              >
-                {lang === "en" ? "DA" : "EN"}
-              </Link>
+                    <span className="text-black 
+                            flex-1 text-[16px] leading-none
+                            transition-all duration-300 ease-out
+                            group-hover:-translate-x-4
+                            whitespace-nowrap">
+                      {options.button_text}
+                    </span>
+                    
+                    <span className="relative w-4 flex items-center justify-center">
+                      <span
+                        className="
+                              w-4 absolute opacity-0 -translate-x-4
+                              transition-all duration-300 ease-out
+                              group-hover:opacity-100 group-hover:-translate-x-2
+                            "
+                      >
+                        <Image src={ArrowSvgB} width={13} height={13} alt="arrow" />
+                      </span>
+                    </span>
+                  </Link>
+                )}
+              </div>
             </div>
           </div>
-        </div>
-      )}
+        )}
+      </div>
     </header>
   );
 }

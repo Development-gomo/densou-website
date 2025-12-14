@@ -12,7 +12,7 @@ export default async function LangScopedNotFound({ params }) {
   return (
     <>
       <Header lang={lang} />
-       <div className="h-[72px] w-full bg-black"></div> 
+       <div className="h-[112px] w-full bg-black"></div> 
       <main className="min-h-[60vh] flex flex-col items-center justify-center gap-6 px-4 py-16 text-center">
         <p className="text-sm uppercase tracking-[0.3em] text-gray-500">
           404
