@@ -20,11 +20,10 @@ export default function AboutUs({ data }) {
   } = data;
 
   return (
-    <section  id="next" className="py-12 md:py-32 web-width px-6">
-      
+    <section id="next" className="about-section py-12 md:py-30 web-width px-6">
       {/* SUB HEADING WITH DOT */}
       <div className="flex items-center gap-2 mb-4">
-        <span className="h-2 w-2 rounded-full bg-[#00FEC3]"></span>
+        <span className="h-2 w-2 rounded-full bg-[var(--color-accent)]"></span>
         <span className="subheading-label">{sub_heading}</span>
       </div>
       <div
@@ -64,8 +63,8 @@ export default function AboutUs({ data }) {
             <Link href={cta_url}
                   className="
                     gap-2 group relative inline-flex items-center select-none 
-                    rounded-sm bg-[#151B5D] px-6 py-4 text-white 
-                    transition-all duration-300 hover:bg-[#151B5D] 
+                    rounded-sm bg-[var(--color-brand)] px-6 py-4 text-white 
+                    transition-all duration-300 hover:bg-[var(--color-brand)] 
                     w-[135px] overflow-hidden
                   "
                 >

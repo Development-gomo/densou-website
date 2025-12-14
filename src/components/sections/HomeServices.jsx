@@ -51,14 +51,14 @@ export default function HomeServices({ data, lang = "en" }) {
   if (!services.length) return null;
 
   return (
-    <section className="py-10 md:py-20">
+    <section id="services-section" className="py-12 md:py-30">
       {/* FULL WIDTH WRAPPER */}
       <div className="w-full px-6 web-width">
 
       {/* SUB HEADING */}
       {sub_heading && (
         <div className="flex items-center gap-2 mb-4">
-          <span className="h-2 w-2 rounded-full bg-[#00FEC3]"></span>
+          <span className="h-2 w-2 rounded-full bg-[var(--color-accent)]"></span>
           <span className="subheading-label">{sub_heading}</span>
         </div>
       )}
@@ -76,8 +76,8 @@ export default function HomeServices({ data, lang = "en" }) {
             href={cta_url.startsWith("/") ? `/${lang}${cta_url}` : cta_url}
             className="
               gap-3 group relative inline-flex items-center
-              rounded-sm bg-[#151B5D] px-6 py-4 text-white
-              transition-all duration-300 hover:bg-[#151B5D]
+              rounded-sm bg-[var(--color-brand)] px-6 py-4 text-white
+              transition-all duration-300 hover:bg-[var(--color-brand)]
               w-[235px] overflow-hidden select-none
             "
           >
@@ -179,7 +179,7 @@ export default function HomeServices({ data, lang = "en" }) {
                 {/* ARROW TOP RIGHT */}
                 <div className="absolute top-6 right-6">
                   <div className="
-                    w-10 h-10 rounded-full bg-[#151B5D]
+                    w-10 h-10 rounded-full bg-[var(--color-brand)]
                     flex items-center justify-center
                     transition-all duration-300 group-hover:bg-[#0F144A]
                   ">

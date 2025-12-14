@@ -11,7 +11,7 @@
   --color-light: #FFFFFF;
   --color-grey: #9192A0;
   --color-accent: #00FEC3;
-  --color-brand: #151B5D;
+  --color-brand: #191F68;
 }
 
 /* Notes us this class 
@@ -73,6 +73,9 @@ i, em {
   }
   section#case-section {
     padding-bottom: 80px;
+  }
+  #home #services-section {
+    padding-top: 0;
   }
   main#home section#case-section {
     padding-bottom: 0px;

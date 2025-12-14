@@ -50,6 +50,8 @@ export default function Header({ lang = "en", currentSlug = "" }) {
 
   // Mobile menu state
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [openSubmenu, setOpenSubmenu] = useState(null);
+
 
   useEffect(() => {
     async function fetchAltLangUrl() {
@@ -256,25 +258,121 @@ export default function Header({ lang = "en", currentSlug = "" }) {
 
             {/* Menu Items */}
             <div className="flex flex-col gap-5">
-              {menu?.main?.map((item) => (
-                <Link
-                  key={item.id}
-                  href={item.url.startsWith("/") ? `/${lang}${item.url}` : item.url}
-                  className="text-white text-lg hover:text-white/70 transition"
-                  onClick={() => setMobileOpen(false)}
-                >
-                  {item.title}
-                </Link>
-              ))}
+              {menu?.main?.map((item) => {
+  const hasChildren = item.children?.length > 0;
+  const isOpen = openSubmenu === item.id;
+
+  return (
+    <div key={item.id} className="flex flex-col gap-2">
+      
+      {/* Parent item */}
+      <button
+        type="button"
+        onClick={() => {
+          if (hasChildren) {
+            setOpenSubmenu(isOpen ? null : item.id);
+          } else {
+            setMobileOpen(false);
+          }
+        }}
+        className="flex items-center justify-between text-white text-lg w-full"
+      >
+        <span>{item.title}</span>
+
+        {hasChildren && (
+          <span
+            className={`transition-transform duration-300 ${
+              isOpen ? "rotate-180" : ""
+            }`}
+          >
+            <Image src={DownSvg} alt="arrow" width={14} height={14} />
+          </span>
+        )}
+      </button>
+
+      {/* Submenu */}
+      {hasChildren && (
+        <div
+          className={`
+            overflow-hidden transition-all duration-300
+            ${isOpen ? "max-h-96 opacity-100" : "max-h-0 opacity-0"}
+          `}
+        >
+          <div className="ml-4 mt-2 flex flex-col gap-3">
+            {item.children.map((sub) => (
+              <Link
+                key={sub.id}
+                href={
+                  sub.url.startsWith("/")
+                    ? `/${lang}${sub.url}`
+                    : sub.url
+                }
+                className="text-white/80 text-base hover:text-white transition"
+                onClick={() => {
+                  setMobileOpen(false);
+                  setOpenSubmenu(null);
+                }}
+              >
+                {sub.title}
+              </Link>
+            ))}
+          </div>
+        </div>
+      )}
+    </div>
+  );
+})}
+
 
               {/* CTA BUTTON */}
               {options?.button_text && (
                 <Link
-                  href={options.button_url}
-                  className="mt-4 inline-block text-center rounded-lg bg-white text-[#151B5D] px-5 py-3 font-semibold"
-                  onClick={() => setMobileOpen(false)}
-                >
-                  {options.button_text}
+                  href={
+                    options.button_url.startsWith("/")
+                      ? `/${lang}${options.button_url}`
+                      : options.button_url
+                  }
+                  className={`gap-3 group relative inline-flex items-center select-none 
+                    rounded-sm px-6 py-4 text-white 
+                    transition-all duration-300  
+                    w-[150px] overflow-hidden
+                    bg-[var(--color-accent)]`}>
+
+                  {/* LEFT SLOT (dot area, fixed width) */}
+                  <span className="relative w-6 flex items-center justify-center">
+                    <span
+                      className={`
+                        absolute h-2 w-2 rounded-full
+                        transition-all duration-300 ease-out
+                        group-hover:opacity-0 group-hover:-translate-x-1
+                        bg-[var(--color-brand)]`}></span>
+                  </span>
+
+                  {/* TEXT (slides left on hover) */}
+                  <span
+                      className={`
+                      flex-1 text-[16px] leading-none
+                      transition-all duration-300 ease-out 
+                      group-hover:-translate-x-4
+                      whitespace-nowrap
+                     text-[var(--color-brand)]`}>
+                    {options.button_text}
+                  </span>
+
+                  {/* RIGHT SLOT (arrow area, fixed width) */}
+                  <span className="relative w-4 flex items-center justify-center">
+                    <span
+                      className="
+                        w-4 absolute text-[16px]
+                        opacity-0 -translate-x-4
+                        transition-all duration-300 ease-out
+                        group-hover:opacity-100 group-hover:-translate-x-2
+                      "
+                    >
+                      <Image src={ArrowSvgB} alt="arrow" width={13} height={13} />
+                      
+                    </span>
+                  </span>
                 </Link>
               )}
 

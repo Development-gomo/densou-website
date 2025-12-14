@@ -46,11 +46,11 @@ export default function HomeNews({ data, lang = "en" }) {
     .slice(0, 2);
 
   return (
-    <section className="py-24 web-width px-6">
+    <section className="py-12 md:py-30 web-width px-6">
       {/* SUB HEADING */}
       {sub_heading && (
         <div className="flex items-center gap-2 mb-4">
-          <span className="h-2 w-2 rounded-full bg-[#00FEC3]"></span>
+          <span className="h-2 w-2 rounded-full bg-[var(--color-accent)]"></span>
           <span className="subheading-label">{sub_heading}</span>
         </div>
       )}
@@ -67,8 +67,8 @@ export default function HomeNews({ data, lang = "en" }) {
             href={cta_url.startsWith("/") ? `/${lang}${cta_url}` : cta_url}
             className="
               gap-3 group relative inline-flex items-center
-              rounded-sm bg-[#151B5D] px-6 py-4 text-white
-              transition-all duration-300 hover:bg-[#151B5D]
+              rounded-sm bg-[var(--color-brand)] px-6 py-4 text-white
+              transition-all duration-300 hover:bg-[var(--color-brand)]
               w-[235px] overflow-hidden select-none
             "
           >
@@ -137,7 +137,7 @@ export default function HomeNews({ data, lang = "en" }) {
           {/* CATEGORY BADGE */}
           <div className="absolute top-8 left-8">
             <span className="bg-white/20 backdrop-blur-md text-white px-3 py-1 rounded-full text-sm flex items-center gap-2">
-              <span className="h-2 w-2 bg-[#00FEC3] rounded-full"></span>
+              <span className="h-2 w-2 bg-[var(--color-accent)] rounded-full"></span>
               {getCategories(webinarPost)[0]?.name || "Webinar"}
             </span>
           </div>
@@ -151,7 +151,7 @@ export default function HomeNews({ data, lang = "en" }) {
               />
               {/* CTA BUTTON */}
 
-              <p className=" gap-3 group relative inline-flex items-center rounded-sm bg-[#151B5D] px-6 py-4 text-white transition-all duration-300 hover:bg-[#151B5D] w-[180px] overflow-hidden select-none">
+              <p className=" gap-3 group relative inline-flex items-center rounded-sm bg-[var(--color-brand)] px-6 py-4 text-white transition-all duration-300 hover:bg-[var(--color-brand)] w-[180px] overflow-hidden select-none">
                 {/* LEFT DOT */}
                 <span className="relative w-6 flex items-center justify-center">
                   <span className="absolute h-2 w-2 rounded-full bg-[#27E0C0] transition-all duration-300 ease-out group-hover:opacity-0 group-hover:-translate-x-1"></span>
@@ -235,7 +235,7 @@ export default function HomeNews({ data, lang = "en" }) {
                 {/* TEXT AREA */}
                 <div className="flex-1">
                   <span className="bg-white/20 border border-gray-300 w-[85px] mb-3 text-gray-700 px-3 py-1 rounded-full text-xs flex items-center gap-2 mb-2">
-                    <span className="h-2 w-2 bg-[#00FEC3] rounded-full"></span>
+                    <span className="h-2 w-2 bg-[var(--color-accent)] rounded-full"></span>
                     {category}
                   </span>
 

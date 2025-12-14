@@ -113,14 +113,14 @@ export default async function Footer({ lang = "en" }) {
     <>
       <section
         id="cta-section"
-        className="bg-[#151B5D] text-white pt-12 lg:pt-20 border-solid border-b border-[#9293a066] relative"
+        className="bg-[var(--color-brand)] text-white pt-12 lg:pt-30 border-solid border-b border-[#9293a066] relative"
       >
         <div className="web-width px-6 flex flex-col lg:flex-row gap-8 lg:gap-[50px]">
           {/* First Column with max-width 415px */}
           <div className="max-w-[415px] w-full">
             {sub_heading && (
               <div className="flex items-center gap-2 mb-3">
-                <span className="h-2 w-2 rounded-full bg-[#00FEC3]"></span>
+                <span className="h-2 w-2 rounded-full bg-[var(--color-accent)]"></span>
                 <span className="subheading-label text-white/70 uppercase">
                   {sub_heading}
                 </span>
@@ -142,8 +142,8 @@ export default async function Footer({ lang = "en" }) {
                 href={cta_url.startsWith("/") ? `/${lang}${cta_url}` : cta_url}
                 className=" mt-8
                       gap-3 group relative inline-flex items-center
-                      rounded-sm bg-[#00FEC3] px-6 py-4 text-white
-                      transition-all duration-300 hover:bg-[#00FEC3]
+                      rounded-sm bg-[var(--color-accent)] px-6 py-4 text-white
+                      transition-all duration-300 hover:bg-[var(--color-accent)]
                       w-[154px] overflow-hidden select-none
                     "
               >
@@ -265,8 +265,8 @@ export default async function Footer({ lang = "en" }) {
       {/* =====================================================
           EXISTING FOOTER SECTION
          ===================================================== */}
-      <footer className="bg-[#151B5D] text-white relative z-10">
-        <div className="mx-auto w-full web-width px-6 pb-12 pt-8  md:pt-22">
+      <footer className="bg-[var(--color-brand)] text-white relative z-10">
+        <div className="mx-auto w-full web-width px-6 pb-12 pt-12 md:pt-27">
           {/* ============ MAIN FOOTER CONTENT ============ */}
           {hasMainContent && (
             <div className="grid md:grid-cols-2 gap-12 pb-12">

@@ -49,13 +49,13 @@ export default function HomeCaseStudies({ data, lang = "en" }) {
   if (!cases.length) return null;
 
   return (
-    <section id="case-section" className="pt-12 md:pt-20">
+    <section id="case-section" className="pt-12 md:pt-30">
       {/* FULL WIDTH WRAPPER */}
       <div className="w-full px-6 web-width">
         {/* SUB HEADING */}
         {sub_heading && (
           <div className="flex items-center gap-2 mb-4">
-            <span className="h-2 w-2 rounded-full bg-[#00FEC3]"></span>
+            <span className="h-2 w-2 rounded-full bg-[var(--color-accent)]"></span>
             <span className="subheading-label">{sub_heading}</span>
           </div>
         )}
@@ -72,20 +72,16 @@ export default function HomeCaseStudies({ data, lang = "en" }) {
               href={cta_url.startsWith("/") ? `/${lang}${cta_url}` : cta_url}
               className="
               gap-3 group relative inline-flex items-center
-              rounded-sm bg-[#151B5D] px-6 py-4 text-white
-              transition-all duration-300 hover:bg-[#151B5D]
-              w-[160px] overflow-hidden select-none
-            "
-            >
+              rounded-sm bg-[var(--color-brand)] px-6 py-4 text-white
+              transition-all duration-300 hover:bg-[var(--color-brand)]
+              w-[160px] overflow-hidden select-none">
               {/* LEFT DOT */}
               <span className="relative w-6 flex items-center justify-center">
                 <span
                   className="
                   absolute h-2 w-2 rounded-full bg-[#27E0C0]
                   transition-all duration-300 ease-out
-                  group-hover:opacity-0 group-hover:-translate-x-1
-                "
-                ></span>
+                  group-hover:opacity-0 group-hover:-translate-x-1"></span>
               </span>
 
               {/* TEXT */}
@@ -94,9 +90,7 @@ export default function HomeCaseStudies({ data, lang = "en" }) {
                 flex-1 text-[16px] leading-none
                 transition-all duration-300 ease-out
                 group-hover:-translate-x-4
-                whitespace-nowrap
-              "
-              >
+                whitespace-nowrap">
                 {cta_text}
               </span>
 
@@ -106,9 +100,7 @@ export default function HomeCaseStudies({ data, lang = "en" }) {
                   className="
                   w-4 absolute opacity-0 -translate-x-4
                   transition-all duration-300 ease-out
-                  group-hover:opacity-100 group-hover:-translate-x-2
-                "
-                >
+                  group-hover:opacity-100 group-hover:-translate-x-2">
                   <Image src={ArrowSvg} width={13} height={13} alt="arrow" />
                 </span>
               </span>
@@ -147,7 +139,7 @@ export default function HomeCaseStudies({ data, lang = "en" }) {
             return (
               <SwiperSlide key={item.id}>
                 <div className="grid grid-cols-1 lg:grid-cols-2 rounded-2xl overflow-hidden bg-white">
-                  <div className="bg-[#151B5D] text-white min-h-[400px]  p-6 lg:p-12 flex flex-col justify-center">
+                  <div className="bg-[var(--color-brand)] text-white min-h-[400px]  p-6 lg:p-12 flex flex-col justify-center">
                     <h3
                       className="text-[24px] leading-[32px] md:text-[32px] lg:leading-[40px]"
                       dangerouslySetInnerHTML={{ __html: title }}
@@ -156,8 +148,8 @@ export default function HomeCaseStudies({ data, lang = "en" }) {
                       href={`/${lang}/case-study/${item.slug}`}
                       className=" mt-8
                       gap-3 group relative inline-flex items-center
-                      rounded-sm bg-[#00FEC3] px-6 py-4 text-white
-                      transition-all duration-300 hover:bg-[#00FEC3]
+                      rounded-sm bg-[var(--color-accent)] px-6 py-4 text-white
+                      transition-all duration-300 hover:bg-[var(--color-accent)]
                       w-[155px] overflow-hidden select-none mb-15">
                       {/* LEFT DOT */}
                       <span className="relative w-6 flex items-center justify-center">

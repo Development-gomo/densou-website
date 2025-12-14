@@ -69,8 +69,8 @@ export default function HomeCounter({ data, lang = "en" }) {
               href={cta_url.startsWith("/") ? `/${lang}${cta_url}` : cta_url}
               className="
                 gap-3 group relative inline-flex items-center
-                rounded-sm bg-[#151B5D] px-6 py-4 text-white
-                transition-all duration-300 hover:bg-[#151B5D]
+                rounded-sm bg-[var(--color-brand)] px-6 py-4 text-white
+                transition-all duration-300 hover:bg-[var(--color-brand)]
                 w-[154px] overflow-hidden select-none">
               {/* DOT */}
               <span className="relative w-6 flex items-center justify-center">
