@@ -7,6 +7,7 @@ import Link from "next/link";
 import Image from "next/image";
 import ArrowSvg from "../../../public/right-arrow.svg";
 import DownSvg from "../../../public/down-arrow.svg";
+import ArrowSvgB from "../../../public/right-arrow-black.png";
 import {getMenu, getThemeOptions, getTranslationBySlug} from "@/lib/api";
 
 
@@ -44,8 +45,8 @@ export default function Header({ lang = "en", currentSlug = "" }) {
   // Sticky header classes
   const headerClasses =
     scrolled
-      ? "fixed top-0 w-full z-50 text-white transition-all duration-300 backdrop-blur-md bg-black/25 shadow-md"
-      : "fixed top-0 w-full z-50 text-white transition-all duration-300 bg-transparent";
+      ? "fixed top-0 w-full z-50 text-white transition-all duration-300  py-4 bg-[var(--color-brand)] shadow-md"
+      : "fixed top-0 w-full z-50 text-white transition-all duration-300 bg-transparent  py-8";
 
   // Mobile menu state
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -70,7 +71,7 @@ export default function Header({ lang = "en", currentSlug = "" }) {
 
   return (
     <header className={headerClasses}>
-      <div className="web-width mx-auto px-6 py-4 flex items-center justify-between">
+      <div className="web-width mx-auto px-6 flex items-center justify-between">
 
         {/* LOGO */}
         <Link href={`/${lang}`} className="flex relative h-[32px] w-[100px] md:h-[40px] md:w-[100px]">
@@ -91,7 +92,7 @@ export default function Header({ lang = "en", currentSlug = "" }) {
           {/* Centered glass menu wrapper */}
             <div className="
               backdrop-blur-xl bg-white/20 
-              px-8 py-3 rounded-full shadow-lg 
+              px-8 py-4 rounded-full shadow-lg 
               flex items-center gap-8 lg:absolute lg:left-1/3
             ">
               <ul className="flex items-center gap-9 relative">
@@ -186,34 +187,30 @@ export default function Header({ lang = "en", currentSlug = "" }) {
                       ? `/${lang}${options.button_url}`
                       : options.button_url
                   }
-                  className="
-                    gap-3 group relative inline-flex items-center select-none 
-                    rounded-sm bg-[#151B5D] px-6 py-4 text-white 
-                    transition-all duration-300 hover:bg-[#151B5D] 
+                  className={`gap-3 group relative inline-flex items-center select-none 
+                    rounded-sm px-6 py-4 text-white 
+                    transition-all duration-300  
                     w-[150px] overflow-hidden
-                  "
-                >
+                      ${scrolled ? "bg-[var(--color-accent)]" : "bg-[var(--color-brand)]"}`}>
 
                   {/* LEFT SLOT (dot area, fixed width) */}
                   <span className="relative w-6 flex items-center justify-center">
                     <span
-                      className="
-                        absolute h-2 w-2 rounded-full bg-[#27E0C0]
+                      className={`
+                        absolute h-2 w-2 rounded-full
                         transition-all duration-300 ease-out
                         group-hover:opacity-0 group-hover:-translate-x-1
-                      "
-                    ></span>
+                         ${scrolled ? "bg-[var(--color-brand)]" : "bg-[var(--color-accent)]"}`}></span>
                   </span>
 
                   {/* TEXT (slides left on hover) */}
                   <span
-                    className="
+                      className={`
                       flex-1 text-[16px] leading-none
                       transition-all duration-300 ease-out 
                       group-hover:-translate-x-4
                       whitespace-nowrap
-                    "
-                  >
+                      ${scrolled ? "text-[var(--color-brand)]" : "text-white"}`}>
                     {options.button_text}
                   </span>
 
@@ -227,7 +224,8 @@ export default function Header({ lang = "en", currentSlug = "" }) {
                         group-hover:opacity-100 group-hover:-translate-x-2
                       "
                     >
-                      <Image src={ArrowSvg} alt="arrow" width={13} height={13} />
+                      {scrolled ? <Image src={ArrowSvgB} alt="arrow" width={13} height={13} /> : <Image src={ArrowSvg} alt="arrow" width={13} height={13} />}
+                      
                     </span>
                   </span>
                 </Link>
@@ -246,7 +244,7 @@ export default function Header({ lang = "en", currentSlug = "" }) {
       {/* MOBILE SLIDE-IN MENU */}
       {mobileOpen && (
         <div className="fixed inset-0 z-[60] bg-black/60 backdrop-blur-sm md:hidden">
-          <div className="absolute right-0 top-0 min-h-screen w-72 bg-[#151B5D] p-6 shadow-xl">
+          <div className="absolute right-0 top-0 min-h-screen w-72 bg-[var(--color-brand)] p-6 shadow-xl">
 
             {/* Close */}
             <button
