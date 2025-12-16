@@ -57,7 +57,7 @@ export default function HomeServices({ data, lang = "en" }) {
 
       {/* SUB HEADING */}
       {sub_heading && (
-        <div className="flex items-center gap-2 mb-4">
+        <div className="flex items-center gap-2">
           <span className="h-2 w-2 rounded-full bg-[var(--color-accent)]"></span>
           <span className="subheading-label">{sub_heading}</span>
         </div>

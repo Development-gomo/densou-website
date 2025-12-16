@@ -49,7 +49,7 @@ export default function HomeNews({ data, lang = "en" }) {
     <section className="py-12 md:py-30 web-width px-6">
       {/* SUB HEADING */}
       {sub_heading && (
-        <div className="flex items-center gap-2 mb-4">
+        <div className="flex items-center gap-2">
           <span className="h-2 w-2 rounded-full bg-[var(--color-accent)]"></span>
           <span className="subheading-label">{sub_heading}</span>
         </div>
