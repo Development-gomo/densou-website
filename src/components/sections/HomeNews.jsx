@@ -64,7 +64,13 @@ export default function HomeNews({ data, lang = "en" }) {
 
         {cta_text && (
           <Link
-            href={cta_url.startsWith("/") ? `/${lang}${cta_url}` : cta_url}
+            href={
+              cta_url.startsWith("/")
+                ? lang === "en"
+                  ? cta_url
+                  : `/${lang}${cta_url}`
+                : cta_url
+            }
             className="
               gap-3 group relative inline-flex items-center
               rounded-sm bg-[var(--color-brand)] px-6 py-4 text-white
@@ -117,7 +123,11 @@ export default function HomeNews({ data, lang = "en" }) {
            LEFT BIG WEBINAR CARD
         ------------------------------------------------------------ */}
         <Link
-          href={`/${lang}/post/${webinarPost.slug}`}
+          href={
+            lang === "en"
+              ? `/post/${webinarPost.slug}`
+              : `/${lang}/post/${webinarPost.slug}`
+          }
           className="relative rounded-xl overflow-hidden block group"
         >
           {/* FEATURED IMAGE */}
@@ -216,7 +226,11 @@ export default function HomeNews({ data, lang = "en" }) {
             return (
               <Link
                 key={post.id}
-                href={`/${lang}/post/${post.slug}`}
+                href={
+                  lang === "en"
+                    ? `/post/${post.slug}`
+                    : `/${lang}/post/${post.slug}`
+                }
                 className="flex gap-6 group items-center"
               >
                 {/* IMAGE */}

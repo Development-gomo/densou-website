@@ -69,7 +69,13 @@ export default function HomeCaseStudies({ data, lang = "en" }) {
 
           {cta_text && cta_url && (
             <Link
-              href={cta_url.startsWith("/") ? `/${lang}${cta_url}` : cta_url}
+              href={
+                cta_url.startsWith("/")
+                  ? lang === "en"
+                    ? cta_url
+                    : `/${lang}${cta_url}`
+                  : cta_url
+              }
               className="
               gap-3 group relative inline-flex items-center
               rounded-sm bg-[var(--color-brand)] px-6 py-4 text-white
@@ -145,7 +151,11 @@ export default function HomeCaseStudies({ data, lang = "en" }) {
                       dangerouslySetInnerHTML={{ __html: title }}
                     />
                     <Link
-                      href={`/${lang}/case-study/${item.slug}`}
+                      href={
+                        lang === "en"
+                          ? `/case-study/${item.slug}`
+                          : `/${lang}/case-study/${item.slug}`
+                      }
                       className=" mt-8
                       gap-3 group relative inline-flex items-center
                       rounded-sm bg-[var(--color-accent)] px-6 py-4 text-white

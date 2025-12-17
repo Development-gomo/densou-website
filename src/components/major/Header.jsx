@@ -10,11 +10,11 @@ import DownSvg from "../../../public/down-arrow.svg";
 import ArrowSvgB from "../../../public/right-arrow-black.png";
 import { getMenu, getThemeOptions, getTranslationBySlug } from "@/lib/api";
 
-export default function Header({ lang = "en", currentSlug = "" }) {
+export default function Header({ lang = "en", currentSlug = "", entryType = "page", pathPrefix = "" }) {
   const [menu, setMenu] = useState(null);
   const [options, setOptions] = useState(null);
   const [altLangUrl, setAltLangUrl] = useState(
-    `/${lang === "en" ? "da" : "en"}`
+    lang === "en" ? "/da" : "/"
   );
   const [scrolled, setScrolled] = useState(false);
   const isLoading = !menu;
@@ -58,27 +58,34 @@ export default function Header({ lang = "en", currentSlug = "" }) {
         const translation = await getTranslationBySlug(
           currentSlug,
           lang,
-          altLang
+          altLang,
+          entryType
         );
         if (translation?.slug) {
-          setAltLangUrl(`/${altLang}/${translation.slug}`);
+          const prefix = pathPrefix ? `/${pathPrefix}` : "";
+          const langPrefix = altLang === "en" ? "" : `/${altLang}`;
+          setAltLangUrl(`${langPrefix}${prefix}/${translation.slug}`);
+        } else {
+          // Default to the homepage if no translation is found
+          setAltLangUrl(altLang === "en" ? "/" : `/${altLang}`);
         }
       } catch (error) {
         console.error("Failed to fetch translation:", error);
+        setAltLangUrl(lang === "en" ? "/da" : "/"); // Fallback
       }
     }
 
-    if (currentSlug) {
+    if (currentSlug && currentSlug !== "/") {
       fetchAltLangUrl();
     }
-  }, [lang, currentSlug]);
+  }, [lang, currentSlug, entryType, pathPrefix]);
 
   return (
     <header className={headerClasses}>
       <div className="web-width mx-auto px-6 flex items-center justify-between">
         {/* LOGO */}
         <Link
-          href={`/${lang}`}
+          href={lang === "en" ? "/" : `/${lang}`}
           className="flex relative h-[32px] w-[100px] md:h-[40px] md:w-[100px]"
         >
           {options?.logo_light?.url && (
@@ -121,7 +128,9 @@ export default function Header({ lang = "en", currentSlug = "" }) {
                     <Link
                       href={
                         item.url.startsWith("/")
-                          ? `/${lang}${item.url}`
+                          ? lang === "en"
+                            ? item.url // No prefix for English
+                            : `/${lang}${item.url}` // Prefix for Danish
                           : item.url
                       }
                       className="
@@ -162,7 +171,9 @@ export default function Header({ lang = "en", currentSlug = "" }) {
                             <Link
                               href={
                                 sub.url.startsWith("/")
-                                  ? `/${lang}${sub.url}`
+                                  ? lang === "en"
+                                    ? sub.url // No prefix for English
+                                    : `/${lang}${sub.url}` // Prefix for Danish
                                   : sub.url
                               }
                               className="
@@ -199,7 +210,9 @@ export default function Header({ lang = "en", currentSlug = "" }) {
             <Link
               href={
                 options.button_url.startsWith("/")
-                  ? `/${lang}${options.button_url}`
+                  ? lang === "en"
+                    ? options.button_url
+                    : `/${lang}${options.button_url}`
                   : options.button_url
               }
               className={`gap-3 group relative inline-flex items-center select-none 
@@ -421,7 +434,9 @@ export default function Header({ lang = "en", currentSlug = "" }) {
                   <Link
                     href={
                       options.button_url.startsWith("/")
-                        ? `/${lang}${options.button_url}`
+                        ? lang === "en"
+                          ? options.button_url
+                          : `/${lang}${options.button_url}`
                         : options.button_url
                     }
                     className="gap-3 group relative inline-flex items-center

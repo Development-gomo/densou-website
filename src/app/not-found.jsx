@@ -17,7 +17,7 @@ export default function GlobalNotFound() {
           </p>
         </div>
         <Link
-          href="/en"
+          href="/"
           className="inline-flex items-center gap-2 rounded-md bg-black px-6 py-3 text-white transition hover:bg-gray-900"
         >
           Go to densou.dk

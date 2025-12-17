@@ -1,13 +1,24 @@
-// src/app/layout.js
-
 import "./globals.css";
+import { Instrument_Sans, Tinos } from "next/font/google";
 
-export const metadata = {
-  title: "Densou",
-  description: "Headless WordPress + Next.js + WPML",
-};
+const instrumentSans = Instrument_Sans({
+  subsets: ["latin"],
+  weight: ["400", "500", "600"],
+  variable: "--font-instrument-sans",
+  display: "swap",
+});
 
-// Global wrapper: no <html> or <body> here
+const tinos = Tinos({
+  subsets: ["latin"],
+  weight: ["400", "700"],
+  variable: "--font-tinos",
+  display: "swap",
+});
+
 export default function RootLayout({ children }) {
-  return children;
+  return (
+    <html lang="en" className={`${instrumentSans.variable} ${tinos.variable}`}>
+      <body>{children}</body>
+    </html>
+  );
 }

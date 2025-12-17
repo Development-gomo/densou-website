@@ -3,6 +3,7 @@
 import Link from "next/link";
 import Header from "@/components/major/Header";
 import { resolveParams } from "@/lib/params";
+import Footer from "@/components/major/Footer";
 
 export default async function LangScopedNotFound({ params }) {
   const resolved = await params;
@@ -25,12 +26,13 @@ export default async function LangScopedNotFound({ params }) {
           Please double-check the URL or head back to the homepage.
         </p>
         <Link
-          href={`/${lang}`}
+          href={`/`}
           className="inline-flex items-center gap-2 rounded-md bg-black px-6 py-3 text-white transition hover:bg-gray-900"
         >
           Go to homepage
         </Link>
       </main>
+          <Footer/>
     </>
   );
 }

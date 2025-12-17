@@ -1,40 +1,32 @@
 //src/app/[lang]/page.jsx
 
-import { getPageBySlug } from "@/lib/api";
-import { resolveParams } from "@/lib/params";
-import PageBuilder from "@/components/major/PageBuilder";
 import Header from "@/components/major/Header";
+import PageBuilder from "@/components/major/PageBuilder";
+import Footer from "@/components/major/Footer";
+import { getPageBySlug } from "@/lib/api";
 import { buildMetadataFromYoast } from "@/lib/seo";
 import { notFound } from "next/navigation";
 
-export default async function HomePage({ params }) {
-  // ✅ unwrap and parse Next 16 serialized params
-  const resolved = await params;
-  const parsed = resolveParams(resolved);
+export default async function LangHomePage({ params }) {
+  const resolvedParams = await params;
+  const lang = resolvedParams.lang;
+  const page = await getPageBySlug("frontpage", lang);
 
-  const lang = parsed?.lang || "en";
-  const data = await getPageBySlug("frontpage", lang);
-  if (!data) notFound();
-  const acf = data?.acf || {};
+  if (!page) notFound();
 
   return (
     <>
-      <Header lang={lang} currentSlug="/" />
+      <Header lang={lang} />
       <main id="home">
-        <PageBuilder sections={acf.page_builder} lang={lang} />
+        <PageBuilder sections={page?.acf?.page_builder} lang={lang} />
       </main>
+      <Footer lang={lang} />
     </>
   );
 }
 
 export async function generateMetadata({ params }) {
-  const resolved = await params;
-  const parsed = resolveParams(resolved);
-  const lang = parsed?.lang || "en";
-  const data = await getPageBySlug("frontpage", lang);
-  return buildMetadataFromYoast(data, {
-    fallbackTitle: "Densou",
-    lang,
-  });
+  const resolvedParams = await params;
+  const page = await getPageBySlug("frontpage", resolvedParams.lang);
+  return buildMetadataFromYoast(page, { lang: resolvedParams.lang });
 }
-

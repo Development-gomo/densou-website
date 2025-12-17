@@ -73,7 +73,13 @@ export default function HomeServices({ data, lang = "en" }) {
         {/* CTA BUTTON */}
         {cta_text && cta_url && (
           <Link
-            href={cta_url.startsWith("/") ? `/${lang}${cta_url}` : cta_url}
+            href={
+              cta_url.startsWith("/")
+                ? lang === "en"
+                  ? cta_url
+                  : `/${lang}${cta_url}`
+                : cta_url
+            }
             className="
               gap-3 group relative inline-flex items-center
               rounded-sm bg-[var(--color-brand)] px-6 py-4 text-white
@@ -149,7 +155,11 @@ export default function HomeServices({ data, lang = "en" }) {
           return (
             <SwiperSlide key={service.id}>
               <Link
-                href={`/${lang}/service/${service.slug}`}
+                href={
+                  lang === "en"
+                    ? `/service/${service.slug}`
+                    : `/${lang}/service/${service.slug}`
+                }
                 className="block group rounded-xl overflow-hidden relative"
               >
                 {img && (

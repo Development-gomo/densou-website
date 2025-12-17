@@ -4,6 +4,7 @@ import { getPageBySlug } from "@/lib/api";
 import { resolveParams } from "@/lib/params";
 import PageBuilder from "@/components/major/PageBuilder";
 import Header from "@/components/major/Header";
+import Footer from "@/components/major/Footer";
 import { buildMetadataFromYoast } from "@/lib/seo";
 import { notFound } from "next/navigation";
 
@@ -26,6 +27,7 @@ export default async function SinglePage({ params }) {
       <main>
         <PageBuilder sections={acf.page_builder} />
       </main>
+      <Footer lang={lang} currentSlug={slug} />
     </>
   );
 }

@@ -52,7 +52,7 @@ export function buildMetadataFromYoast(entry, options = {}) {
     description,
     alternates: yoast?.canonical
       ? {
-          canonical: yoast.canonical,
+          canonical: yoast.canonical.replace(/^https?:\/\/(www\.)?[^\/]+\/en(\/|$)/, "/"),
         }
       : undefined,
     openGraph: {
