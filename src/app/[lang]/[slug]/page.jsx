@@ -7,12 +7,13 @@ import Header from "@/components/major/Header";
 import Footer from "@/components/major/Footer";
 import { buildMetadataFromYoast } from "@/lib/seo";
 import { notFound } from "next/navigation";
+import { DEFAULT_LANG } from "@/config";
 
 export default async function SinglePage({ params }) {
   const resolved = await params;
   const parsed = resolveParams(resolved);
 
-  const lang = parsed?.lang || "en";
+  const lang = parsed?.lang || DEFAULT_LANG;
   const slug = parsed?.slug;
 
   if (!slug) notFound();
@@ -35,7 +36,7 @@ export default async function SinglePage({ params }) {
 export async function generateMetadata({ params }) {
   const resolved = await params;
   const parsed = resolveParams(resolved);
-  const lang = parsed?.lang || "en";
+  const lang = parsed?.lang || DEFAULT_LANG;
   const slug = parsed?.slug;
   const data = await getPageBySlug(slug, lang);
   return buildMetadataFromYoast(data, {

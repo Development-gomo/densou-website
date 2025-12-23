@@ -7,12 +7,13 @@ import { resolveParams } from "@/lib/params";
 import { getServiceBySlug } from "@/lib/api";
 import { buildMetadataFromYoast } from "@/lib/seo";
 import { notFound } from "next/navigation";
+import { DEFAULT_LANG } from "@/config";
 
 export default async function ServiceSinglePage({ params }) {
   const resolved = await params;
   const parsed = resolveParams(resolved);
 
-  const lang = parsed?.lang || "en";
+  const lang = parsed?.lang || DEFAULT_LANG;
   const slug = parsed?.slug;
 
   if (!slug) notFound();
@@ -40,7 +41,7 @@ export default async function ServiceSinglePage({ params }) {
 export async function generateMetadata({ params }) {
   const resolved = await params;
   const parsed = resolveParams(resolved);
-  const lang = parsed?.lang || "en";
+  const lang = parsed?.lang || DEFAULT_LANG;
   const slug = parsed?.slug;
 
   if (!slug) {

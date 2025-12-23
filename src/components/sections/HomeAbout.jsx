@@ -53,7 +53,7 @@ export default function AboutUs({ data }) {
           {/* Paragraph */}
           {short_text && (
             <div
-              className="body-text max-w-[500px] mb-8"
+              className="body-text max-w-[500px] mb-6"
               dangerouslySetInnerHTML={{ __html: short_text }}
             />
           )}

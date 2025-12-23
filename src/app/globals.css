@@ -91,7 +91,13 @@ i, em {
   .heading-xl h1 em, .heading-xl p em, .heading-xl p i {
     line-height: 70px;
   }
+  .cta-fix img.rounded-sm.object-cover:nth-child(1) {
+      height: 215px !important;
+  }
 
+  .cta-fix img.rounded-sm.object-cover:nth-child(3) {
+      height: 45px !important;
+  }
 }
 
 /* Large Desktop */
@@ -106,6 +112,10 @@ i, em {
   .heading-xl h1  em {
     line-height: 100px;
   }
+}
+
+@media (min-width: 1500px) and (max-width: 3840px) {
+  
 }
 
 /* ==========================================

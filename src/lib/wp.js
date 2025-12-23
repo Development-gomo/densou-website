@@ -1,3 +1,5 @@
+import { DEFAULT_LANG } from "@/config";
+
 // src/lib/wp.js
 export const WP_BASE = "https://gomowebb.com/densou/wp-json";
 
@@ -14,7 +16,7 @@ export async function fetchWP(endpoint) {
 }
 
 // Pages
-async function getSingleEntry(endpoint, slug, lang = "en") {
+async function getSingleEntry(endpoint, slug, lang = DEFAULT_LANG) {
   if (!slug) return null;
 
   try {
@@ -37,19 +39,19 @@ async function getSingleEntry(endpoint, slug, lang = "en") {
   }
 }
 
-export async function getPageBySlug(slug, lang = "en") {
+export async function getPageBySlug(slug, lang = DEFAULT_LANG) {
   return getSingleEntry("pages", slug, lang);
 }
 
-export async function getServiceBySlug(slug, lang = "en") {
+export async function getServiceBySlug(slug, lang = DEFAULT_LANG) {
   return getSingleEntry("services", slug, lang);
 }
 
-export async function getCaseStudyBySlug(slug, lang = "en") {
+export async function getCaseStudyBySlug(slug, lang = DEFAULT_LANG) {
   return getSingleEntry("case_study", slug, lang);
 }
 
-export async function getPostBySlug(slug, lang = "en") {
+export async function getPostBySlug(slug, lang = DEFAULT_LANG) {
   return getSingleEntry("posts", slug, lang);
 }
 
@@ -64,23 +66,31 @@ export async function getMediaById(id) {
 }
 
 // Menus
-export async function getMenu(lang = "en") {
+export async function getMenu(lang = DEFAULT_LANG) {
   const menu = await fetchWP(`/myroutes/v1/menus?lang=${lang}`);
   if (!menu) console.warn(`⚠️ Menu not found for ${lang}`);
   return menu;
 }
 
 // Footer widgets
-export async function getFooterWidgets(lang = "en") {
+export async function getFooterWidgets(lang = DEFAULT_LANG) {
   const footer = await fetchWP(`/myroutes/v1/footer-widgets?lang=${lang}`);
   if (!footer) console.warn(`⚠️ Footer widgets missing for ${lang}`);
   return footer;
 }
 
-export async function getThemeOptions(lang = "en") {
-  const options = await fetchWP(`/densou/v1/theme-options?lang=${lang}`);
-  if (!options) console.warn(`⚠️ Theme options endpoint returned empty response for lang ${lang}`);
-  return options;
+export async function getThemeOptions(lang = DEFAULT_LANG) {
+  try {
+    const options = await fetchWP(`/densou/v1/theme-options?lang=${lang}`);
+    if (!options) {
+      console.warn(`⚠️ Theme options missing for ${lang}`);
+      return { header: {}, footer: {} }; // Fallback data
+    }
+    return options;
+  } catch (error) {
+    console.error(`⚠️ Failed to fetch theme options for ${lang}:`, error.message);
+    return { header: {}, footer: {} }; // Fallback data
+  }
 }
 
 async function getEntryById(endpoint, id, lang = "en") {

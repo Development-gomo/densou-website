@@ -64,9 +64,9 @@ export default function HomeServices({ data, lang = "en" }) {
       )}
 
       {/* TOP ROW: HEADING + CTA */}
-      <div className="lg:flex lg:justify-between items-end items-end mb-12 ">
+      <div className="lg:flex lg:justify-between items-end items-end mb-14">
         <div
-          className="section-heading mb-4"
+          className="section-heading mb-4 md:mb-0"
           dangerouslySetInnerHTML={{ __html: heading }}
         />
 
@@ -139,8 +139,8 @@ export default function HomeServices({ data, lang = "en" }) {
         centeredSlides={true} 
         breakpoints={{
           320: { slidesPerView: 1.1 },
-          640: { slidesPerView: 1.3 },
-          1024: { slidesPerView: 2.2 },
+          640: { slidesPerView: 2.5 },
+          1024: { slidesPerView: 3.1 },
           1280: { slidesPerView: 3.7 },
         }}
       >

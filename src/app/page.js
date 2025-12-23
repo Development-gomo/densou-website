@@ -5,9 +5,10 @@ import PageBuilder from "@/components/major/PageBuilder";
 import Header from "@/components/major/Header";
 import Footer from "@/components/major/Footer";
 import { buildMetadataFromYoast } from "@/lib/seo";
+import { DEFAULT_LANG } from "@/config";
 
 export default async function HomePage() {
-  const lang = "en";
+  const lang = DEFAULT_LANG;
   const data = await getPageBySlug("frontpage", lang);
   const acf = data?.acf || {};
 
@@ -23,7 +24,7 @@ export default async function HomePage() {
 }
 
 export async function generateMetadata() {
-  const lang = "en";
+  const lang = DEFAULT_LANG;
   const page = await getPageBySlug("frontpage", lang);
   return buildMetadataFromYoast(page, { lang });
 }

@@ -62,10 +62,10 @@ export default function HomeHero({ data }) {
       </div>
 
       {/* Gradient Overlay */}
-      <div className="absolute inset-0 bg-gradient-to-b from-black/0 via-black/30 to-black/70 -z-10"></div>
+      <div className="absolute inset-0 bg-gradient-to-b from-black/0 via-black/40 to-black/70 -z-10"></div>
 
       {/* HERO TEXT */}
-      <div className="relative min-h-[100vh] web-width px-4 py-24 lg:py-36 h-full flex flex-col items-center justify-center lg:justify-start">
+      <div className="relative min-h-[100vh] web-width px-6 lg:px-50 py-24 lg:py-36 h-full flex flex-col items-start justify-center lg:justify-start">
         <div className="">
           {/* Heading */}
           <motion.div
@@ -78,7 +78,7 @@ export default function HomeHero({ data }) {
             }}
           />
           </div>
-          <div className="lg:m-auto lg:absolute right-[10%] top-[50%]">
+          <div className="lg:m-auto lg:absolute right-[17%] top-[50%]">
               <motion.div
                 initial={{ opacity: 0, y: 25 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -97,7 +97,7 @@ export default function HomeHero({ data }) {
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.3 }}
-              className="mt-5 w-12 h-12 rounded-full bg-[#27E0C0] translate-y-0 trasition-all duration-300
+              className="mt-5 w-12 h-12 rounded-full bg-[var(--color-accent)] translate-y-0 transition-all duration-300
                 flex items-center justify-center shadow-md hover:translate-y-[6px] cursor-pointer"
             >
               <Image src={DownArrow} alt="arrow" width={13} height={13} />
@@ -181,8 +181,8 @@ export default function HomeHero({ data }) {
               {testimonialSlides.map((item, index) => (
                 <SwiperSlide key={index}>
                   <div className="text-white caption-text max-w-[320px] mx-auto">
-                    <p className="mt-2  opacity-90">{item.testimonial}</p>
-                    <p className=" mt-2 font-semibold">{item.client_name}</p>
+                    <p className="mt-2 opacity-90">{item.testimonial}</p>
+                    <p className="mt-2 font-semibold">{item.client_name}</p>
                   </div>
                 </SwiperSlide>
               ))}

@@ -6,10 +6,11 @@ import Footer from "@/components/major/Footer";
 import { getPageBySlug } from "@/lib/api";
 import { buildMetadataFromYoast } from "@/lib/seo";
 import { notFound } from "next/navigation";
+import { DEFAULT_LANG } from "@/config";
 
 export default async function LangHomePage({ params }) {
   const resolvedParams = await params;
-  const lang = resolvedParams.lang;
+  const lang = resolvedParams.lang || DEFAULT_LANG;
   const page = await getPageBySlug("frontpage", lang);
 
   if (!page) notFound();

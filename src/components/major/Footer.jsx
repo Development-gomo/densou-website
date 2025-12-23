@@ -4,6 +4,7 @@ import React from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { getFooterWidgets, getThemeOptions } from "@/lib/api";
+import { DEFAULT_LANG } from "@/config";
 
 import LinkedInPng from "../../../public/linkedin.png";
 import XPng from "../../../public/x.png";
@@ -57,7 +58,7 @@ function extractOfficesFromHtml(html) {
   return blocks;
 }
 
-export default async function Footer({ lang = "en" }) {
+export default async function Footer({ lang = DEFAULT_LANG }) {
   // Fetch WP theme options + footer widgets
   const [widgets, themeOptions] = await Promise.all([
     getFooterWidgets(lang),
@@ -113,13 +114,13 @@ export default async function Footer({ lang = "en" }) {
     <>
       <section
         id="cta-section"
-        className="bg-[var(--color-brand)] text-white pt-12 lg:pt-30 border-solid border-b border-[#9293a066] relative"
+        className="bg-[var(--color-brand)] text-white pt-12 lg:pt-30 border-solid border-b border-[#9293a066] relative overflow-x-hidden"
       >
-        <div className="web-width px-6 flex flex-col lg:flex-row gap-8 lg:gap-[50px]">
+        <div className="web-width relative px-6 flex flex-col lg:flex-row gap-8 lg:gap-[50px]">
           {/* First Column with max-width 415px */}
           <div className="max-w-[415px] w-full">
             {sub_heading && (
-              <div className="flex items-center gap-2 mb-3">
+              <div className="flex items-center gap-2 mb-1">
                 <span className="h-2 w-2 rounded-full bg-[var(--color-accent)]"></span>
                 <span className="subheading-label text-white/70 uppercase">
                   {sub_heading}
@@ -177,8 +178,7 @@ export default async function Footer({ lang = "en" }) {
                           w-4 absolute opacity-0 -translate-x-4
                           transition-all duration-300 ease-out
                           group-hover:opacity-100 group-hover:-translate-x-2
-                        "
-                  >
+                        ">
                     <Image src={ArrowSvgB} width={13} height={13} alt="arrow" />
                   </span>
                 </span>
@@ -189,7 +189,7 @@ export default async function Footer({ lang = "en" }) {
           <div className="grid grid-cols-3 gap-2">
             <div className="relative">
               {column_i_text && (
-                <div className="h-[195px] bg-[#272D7E] mb-[8px] rounded-sm p-3 lg:p-6 flex items-end mt-5 lg:mt-35 text-white/80 leading-[26px]">
+                <div className="h-[195px] bg-[#272D7E] mb-[8px] md:text-[18px] rounded-sm p-3 lg:p-6 flex items-end mt-5 lg:mt-34 text-white/80 leading-[26px]">
                   <i>{column_i_text}</i>
                 </div>
               )}
@@ -214,14 +214,14 @@ export default async function Footer({ lang = "en" }) {
                 />
               )}
               {column_ii_text && (
-                <div className="h-[195px] lg:h-[175px] bg-[#272D7E] mt-[8px] rounded-sm p-3 lg:p-6 flex items-end text-white/80 leading-[26px]">
+                <div className="h-[195px] lg:h-[175px] md:text-[18px] bg-[#272D7E] mt-[8px] rounded-sm p-3 lg:p-6 flex items-end text-white/80 leading-[26px]">
                   <i>{column_ii_text}</i>
                 </div>
               )}
             </div>
             <div className="relative">
               {column_iii_text && (
-                <div className="h-[195px] lg:h-[205px] bg-[#272D7E] mt-[25px] mb-[8px] rounded-sm p-3 lg:p-6 flex items-end text-white/80 leading-[26px]">
+                <div className="h-[195px] lg:h-[205px] bg-[#272D7E] md:text-[18px] mt-[25px] mb-[8px] rounded-sm p-3 lg:p-6 flex items-end text-white/80 leading-[26px]">
                   <i>{column_iii_text}</i>
                 </div>
               )}
@@ -237,12 +237,12 @@ export default async function Footer({ lang = "en" }) {
               <div className="hidden lg:block h-[17px] bg-[#272D7E] rounded-sm  mt-[8px]"></div>
             </div>
 
-            <div className="hidden lg:block absolute right-[5.5%] top-[60px] cta-fix">
+            <div className="hidden lg:block absolute right-[-18.3%] top-[-33px] cta-fix">
               {right_top?.url && (
                 <Image
                   src={right_top.url}
                   alt=""
-                  width={45}
+                  width={250}
                   height={215}
                   className="rounded-sm object-cover"
                 />
@@ -252,7 +252,7 @@ export default async function Footer({ lang = "en" }) {
                 <Image
                   src={right_bottom.url}
                   alt=""
-                  width={45}
+                  width={250}
                   height={75}
                   className=" rounded-sm object-cover"
                 />
@@ -266,7 +266,7 @@ export default async function Footer({ lang = "en" }) {
           EXISTING FOOTER SECTION
          ===================================================== */}
       <footer className="bg-[var(--color-brand)] text-white relative z-10">
-        <div className="mx-auto w-full web-width px-6 pb-12 pt-12 md:pt-27">
+        <div className="mx-auto w-full web-width px-6 pb-12 pt-12 md:pt-25">
           {/* ============ MAIN FOOTER CONTENT ============ */}
           {hasMainContent && (
             <div className="grid md:grid-cols-2 gap-12 pb-12">
@@ -294,7 +294,7 @@ export default async function Footer({ lang = "en" }) {
                   {/* SERVICES */}
                   {services.length > 0 && (
                     <div>
-                      <p className="mb-6 text-xs uppercase tracking-[0.17px] text-white/60">
+                      <p className="mb-6 text-[14px] uppercase tracking-[0.17px] text-white/60">
                         {servicesTitle}
                       </p>
                       <ul className="space-y-2 text-base text-white/80">
@@ -308,10 +308,10 @@ export default async function Footer({ lang = "en" }) {
                   {/* OFFICES */}
                   {offices.length > 0 && (
                     <div>
-                      <p className="mb-6 text-xs uppercase tracking-[0.17px] text-white/60">
+                      <p className="mb-6 text-[14px] uppercase tracking-[0.17px] text-white/60">
                         {officesTitle}
                       </p>
-                      <div className="space-y-6 text-sm">
+                      <div className="space-y-6 text-[14px]">
                         {offices.map((office) => (
                           <div key={office.title}>
                             <p className="mb-2 font-semibold uppercase">
@@ -352,7 +352,7 @@ export default async function Footer({ lang = "en" }) {
               {/* COPYRIGHT + SOCIAL */}
               <div className="flex justify-between items-center">
                 {copyrightText && (
-                  <p className="text-sm text-white/70">{copyrightText}</p>
+                  <p className=" text-white">{copyrightText}</p>
                 )}
 
                 {/* SOCIAL */}

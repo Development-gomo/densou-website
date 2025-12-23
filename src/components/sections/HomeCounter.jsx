@@ -115,7 +115,7 @@ export default function HomeCounter({ data, lang = "en" }) {
           {counters.map((item, i) => (
             <div
               key={i}
-              className=" md:w-[300px] p-4
+              className=" lg:max-w-[300px] p-4
                 lg:px-10 lg:py-8 rounded-sm backdrop-blur-[24px] bg-white/10
                 shadow-lg
               "

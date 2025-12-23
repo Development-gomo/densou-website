@@ -4,11 +4,12 @@ import Link from "next/link";
 import Header from "@/components/major/Header";
 import { resolveParams } from "@/lib/params";
 import Footer from "@/components/major/Footer";
+import { DEFAULT_LANG } from "@/config";
 
 export default async function LangScopedNotFound({ params }) {
   const resolved = await params;
   const parsed = resolveParams(resolved);
-  const lang = parsed?.lang || "en";
+  const lang = parsed?.lang || DEFAULT_LANG;
 
   return (
     <>

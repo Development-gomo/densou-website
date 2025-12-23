@@ -23,12 +23,18 @@ export default function Header({ lang = "en", currentSlug = "", entryType = "pag
   // Fetch menu + theme options client-side
   useEffect(() => {
     async function loadData() {
-      const [menuData, themeOptions] = await Promise.all([
-        getMenu(lang),
-        getThemeOptions(lang),
-      ]);
-      setMenu(menuData);
-      setOptions(themeOptions?.header || {});
+      try {
+        const [menuData, themeOptions] = await Promise.all([
+          getMenu(lang),
+          getThemeOptions(lang),
+        ]);
+        setMenu(menuData);
+        setOptions(themeOptions?.header || {});
+      } catch (error) {
+        console.error("Failed to load header data:", error);
+        setMenu([]); // Fallback menu
+        setOptions({}); // Fallback options
+      }
     }
     loadData();
   }, [lang]);
