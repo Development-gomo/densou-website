@@ -42,7 +42,7 @@ export default function HomeCounter({ data, lang = "en" }) {
 
           {/* SUBHEADING */}
           {sub_heading && (
-            <div className="flex items-center gap-2 mb-3">
+            <div className="flex items-center gap-2 mb-2 md:mb-4">
               <span className="h-2 w-2 rounded-full bg-[#27E0C0]"></span>
               <span className="subheading-label text-white ">
                 {sub_heading}
@@ -58,7 +58,7 @@ export default function HomeCounter({ data, lang = "en" }) {
 
           {/* DESCRIPTION */}
           {short_text && (
-            <div className="text-white max-w-[420px] mb-8"
+            <div className="text-white max-w-[420px] mb-6"
               dangerouslySetInnerHTML={{ __html: short_text }}
             />
           )}
@@ -66,7 +66,7 @@ export default function HomeCounter({ data, lang = "en" }) {
           {/* CTA BUTTON */}
           {cta_text && cta_url && (
             <Link
-              href={cta_url.startsWith("/") ? `/${lang}${cta_url}` : cta_url}
+              href={cta_url}
               className="
                 gap-3 group relative inline-flex items-center
                 rounded-sm bg-[var(--color-brand)] px-6 py-4 text-white
@@ -116,11 +116,11 @@ export default function HomeCounter({ data, lang = "en" }) {
             <div
               key={i}
               className=" lg:max-w-[300px] p-4
-                lg:px-10 lg:py-8 rounded-sm backdrop-blur-[24px] bg-white/10
+                lg:px-8 lg:py-10 rounded-sm backdrop-blur-[24px] bg-white/10
                 shadow-lg
               "
             >
-              <p className="font-semibold text-[50px] leading-[68px] lg:text-[64px] lg:leading-[78px] mb-2">
+              <p className="font-semibold text-[50px] leading-[68px] lg:text-[64px] lg:leading-[70px]">
                 {item.number}{item.suffix}
               </p>
               <p className="text-white/80">

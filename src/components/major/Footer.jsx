@@ -9,6 +9,7 @@ import { DEFAULT_LANG } from "@/config";
 import LinkedInPng from "../../../public/linkedin.png";
 import XPng from "../../../public/x.png";
 import ArrowSvgB from "../../../public/right-arrow-black.png";
+import RightSVG from "../../../public/right-arrow.svg";
 
 // Map icons
 const SOCIAL_ICON_MAP = {
@@ -273,14 +274,15 @@ export default async function Footer({ lang = DEFAULT_LANG }) {
               {/* QUICK LINKS */}
               {quickLinks.length > 0 && (
                 <div>
-                  <ul className="space-y-4 py-4 max-w-96">
+                  <ul className="space-y-4 pb-4 max-w-96">
                     {quickLinks.map((item) => (
                       <li
                         key={item.label}
-                        className="flex items-center justify-between text-2xl border-b border-white/10 pb-2"
+                        className="flex items-center relative group justify-between text-xl md:text-[32px] border-b border-white/10 mb-0 py-2 [&:nth-child(1)]:pt-0"
                       >
-                        <Link href={item.href} className="hover:text-white/70">
+                        <Link href={item.href} className=" hover:text-white/70">
                           {item.label}
+                          <Image src={RightSVG} width={19} height={19} alt="arrow" className="opacity-0 group-hover:opacity-100 absolute right-3 top-5 " />
                         </Link>
                       </li>
                     ))}
@@ -311,7 +313,7 @@ export default async function Footer({ lang = DEFAULT_LANG }) {
                       <p className="mb-6 text-[14px] uppercase tracking-[0.17px] text-white/60">
                         {officesTitle}
                       </p>
-                      <div className="space-y-6 text-[14px]">
+                      <div className="space-y-6 text-[16 px]">
                         {offices.map((office) => (
                           <div key={office.title}>
                             <p className="mb-2 font-semibold uppercase">

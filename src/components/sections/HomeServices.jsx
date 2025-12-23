@@ -7,6 +7,7 @@ import Image from "next/image";
 import ArrowSvg from "../../../public/right-arrow.svg";
 import NavArrow from "../../../public/nav-arrow.svg";
 import NavHover from "../../../public/nav-hover-arrow.svg";
+import { DEFAULT_LANG } from "@/config";
 
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper/modules";
@@ -15,7 +16,7 @@ import "swiper/css/navigation";
 
 import { getAllServices } from "@/lib/wp";
 
-export default function HomeServices({ data, lang = "en" }) {
+export default function HomeServices({ data, lang = DEFAULT_LANG }) {
   const [services, setServices] = useState([]);
 
   // Extract ACF values cleanly
@@ -57,14 +58,14 @@ export default function HomeServices({ data, lang = "en" }) {
 
       {/* SUB HEADING */}
       {sub_heading && (
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-2 mb-2 md:mb-4">
           <span className="h-2 w-2 rounded-full bg-[var(--color-accent)]"></span>
           <span className="subheading-label">{sub_heading}</span>
         </div>
       )}
 
       {/* TOP ROW: HEADING + CTA */}
-      <div className="lg:flex lg:justify-between items-end items-end mb-14">
+      <div className="lg:flex lg:justify-between items-end items-end mb-10 lg:mb-14">
         <div
           className="section-heading mb-4 md:mb-0"
           dangerouslySetInnerHTML={{ __html: heading }}
@@ -151,6 +152,7 @@ export default function HomeServices({ data, lang = "en" }) {
             "";
 
           const excerpt = (service?.excerpt?.rendered || "");
+          const service_icon = service?.acf?.service_icon?.url || "";
 
           return (
             <SwiperSlide key={service.id}>
@@ -160,7 +162,7 @@ export default function HomeServices({ data, lang = "en" }) {
                     ? `/service/${service.slug}`
                     : `/${lang}/service/${service.slug}`
                 }
-                className="block group rounded-xl overflow-hidden relative"
+                className="block group rounded-[8px] overflow-hidden relative"
               >
                 {img && (
                   <Image
@@ -178,20 +180,28 @@ export default function HomeServices({ data, lang = "en" }) {
                 {/* LABEL BADGE */}
                 <div className="absolute top-6 left-6">
                   <span className="
-                    bg-white/20 backdrop-blur-xl text-white px-4 py-2
+                    bg-white/20 backdrop-blur-xl text-white px-6 py-4
                     rounded-full flex items-center gap-2 text-sm
                   ">
-                    <span className="h-2 w-2 bg-[#27E0C0] rounded-full"></span>
+                     {service_icon && (
+                      <Image
+                        src={service_icon}
+                        alt={service.title.rendered}
+                        width={24}
+                        height={24}
+                        className=""
+                      />
+                    )}
                     {service.title.rendered}
                   </span>
                 </div>
 
                 {/* ARROW TOP RIGHT */}
-                <div className="absolute top-6 right-6">
+                <div className="absolute top-6 right-8 transition-all duration-300 group-hover:right-6">
                   <div className="
-                    w-10 h-10 rounded-full bg-[var(--color-brand)]
+                    w-13 h-13 rounded-full bg-[var(--color-brand)]
                     flex items-center justify-center
-                    transition-all duration-300 group-hover:bg-[#0F144A]
+                    transition-all duration-300
                   ">
                     <Image src={ArrowSvg} width={16} height={16} alt="go" />
                   </div>
@@ -199,7 +209,7 @@ export default function HomeServices({ data, lang = "en" }) {
 
                 {/* EXCERPT */}
                 <div className="absolute bottom-6 left-6 right-6">
-                  <div className="text-white text-[24px] lg:text-[32px]" dangerouslySetInnerHTML={{ __html: excerpt  }} />
+                  <div className="text-white text-[24px] lg:text-[30px]" dangerouslySetInnerHTML={{ __html: excerpt  }} />
                 </div>
               </Link>
             </SwiperSlide>
@@ -210,19 +220,19 @@ export default function HomeServices({ data, lang = "en" }) {
       {/* NAVIGATION BUTTONS */}
       <div className="flex justify-center gap-4 mt-8 lg:mt-10">
         {/* PREV */}
-        <button className="cursor-pointer prev-btn w-10 h-10 rounded-md border border-gray-300 group flex items-center justify-center bg-white/40 hover:bg-[#9192A0]">
-          <Image src={NavHover} width={16} height={16} alt="prev"
-                 className="block group-hover:hidden" />
-          <Image src={NavArrow} width={16} height={16} alt="prev"
-                 className="hidden group-hover:block rotate-180" />
+        <button className="cursor-pointer  prev-btn w-12 h-12 rounded-md border border-gray-300 group flex items-center justify-center bg-white/40 hover:bg-[#9192A0]">
+          <Image src={NavHover} width={12} height={12} alt="prev"
+                 className="block transition-all duration-300 group-hover:hidden" />
+          <Image src={NavArrow} width={12} height={12} alt="prev"
+                 className="hidden transition-all duration-300 group-hover:block rotate-180" />
         </button>
 
         {/* NEXT */}
-        <button className="cursor-pointer next-btn w-10 h-10 rounded-md border border-gray-300 group flex items-center justify-center hover:bg-[#9192A0] text-white">
-          <Image src={NavHover} width={16} height={16} alt="next"
-                 className="block group-hover:hidden rotate-180" />
-          <Image src={NavArrow} width={16} height={16} alt="next"
-                 className="hidden group-hover:block" />
+        <button className="cursor-pointer next-btn w-12 h-12 rounded-md border border-gray-300 group flex items-center justify-center hover:bg-[#9192A0] text-white">
+          <Image src={NavHover} width={12} height={12} alt="next"
+                 className="block transition-all duration-300 group-hover:hidden rotate-180" />
+          <Image src={NavArrow} width={12} height={16} alt="next"
+                 className="hidden transition-all duration-300 group-hover:block" />
         </button>
       </div>
     </div>

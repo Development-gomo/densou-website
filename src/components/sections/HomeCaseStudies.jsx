@@ -32,7 +32,7 @@ export default function HomeCaseStudies({ data, lang = "en" }) {
     }
     load();
   }, [lang]);
-  
+
   useEffect(() => {
     const interval = setInterval(() => {
       const btn = document.querySelector(".case-next-btn");
@@ -45,7 +45,6 @@ export default function HomeCaseStudies({ data, lang = "en" }) {
     return () => clearInterval(interval);
   }, []);
 
-
   if (!cases.length) return null;
 
   return (
@@ -54,14 +53,14 @@ export default function HomeCaseStudies({ data, lang = "en" }) {
       <div className="w-full px-6 web-width">
         {/* SUB HEADING */}
         {sub_heading && (
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-2 mb-2 md:mb-4">
             <span className="h-2 w-2 rounded-full bg-[var(--color-accent)]"></span>
             <span className="subheading-label">{sub_heading}</span>
           </div>
         )}
 
         {/* TOP HEADING + CTA */}
-        <div className="md:flex md:justify-between items-end mb-12">
+        <div className="md:flex md:justify-between items-end mb-10 lg:mb-14">
           <div
             className="section-heading mb-4 md:mb-0"
             dangerouslySetInnerHTML={{ __html: heading }}
@@ -69,25 +68,21 @@ export default function HomeCaseStudies({ data, lang = "en" }) {
 
           {cta_text && cta_url && (
             <Link
-              href={
-                cta_url.startsWith("/")
-                  ? lang === "en"
-                    ? cta_url
-                    : `/${lang}${cta_url}`
-                  : cta_url
-              }
+              href={cta_url}
               className="
               gap-3 group relative inline-flex items-center
               rounded-sm bg-[var(--color-brand)] px-6 py-4 text-white
               transition-all duration-300 hover:bg-[var(--color-brand)]
-              w-[160px] overflow-hidden select-none">
+              w-[160px] overflow-hidden select-none"
+            >
               {/* LEFT DOT */}
               <span className="relative w-6 flex items-center justify-center">
                 <span
                   className="
                   absolute h-2 w-2 rounded-full bg-[#27E0C0]
                   transition-all duration-300 ease-out
-                  group-hover:opacity-0 group-hover:-translate-x-1"></span>
+                  group-hover:opacity-0 group-hover:-translate-x-1"
+                ></span>
               </span>
 
               {/* TEXT */}
@@ -96,7 +91,8 @@ export default function HomeCaseStudies({ data, lang = "en" }) {
                 flex-1 text-[16px] leading-none
                 transition-all duration-300 ease-out
                 group-hover:-translate-x-4
-                whitespace-nowrap">
+                whitespace-nowrap"
+              >
                 {cta_text}
               </span>
 
@@ -106,7 +102,8 @@ export default function HomeCaseStudies({ data, lang = "en" }) {
                   className="
                   w-4 absolute opacity-0 -translate-x-4
                   transition-all duration-300 ease-out
-                  group-hover:opacity-100 group-hover:-translate-x-2">
+                  group-hover:opacity-100 group-hover:-translate-x-2"
+                >
                   <Image src={ArrowSvg} width={13} height={13} alt="arrow" />
                 </span>
               </span>
@@ -124,8 +121,8 @@ export default function HomeCaseStudies({ data, lang = "en" }) {
             prevEl: ".case-prev-btn",
           }}
           slidesPerView={1.5}
-          spaceBetween={30}
-          centeredSlides={true} 
+          spaceBetween={32}
+          centeredSlides={true}
           breakpoints={{
             280: { slidesPerView: 1.1 },
             510: { slidesPerView: 1.1 },
@@ -136,7 +133,8 @@ export default function HomeCaseStudies({ data, lang = "en" }) {
           }}
         >
           {cases.map((item) => {
-            const img = item?._embedded?.["wp:featuredmedia"]?.[0]?.source_url || "";
+            const img =
+              item?._embedded?.["wp:featuredmedia"]?.[0]?.source_url || "";
             const clientLogo = item?.acf?.client_logo?.url || "";
             const sliderData = item?.acf?.slider_card_data || [];
             const title = item?.title?.rendered || "";
@@ -160,21 +158,26 @@ export default function HomeCaseStudies({ data, lang = "en" }) {
                       gap-3 group relative inline-flex items-center
                       rounded-sm bg-[var(--color-accent)] px-6 py-4 text-white
                       transition-all duration-300 hover:bg-[var(--color-accent)]
-                      w-[155px] overflow-hidden select-none mb-15">
+                      w-[155px] overflow-hidden select-none mb-15"
+                    >
                       {/* LEFT DOT */}
                       <span className="relative w-6 flex items-center justify-center">
-                        <span className="
+                        <span
+                          className="
                           absolute h-2 w-2 rounded-full bg-[#191F68]
                           transition-all duration-300 ease-out
-                          group-hover:opacity-0 group-hover:-translate-x-1"></span>
+                          group-hover:opacity-0 group-hover:-translate-x-1"
+                        ></span>
                       </span>
 
                       {/* TEXT */}
-                      <span className="text-black 
+                      <span
+                        className="text-black 
                         flex-1 text-[16px] leading-none
                         transition-all duration-300 ease-out
                         group-hover:-translate-x-4
-                        whitespace-nowrap">
+                        whitespace-nowrap"
+                      >
                         {read_more_text}
                       </span>
 
@@ -200,23 +203,31 @@ export default function HomeCaseStudies({ data, lang = "en" }) {
                     {/* Achievements */}
                     {sliderData?.length > 0 && (
                       <>
-                        <p className="mb-3 text-[18px]">{section_label}</p>
+                        <p className="mb-4 text-[18px]">{section_label}</p>
                         <div className="flex- gap-3">
                           {sliderData.map((row, i) => (
-                            <span key={i} className="inline-block mb-3">
+                            <span
+                              key={i}
+                              className="inline-block mb-4 [&:nth-child(2)]:mb-0"
+                            >
                               <span className="flex text-xs items-center justify- border border-white rounded-lg">
-                              <span className="flex items-center p-2 gap-2 min-w-[175px]">
-                                <span className="h-[24px] w-[24px] bg-[#ffffff40] flex items-center justify-center rounded-full">
-                                  <Image src={CheckSvg} width={9} height={8} alt="no-follow" />
+                                <span className="flex items-center p-2 gap-2 min-w-[175px]">
+                                  <span className="h-[24px] w-[24px] bg-[#ffffff40] flex items-center justify-center rounded-full">
+                                    <Image
+                                      src={CheckSvg}
+                                      width={9}
+                                      height={8}
+                                      alt="no-follow"
+                                    />
+                                  </span>
+                                  <span className="text-xs">
+                                    {row.what_we_achieve}
+                                  </span>
                                 </span>
-                                <span className="text-xs">
-                                  {row.what_we_achieve}
+                                <span className="w-[50px] text-center px-4 py-3 text-xs border-l font-semibold">
+                                  {row.stats}
                                 </span>
                               </span>
-                              <span className="w-[50px] text-center px-4 py-3 text-xs border-l font-semibold">
-                                {row.stats}
-                              </span>
-                            </span>
                             </span>
                           ))}
                         </div>
@@ -235,12 +246,12 @@ export default function HomeCaseStudies({ data, lang = "en" }) {
 
                     {/* CLIENT LOGO */}
                     {clientLogo && (
-                      <div className="absolute top-6 right-6 bg-white/30 backdrop-blur-xl px-5 py-2 rounded-md">
+                      <div className="absolute max-w-[134px] top-6 right-6 bg-white/30 backdrop-blur-xl px-3 py-3 rounded-sm">
                         <Image
                           src={clientLogo}
                           alt="client logo"
                           width={100}
-                          height={40}
+                          height={35}
                         />
                       </div>
                     )}
@@ -253,35 +264,35 @@ export default function HomeCaseStudies({ data, lang = "en" }) {
 
         {/* NAV BUTTONS */}
         <div className="flex justify-center gap-4 mt-8 lg:mt-10">
-          <button className="cursor-pointer case-prev-btn w-10 h-10 rounded-md border border-gray-300 bg-white/40 group flex items-center justify-center hover:bg-[#9192A0]">
+          <button className="cursor-pointer case-prev-btn w-12 h-12 rounded-md border border-gray-300 bg-white/40 group flex items-center justify-center hover:bg-[#9192A0]">
             <Image
               src={NavHover}
-              width={16}
-              height={16}
+              width={12}
+              height={12}
               alt="prev"
               className="block group-hover:hidden"
             />
             <Image
               src={NavArrow}
-              width={16}
-              height={16}
+              width={12}
+              height={12}
               alt="prev"
               className="hidden group-hover:block rotate-180"
             />
           </button>
 
-          <button className="cursor-pointer case-next-btn w-10 h-10 rounded-md border border-gray-300 group flex items-center justify-center hover:bg-[#9192A0]">
+          <button className="cursor-pointer case-next-btn w-12 h-12 rounded-md border border-gray-300 group flex items-center justify-center hover:bg-[#9192A0]">
             <Image
               src={NavHover}
-              width={16}
-              height={16}
+              width={12}
+              height={12}
               alt="next"
               className="block group-hover:hidden rotate-180"
             />
             <Image
               src={NavArrow}
-              width={16}
-              height={16}
+              width={12}
+              height={12}
               alt="next"
               className="hidden group-hover:block"
             />

@@ -6,8 +6,9 @@ import Image from "next/image";
 import ArrowSvg from "../../../public/right-arrow.svg";
 import CalenerSvg from "../../../public/calender.svg";
 import { getAllPosts } from "@/lib/wp";
+import { DEFAULT_LANG } from "@/config";
 
-export default function HomeNews({ data, lang = "en" }) {
+export default function HomeNews({ data, lang = DEFAULT_LANG }) {
   const [posts, setPosts] = useState([]);
 
   const { sub_heading, heading, cta_text, cta_url } = data || {};
@@ -49,7 +50,7 @@ export default function HomeNews({ data, lang = "en" }) {
     <section className="py-12 md:py-30 web-width px-6">
       {/* SUB HEADING */}
       {sub_heading && (
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-2 mb-2 md:mb-4">
           <span className="h-2 w-2 rounded-full bg-[var(--color-accent)]"></span>
           <span className="subheading-label">{sub_heading}</span>
         </div>
@@ -66,7 +67,7 @@ export default function HomeNews({ data, lang = "en" }) {
           <Link
             href={
               cta_url.startsWith("/")
-                ? lang === "en"
+                ? lang === DEFAULT_LANG
                   ? cta_url
                   : `/${lang}${cta_url}`
                 : cta_url
@@ -128,7 +129,7 @@ export default function HomeNews({ data, lang = "en" }) {
               ? `/post/${webinarPost.slug}`
               : `/${lang}/post/${webinarPost.slug}`
           }
-          className="relative rounded-xl overflow-hidden block group"
+          className="relative rounded-lg overflow-hidden block group"
         >
           {/* FEATURED IMAGE */}
           {webinarPost?._embedded?.["wp:featuredmedia"]?.[0]?.source_url && (
@@ -146,7 +147,7 @@ export default function HomeNews({ data, lang = "en" }) {
 
           {/* CATEGORY BADGE */}
           <div className="absolute top-8 left-8">
-            <span className="bg-white/20 backdrop-blur-md text-white px-3 py-1 rounded-full text-sm flex items-center gap-2">
+            <span className="bg-white/20 backdrop-blur-md text-white px-3 py-[6px] rounded-full text-[12px] leading-[15px] flex items-center gap-2">
               <span className="h-2 w-2 bg-[var(--color-accent)] rounded-full"></span>
               {getCategories(webinarPost)[0]?.name || "Webinar"}
             </span>
@@ -154,9 +155,9 @@ export default function HomeNews({ data, lang = "en" }) {
 
           {/* TEXT */}
           <div className="absolute flex bottom-8 left-8 right-8 md:justify-between md:items-center flex-col md:flex-row">
-            <div className="mt-4 max-w-[400px]">
+            <div className="mt-4 max-w-[380px]">
               <h3
-                className="text-white text-[28px] leading-[34px] font-medium mb-4"
+                className="text-white text-[32px] leading-[34px] font-medium mb-4"
                 dangerouslySetInnerHTML={{ __html: webinarPost.title.rendered }}
               />
               {/* CTA BUTTON */}
@@ -248,17 +249,17 @@ export default function HomeNews({ data, lang = "en" }) {
 
                 {/* TEXT AREA */}
                 <div className="flex-1">
-                  <span className="bg-white/20 border border-gray-300 w-[85px] mb-3 text-gray-700 px-3 py-1 rounded-full text-xs flex items-center gap-2 mb-2">
+                  <span className="bg-white/20 border border-gray-300 w-[85px] mb-3 text-gray-700 px-3 py-[6px] rounded-full text-xs flex items-center gap-2 mb-2">
                     <span className="h-2 w-2 bg-[var(--color-accent)] rounded-full"></span>
                     {category}
                   </span>
 
                   <h4
-                    className="font-medium leading-[26px] mb-3"
+                    className="font-medium text-[18px] leading-[26px] mb-3"
                     dangerouslySetInnerHTML={{ __html: post.title.rendered }}
                   />
 
-                  <p className="text-[12px] text-gray-500">
+                  <p className="text-[14px] text-gray-500">
                     <Image
                       src={CalenerSvg}
                       width={12}

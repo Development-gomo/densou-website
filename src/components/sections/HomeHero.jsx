@@ -106,7 +106,7 @@ export default function HomeHero({ data }) {
       </div>
 
       {/* CLIENT LOGOS + TESTIMONIAL */}
-      <div className="absolute bottom-0 w-full backdrop-blur-xl bg-white/10 border-t border-white/20 py-6">
+      <div className="absolute bottom-0 w-full backdrop-blur-xl bg-white/10 border-t border-white/20 py-9">
         <div className="web-width mx-auto md:flex items-center gap-6">
           {/* LEFT — LOGO TICKER */}
           <div className="md:max-w-[70%] ticker-wrapper">
@@ -155,7 +155,7 @@ export default function HomeHero({ data }) {
 
                       {/* Show statistics ONLY for active logo */}
                       {item.statistics && (
-                        <p className="caption-text mt-3 text-white">
+                        <p className="caption-text mt-4 text-white">
                           {item.statistics}
                         </p>
                       )}
@@ -182,7 +182,7 @@ export default function HomeHero({ data }) {
                 <SwiperSlide key={index}>
                   <div className="text-white caption-text max-w-[320px] mx-auto">
                     <p className="mt-2 opacity-90">{item.testimonial}</p>
-                    <p className="mt-2 font-semibold">{item.client_name}</p>
+                    <p className="mt-3 font-semibold">{item.client_name}</p>
                   </div>
                 </SwiperSlide>
               ))}
