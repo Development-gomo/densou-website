@@ -4,7 +4,7 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import ArrowSvg from "../../../public/right-arrow.svg";
+import ArrowSvg from "../../../../public/right-arrow.svg";
 
 export default function AboutUs({ data }) {
   if (!data) return null;

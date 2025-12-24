@@ -3,8 +3,8 @@
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import ArrowSvg from "../../../public/right-arrow.svg";
-import CalenerSvg from "../../../public/calender.svg";
+import ArrowSvg from "../../../../public/right-arrow.svg";
+import CalenerSvg from "../../../../public/calender.svg";
 import { getAllPosts } from "@/lib/wp";
 import { DEFAULT_LANG } from "@/config";
 

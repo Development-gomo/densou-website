@@ -5,7 +5,7 @@ import React from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay } from "swiper/modules";
 import "swiper/css";
-import DownArrow from "../../../public/hero-down-arrow.png";
+import DownArrow from "../../../../public/hero-down-arrow.png";
 import { motion } from "framer-motion";
 
 export default function HomeHero({ data }) {

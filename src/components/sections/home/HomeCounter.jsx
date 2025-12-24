@@ -3,7 +3,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import ArrowSvg from "../../../public/right-arrow.svg";
+import ArrowSvg from "../../../../public/right-arrow.svg";
 
 export default function HomeCounter({ data, lang = "en" }) {
   if (!data) return null;

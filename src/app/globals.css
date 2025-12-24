@@ -45,6 +45,7 @@ i, em {
    HERO HEADING (heading-xl)
    Mobile-first → larger breakpoints added
 ========================================== */
+.heading-xl,
 .heading-xl h1, .heading-xl p  {
   font-family: var(--font-primary);
   font-weight: 500;
@@ -64,7 +65,7 @@ i, em {
 
 /* Tablet */
 @media (min-width: 768px) {
-  .heading-xl h1,.heading-xl p  {
+  .heading-xl, .heading-xl h1,.heading-xl p  {
     font-size: 50px;
     line-height: 58px;
   }
@@ -84,6 +85,7 @@ i, em {
 
 /* Medium Screens */
 @media (min-width: 1024px) {
+  .heading-xl,
   .heading-xl h1,.heading-xl p  {
     font-size: 60px;
     line-height: 72px;
@@ -102,6 +104,7 @@ i, em {
 
 /* Large Desktop */
 @media (min-width: 1280px) {
+  
   .heading-xl p,
   .heading-xl h1  {
     font-size: 100px;
@@ -155,6 +158,10 @@ i, em {
   font-size: 28px;
   line-height: 34px;
   font-weight: 500;
+}
+
+#inner-hero .subheading-label {
+  color: var(--color-accent) !important;
 }
 
 /* Tablet */

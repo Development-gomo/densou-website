@@ -5,11 +5,11 @@ import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 
-import ArrowSvg from "../../../public/right-arrow.svg";
-import NavArrow from "../../../public/nav-arrow.svg";
-import NavHover from "../../../public/nav-hover-arrow.svg";
-import ArrowSvgB from "../../../public/right-arrow-black.png";
-import CheckSvg from "../../../public/check.svg";
+import ArrowSvg from "../../../../public/right-arrow.svg";
+import NavArrow from "../../../../public/nav-arrow.svg";
+import NavHover from "../../../../public/nav-hover-arrow.svg";
+import ArrowSvgB from "../../../../public/right-arrow-black.png";
+import CheckSvg from "../../../../public/check.svg";
 
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper/modules";

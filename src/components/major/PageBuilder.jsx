@@ -2,12 +2,13 @@
 
 import dynamic from "next/dynamic";
 
-const Hero = dynamic(() => import("../sections/HomeHero"));
-const AboutUs = dynamic(() => import("../sections/HomeAbout"));
-const ServicesSlider = dynamic(() => import("../sections/HomeServices"));
-const HomeCounter = dynamic(() => import("../sections/HomeCounter"));
-const HomeCaseStudies = dynamic(() => import("../sections/HomeCaseStudies"));
-const HomeNews = dynamic(() => import("../sections/HomeNews"));
+const Hero = dynamic(() => import("../sections/home/HomeHero"));
+const AboutUs = dynamic(() => import("../sections/home/HomeAbout"));
+const ServicesSlider = dynamic(() => import("../sections/home/HomeServices"));
+const HomeCounter = dynamic(() => import("../sections/home/HomeCounter"));
+const HomeCaseStudies = dynamic(() => import("../sections/home/HomeCaseStudies"));
+const HomeNews = dynamic(() => import("../sections/home/HomeNews"));
+const InnerHero = dynamic(() => import("../sections/inner-pages/InnerHero"));
 
 export default function PageBuilder({ sections, lang = "en" }) {
   if (!sections) return null;
@@ -33,7 +34,10 @@ export default function PageBuilder({ sections, lang = "en" }) {
             
           case "news_section":
             return <HomeNews key={i} data={block} lang={lang} />;
-
+           
+          case "hero_section":
+            return <InnerHero key={i} data={block} lang={lang} />;
+            
           default:
             return null;
         }

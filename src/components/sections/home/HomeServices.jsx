@@ -4,9 +4,9 @@
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import ArrowSvg from "../../../public/right-arrow.svg";
-import NavArrow from "../../../public/nav-arrow.svg";
-import NavHover from "../../../public/nav-hover-arrow.svg";
+import ArrowSvg from "../../../../public/right-arrow.svg";
+import NavArrow from "../../../../public/nav-arrow.svg";
+import NavHover from "../../../../public/nav-hover-arrow.svg";
 import { DEFAULT_LANG } from "@/config";
 
 import { Swiper, SwiperSlide } from "swiper/react";
