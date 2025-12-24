@@ -107,7 +107,7 @@ export default function HomeHero({ data }) {
 
       {/* CLIENT LOGOS + TESTIMONIAL */}
       <div className="absolute bottom-0 w-full backdrop-blur-xl bg-white/10 border-t border-white/20 py-9">
-        <div className="web-width mx-auto md:flex items-center gap-6">
+        <div className="web-width mx-auto md:flex items-center gap-6 hidden md:block">
           {/* LEFT — LOGO TICKER */}
           <div className="md:max-w-[70%] ticker-wrapper">
             <Swiper
@@ -155,7 +155,7 @@ export default function HomeHero({ data }) {
 
                       {/* Show statistics ONLY for active logo */}
                       {item.statistics && (
-                        <p className="caption-text mt-4 text-white">
+                        <p className="caption-text mt-3 text-white">
                           {item.statistics}
                         </p>
                       )}
@@ -182,13 +182,66 @@ export default function HomeHero({ data }) {
                 <SwiperSlide key={index}>
                   <div className="text-white caption-text max-w-[320px] mx-auto">
                     <p className="mt-2 opacity-90">{item.testimonial}</p>
-                    <p className="mt-3 font-semibold">{item.client_name}</p>
+                    <p className="mt-2 font-semibold">{item.client_name}</p>
                   </div>
                 </SwiperSlide>
               ))}
             </Swiper>
           </div>
         </div>
+        <div className="px-6 md:hidden">
+          <Swiper
+              modules={[Autoplay]}
+              autoplay={{
+                delay: 2500, // REQUIRED
+                reverseDirection: true, // Slide LEFT → RIGHT
+                disableOnInteraction: false,
+              }}
+              loop={true}
+              allowTouchMove={true}
+              speed={800}
+              slidesPerView={1}
+              spaceBetween={30}
+              onSlideChange={(swiper) => {
+                setActiveIndex(swiper.realIndex);
+                testiSwiperRef?.slideToLoop(swiper.realIndex);
+              }}            >
+            
+              {statsSlides.map((item, index) => {
+                const isActive = index === activeIndex;
+
+                return (
+                  <SwiperSlide key={index}>
+                    <div
+                      className={`flex flex-col items-center transition-all`}
+                    >
+                      {/* Logo */}
+                      {item.logo?.url && (
+                        <Image
+                          src={item.logo.url}
+                          alt="client logo"
+                          width={90}
+                          height={38}
+                          className="object-contain"
+                        />
+                      )}
+
+                      {/* Show statistics ONLY for active logo */}
+                      {item.statistics && (
+                        <p className="caption-text mt-3 text-white">
+                          {item.statistics}
+                        </p>
+                      )}
+                      <div className="text-white text-center">
+                        <p className="mt-2 opacity-90">{item.testimonial}</p>
+                        <p className="mt-2 font-semibold">{item.client_name}</p>
+                      </div>
+                    </div>
+                  </SwiperSlide>
+                );
+              })}
+            </Swiper>
+          </div>
       </div>
     </section>
   );
