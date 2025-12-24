@@ -123,10 +123,7 @@ export default function HomeHero({ data }) {
               speed={800}
               slidesPerView={4}
               spaceBetween={30}
-              onSlideChange={(swiper) => {
-                setActiveIndex(swiper.realIndex);
-                testiSwiperRef?.slideToLoop(swiper.realIndex);
-              }}
+              initialSlide={2}
               breakpoints={{
                 320: { slidesPerView: 1 },
                 640: { slidesPerView: 2 },
@@ -139,9 +136,7 @@ export default function HomeHero({ data }) {
 
                 return (
                   <SwiperSlide key={index}>
-                    <div
-                      className={`flex flex-col items-center transition-all`}
-                    >
+                    <div className={`flex flex-col items-center transition-all`}>
                       {/* Logo */}
                       {item.logo?.url && (
                         <Image
@@ -169,13 +164,17 @@ export default function HomeHero({ data }) {
           {/* RIGHT — VERTICAL TESTIMONIAL SLIDER */}
           <div className="md:max-w-[30%] h-[80px] overflow-hidden">
             <Swiper
-              modules={[Autoplay]}
-              direction="vertical"
+              modules={[Autoplay]}  
+              direction={'vertical'}
+              onSwiper={(swiper) => (logoSwiperRef = swiper)}
+              autoplay={{
+                delay: 2500, // REQUIRED
+                reverseDirection: true, 
+                disableOnInteraction: false,
+              }}
               loop={true}
               allowTouchMove={false}
               speed={800}
-              autoplay={{ delay: 2500, disableOnInteraction: false }}
-              onSwiper={(s) => (testiSwiperRef = s)}
               className="h-full"
             >
               {testimonialSlides.map((item, index) => (
