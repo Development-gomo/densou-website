@@ -9,6 +9,8 @@ const HomeCounter = dynamic(() => import("../sections/home/HomeCounter"));
 const HomeCaseStudies = dynamic(() => import("../sections/home/HomeCaseStudies"));
 const HomeNews = dynamic(() => import("../sections/home/HomeNews"));
 const InnerHero = dynamic(() => import("../sections/inner-pages/InnerHero"));
+const Overview = dynamic(() => import("../sections/inner-pages/Overview"));
+const CollaborationSection = dynamic(() => import("../sections/inner-pages/CollaborationSection"));
 
 export default function PageBuilder({ sections, lang = "en" }) {
   if (!sections) return null;
@@ -37,7 +39,13 @@ export default function PageBuilder({ sections, lang = "en" }) {
            
           case "hero_section":
             return <InnerHero key={i} data={block} lang={lang} />;
-            
+
+          case "overview_section":
+            return <Overview key={i} data={block} lang={lang} />;
+
+          case "collaboration_section":
+            return <CollaborationSection key={i} data={block} lang={lang} />;
+
           default:
             return null;
         }

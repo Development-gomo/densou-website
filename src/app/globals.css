@@ -41,12 +41,17 @@ i, em {
   font-family: var(--font-serif) !important;
   font-style: italic;
 }
+
+.text-white * {
+  color: var(--color-light) !important;
+}
 /* ==========================================
    HERO HEADING (heading-xl)
    Mobile-first → larger breakpoints added
 ========================================== */
 .heading-xl,
-.heading-xl h1, .heading-xl p  {
+.heading-xl h1, 
+.heading-xl p { 
   font-family: var(--font-primary);
   font-weight: 500;
   font-size: 34px;
@@ -61,6 +66,13 @@ i, em {
   font-style: normal;
   font-weight: 400;
   line-height: 38px;
+}
+
+.highlighted-heading {
+  font-family: var(--font-primary);
+  font-weight: 500;
+  font-size: 34px;
+  line-height: 40px;
 }
 
 /* Tablet */
@@ -104,6 +116,15 @@ i, em {
 
 /* Large Desktop */
 @media (min-width: 1280px) {
+  .highlighted-heading {
+    font-size: 48px;
+    line-height: 58px;
+  }
+
+  .heading-xl {
+    font-size: 64px;
+    line-height: 74px;
+  }
   
   .heading-xl p,
   .heading-xl h1  {
@@ -160,6 +181,7 @@ i, em {
   font-weight: 500;
 }
 
+span.subheading-label.text-\[var\(--color-accent\)\],
 #inner-hero .subheading-label {
   color: var(--color-accent) !important;
 }
@@ -238,7 +260,7 @@ i, em {
     font-size: 50px;
     line-height: 58px;
   }
-  .heading-xl h1  em {
+  .heading-xl h1 em {
     line-height: 58px;
   } 
 }

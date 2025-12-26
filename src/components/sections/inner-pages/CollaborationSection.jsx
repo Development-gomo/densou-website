@@ -1,0 +1,113 @@
+"use client";
+
+import Image from "next/image";
+import React from "react";
+import { motion } from "framer-motion";
+
+const CollaborationSection = ({ data }) => {
+  const {
+    sub_heading,
+    heading,
+    image,
+    content_heading,
+    logo,
+    short_text,
+    cta_text,
+    cta_url,
+  } = data;
+
+  return (
+    <section className="bg-[var(--color-brand)] text-white">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 py-12 md:py-30 web-width px-6">
+        {/* Sub Heading */}
+        <div className="">
+          {sub_heading && (
+            <div className="flex items-center gap-2 mb-1">
+              <span className="h-2 w-2 rounded-full bg-[var(--color-accent)]"></span>
+              <span className="subheading-label text-white/70 uppercase">
+                {sub_heading}
+              </span>
+            </div>
+          )}
+
+          {heading && <h2 className="section-heading text-white">{heading}</h2>}
+        </div>
+        <div>
+          {/* Image */}
+          {image && (
+            <motion.div
+              initial={{ opacity: 0, y: 25 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8 }}
+              className="relative w-full h-[300px] lg:h-[400px] rounded-lg overflow-hidden mb-10"
+            >
+              <Image
+                src={image.url}
+                alt="Collaboration image"
+                layout="fill"
+                objectFit="cover"
+                className="object-cover"
+              />
+            </motion.div>
+          )}
+
+          <div className="div flex gap-10 mb-4">
+          {/* Content Heading */}
+          {content_heading && (
+            <motion.h2
+              initial={{ opacity: 0, y: 25 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8 }}
+              className="content-heading text-white mt-6"
+            >
+              {content_heading}
+            </motion.h2>
+          )}
+           {logo && (
+            <motion.div
+              initial={{ opacity: 0, y: 25 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8 }}
+              className="bg-white rounded-full flex items-center justify-center p-6"
+            >
+              <Image
+                src={logo.url}
+                alt="Collaboration image"
+                width={244}
+                height={120}
+                objectFit="contain"
+                className="object-contain"
+              />
+            </motion.div>
+          )}
+            </div>
+          {/* Short Text */}
+          {short_text && (
+            <motion.div
+              initial={{ opacity: 0, y: 25 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8 }}
+              className=" max-w-3xl"
+              dangerouslySetInnerHTML={{ __html: short_text }}
+            />
+          )}
+
+          {/* CTA Button */}
+          {cta_text && cta_url && (
+            <motion.a
+              initial={{ opacity: 0, y: 15 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.3 }}
+              href={cta_url}
+              className="mt-8 inline-block py-3 px-6 bg-[var(--color-accent)] text-white text-lg font-semibold rounded-full hover:bg-[var(--color-accent-dark)] transition duration-300"
+            >
+              {cta_text}
+            </motion.a>
+          )}
+        </div>
+      </div>
+    </section>
+  );
+};
+
+export default CollaborationSection;
