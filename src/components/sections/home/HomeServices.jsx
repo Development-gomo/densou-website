@@ -142,7 +142,7 @@ export default function HomeServices({ data, lang = DEFAULT_LANG }) {
           320: { slidesPerView: 1.1 },
           640: { slidesPerView: 2.5 },
           1024: { slidesPerView: 3.1 },
-          1280: { slidesPerView: 3.7 },
+          1280: { slidesPerView: 3.58 },
         }}
       >
         {services.map((service) => {
@@ -170,7 +170,7 @@ export default function HomeServices({ data, lang = DEFAULT_LANG }) {
                     alt={service.title.rendered}
                     width={410}
                     height={500}
-                    className="w-full h-[500px] object-cover transition-all duration-500 group-hover:scale-105"
+                    className="w-full h-[500px] object-cover transition-all duration-500 group-hover:scale-105 lg:w-[410px]"
                   />
                 )}
 
@@ -197,7 +197,7 @@ export default function HomeServices({ data, lang = DEFAULT_LANG }) {
                 </div>
 
                 {/* ARROW TOP RIGHT */}
-                <div className="absolute top-6 right-8 transition-all duration-300 group-hover:right-6">
+                <div className="absolute top-6 right-8 transition-all duration-300">
                   <div className="
                     w-13 h-13 rounded-full bg-[var(--color-brand)]
                     flex items-center justify-center
@@ -209,7 +209,7 @@ export default function HomeServices({ data, lang = DEFAULT_LANG }) {
 
                 {/* EXCERPT */}
                 <div className="absolute bottom-6 left-6 right-6">
-                  <div className="text-white text-[24px] lg:text-[30px]" dangerouslySetInnerHTML={{ __html: excerpt  }} />
+                  <div className="text-white text-[24px] lg:text-[32px]" dangerouslySetInnerHTML={{ __html: excerpt  }} />
                 </div>
               </Link>
             </SwiperSlide>

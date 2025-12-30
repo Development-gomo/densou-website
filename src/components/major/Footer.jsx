@@ -296,7 +296,7 @@ export default async function Footer({ lang = DEFAULT_LANG }) {
                   {/* SERVICES */}
                   {services.length > 0 && (
                     <div>
-                      <p className="mb-6 text-[14px] uppercase tracking-[0.17px] text-white/60">
+                      <p className="mb-6 text-[14px] uppercase tracking-[0.17px] text-[#9192A0]">
                         {servicesTitle}
                       </p>
                       <ul className="space-y-2 text-base text-white/80">
@@ -354,7 +354,7 @@ export default async function Footer({ lang = DEFAULT_LANG }) {
               {/* COPYRIGHT + SOCIAL */}
               <div className="flex justify-between items-center">
                 {copyrightText && (
-                  <p className=" text-white">{copyrightText}</p>
+                  <p className=" text-[#9192A0]">{copyrightText}</p>
                 )}
 
                 {/* SOCIAL */}

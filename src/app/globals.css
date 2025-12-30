@@ -32,7 +32,7 @@ h1, h2, h3, h4, h5, h6 {
 
 /* Global container */
 .web-width {
-  max-width: 1280px;
+  max-width: 1328px;
   margin-left: auto;
   margin-right: auto;
 }
@@ -45,7 +45,7 @@ i, em {
 .text-white * {
   color: var(--color-light) !important;
 } */
- 
+
 /* ==========================================
    HERO HEADING (heading-xl)
    Mobile-first → larger breakpoints added

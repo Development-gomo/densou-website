@@ -56,14 +56,14 @@ export default function AboutUs({ data }) {
             <Link
               href={cta_url}
               className="
-                    gap-2 group relative inline-flex items-center select-none 
+                    gap-3 group relative inline-flex items-center select-none 
                     rounded-sm bg-[var(--color-brand)] px-6 py-4 text-white 
                     transition-all duration-300 hover:bg-[var(--color-brand)] 
-                    w-[135px] overflow-hidden
+                    w-[130px] overflow-hidden
                   "
             >
               {/* LEFT SLOT (dot area, fixed width) */}
-              <span className="relative w-6 flex items-center justify-center">
+              <span className="relative w-2 h-2 flex items-center justify-center">
                 <span
                   className="
                         absolute h-2 w-2 rounded-full bg-[#27E0C0]
