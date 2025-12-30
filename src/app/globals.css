@@ -41,14 +41,16 @@ i, em {
   font-family: var(--font-serif) !important;
   font-style: italic;
 }
-
+/* 
 .text-white * {
   color: var(--color-light) !important;
-}
+} */
+ 
 /* ==========================================
    HERO HEADING (heading-xl)
    Mobile-first → larger breakpoints added
 ========================================== */
+
 .heading-xl,
 .heading-xl h1, 
 .heading-xl p { 

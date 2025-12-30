@@ -112,7 +112,7 @@ export default function Header({ lang = "en", currentSlug = "", entryType = "pag
           <div
             className="
               backdrop-blur-xl bg-white/20 
-              px-8 py-4 rounded-full shadow-lg 
+              px-8 py-4 rounded-full shadow-lg border border-[#FFFFFF33]
               flex items-center gap-8 lg:absolute lg:left-1/3
             "
           >
@@ -140,7 +140,7 @@ export default function Header({ lang = "en", currentSlug = "", entryType = "pag
                           : item.url
                       }
                       className="
-                            text-white/90 text-[15px] font-medium
+                            text-white/90 text-[15px]
                             hover:text-white transition flex items-center gap-2
                           "
                     >
@@ -151,8 +151,8 @@ export default function Header({ lang = "en", currentSlug = "", entryType = "pag
                           <Image
                             src={DownSvg}
                             alt="arrow"
-                            width={13}
-                            height={13}
+                            width={10}
+                            height={10}
                           />
                         </span>
                       )}

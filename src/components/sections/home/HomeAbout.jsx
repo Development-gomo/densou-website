@@ -27,7 +27,7 @@ export default function AboutUs({ data }) {
         <span className="subheading-label">{sub_heading}</span>
       </div>
       <div
-        className="section-heading mb-6 md:mb-13"
+        className="section-heading mb-6 md:mb-14"
         dangerouslySetInnerHTML={{ __html: heading }}
       />
 
