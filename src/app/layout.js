@@ -5,6 +5,7 @@ const instrumentSans = Instrument_Sans({
   subsets: ["latin"],
   weight: ["400", "500", "600"],
   variable: "--font-instrument-sans",
+  style: ["normal", "italic"], 
   display: "swap",
 });
 
@@ -12,6 +13,7 @@ const tinos = Tinos({
   subsets: ["latin"],
   weight: ["400", "700"],
   variable: "--font-tinos",
+  style: ["normal", "italic"], 
   display: "swap",
 });
 

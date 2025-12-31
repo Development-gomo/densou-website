@@ -216,7 +216,7 @@ span.subheading-label.text-\[var\(--color-accent\)\],
   font-size: 22px;
   line-height: 30px;
   font-weight: 500;
-  color: var(--color-dark);
+  color: #000;
 }
 
 .content-heading.text-white {
