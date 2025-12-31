@@ -310,7 +310,7 @@ export default async function Footer({ lang = DEFAULT_LANG }) {
                   {/* OFFICES */}
                   {offices.length > 0 && (
                     <div>
-                      <p className="mb-6 text-[14px] uppercase tracking-[0.17px] text-white/60">
+                      <p className="mb-6 text-[14px] uppercase tracking-[0.17px] text-[#9192A0]">
                         {officesTitle}
                       </p>
                       <div className="space-y-6 text-[16 px]">

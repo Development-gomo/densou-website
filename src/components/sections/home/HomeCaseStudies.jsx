@@ -143,7 +143,7 @@ export default function HomeCaseStudies({ data, lang = "en" }) {
             return (
               <SwiperSlide key={item.id}>
                 <div className="grid grid-cols-1 lg:grid-cols-2 rounded-2xl overflow-hidden bg-white">
-                  <div className="bg-[var(--color-brand)] text-white min-h-[400px]  p-6 lg:p-12 flex flex-col justify-center">
+                  <div className="bg-[var(--color-brand)] w-[600px] text-white min-h-[400px]  p-6 lg:p-12 flex flex-col justify-center">
                     <h3
                       className="text-[24px] leading-[32px] md:text-[32px] lg:leading-[40px]"
                       dangerouslySetInnerHTML={{ __html: title }}

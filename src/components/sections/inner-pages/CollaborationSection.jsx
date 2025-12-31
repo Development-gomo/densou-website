@@ -51,7 +51,7 @@ const CollaborationSection = ({ data }) => {
             </motion.div>
           )}
 
-          <div className="div flex gap-10 mb-4">
+          <div className="div flex gap-10 mb-6">
           {/* Content Heading */}
           {content_heading && (
             <motion.h2
@@ -87,7 +87,7 @@ const CollaborationSection = ({ data }) => {
               initial={{ opacity: 0, y: 25 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8 }}
-              className=" max-w-3xl"
+              className=" max-w-3xl [&_p_a]:text-[var(--color-accent)]"
               dangerouslySetInnerHTML={{ __html: short_text }}
             />
           )}
