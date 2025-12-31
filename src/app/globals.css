@@ -219,6 +219,10 @@ span.subheading-label.text-\[var\(--color-accent\)\],
   color: var(--color-dark);
 }
 
+.space-y-1 p {
+    margin-top: 12px;
+}
+
 /* Desktop */
 @media (min-width: 1280px) {
   .content-heading {

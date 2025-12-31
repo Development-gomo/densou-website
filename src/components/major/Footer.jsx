@@ -50,7 +50,7 @@ function extractOfficesFromHtml(html) {
     const title = stripHtml(match[1]);
     const lines = match[2]
       .split(/<br\s*\/?>/i)
-      .map((line) => stripHtml(line))
+      .map((line) => line.trim())
       .filter(Boolean);
 
     if (title) blocks.push({ title, lines });
@@ -211,7 +211,7 @@ export default async function Footer({ lang = DEFAULT_LANG }) {
                   alt="right-top"
                   width={275}
                   height={215}
-                  className="mt-6 lg:mt-20 rounded-sm object-cover"
+                  className="mt-6 lg:mt-17 rounded-sm object-cover"
                 />
               )}
               {column_ii_text && (
@@ -222,7 +222,7 @@ export default async function Footer({ lang = DEFAULT_LANG }) {
             </div>
             <div className="relative">
               {column_iii_text && (
-                <div className="h-[195px] lg:h-[205px] bg-[#272D7E] md:text-[18px] mt-[25px] mb-[8px] rounded-sm p-3 lg:p-6 flex items-end text-white/80 leading-[26px]">
+                <div className="h-[195px] lg:h-[205px] bg-[#272D7E] md:text-[18px] mt-[12px] mb-[8px] rounded-sm p-3 lg:p-6 flex items-end text-white/80 leading-[26px]">
                   <i>{column_iii_text}</i>
                 </div>
               )}
@@ -238,7 +238,7 @@ export default async function Footer({ lang = DEFAULT_LANG }) {
               <div className="hidden lg:block h-[17px] bg-[#272D7E] rounded-sm  mt-[8px]"></div>
             </div>
 
-            <div className="hidden lg:block absolute right-[-18.3%] top-[-33px] cta-fix">
+            <div className="hidden lg:block absolute right-[-17.6%] top-[-33px] cta-fix">
               {right_top?.url && (
                 <Image
                   src={right_top.url}
@@ -321,7 +321,7 @@ export default async function Footer({ lang = DEFAULT_LANG }) {
                             </p>
                             <ul className="space-y-1 text-white/80">
                               {office.lines.map((line, i) => (
-                                <li key={i}>{line}</li>
+                                <li key={i} dangerouslySetInnerHTML={{ __html: line }} />
                               ))}
                             </ul>
                           </div>

@@ -187,9 +187,7 @@ export default function HomeCaseStudies({ data, lang = "en" }) {
                           className="
                           w-4 absolute opacity-0 -translate-x-4
                           transition-all duration-300 ease-out
-                          group-hover:opacity-100 group-hover:-translate-x-2
-                        "
-                        >
+                          group-hover:opacity-100 group-hover:-translate-x-2">
                           <Image
                             src={ArrowSvgB}
                             width={13}
@@ -203,14 +201,14 @@ export default function HomeCaseStudies({ data, lang = "en" }) {
                     {/* Achievements */}
                     {sliderData?.length > 0 && (
                       <>
-                        <p className="mb-4 text-[18px]">{section_label}</p>
-                        <div className="flex- gap-3">
+                        <p className="mb-4 font-medium text-[18px]">{section_label}</p>
+                        <div className="gap-3">
                           {sliderData.map((row, i) => (
                             <span
                               key={i}
                               className="inline-block mb-4 [&:nth-child(2)]:mb-0"
                             >
-                              <span className="flex text-xs items-center justify- border border-white rounded-lg">
+                              <span className="flex text-xs items-center justify- border border-white rounded-[4px]">
                                 <span className="flex items-center p-2 gap-2 min-w-[175px]">
                                   <span className="h-[24px] w-[24px] bg-[#ffffff40] flex items-center justify-center rounded-full">
                                     <Image
@@ -220,11 +218,11 @@ export default function HomeCaseStudies({ data, lang = "en" }) {
                                       alt="no-follow"
                                     />
                                   </span>
-                                  <span className="text-xs">
+                                  <span className="text-[14px]">
                                     {row.what_we_achieve}
                                   </span>
                                 </span>
-                                <span className="w-[50px] text-center px-4 py-3 text-xs border-l font-semibold">
+                                <span className="w-[50px] text-center px-3 py-3 text-[14px] border-l font-semibold">
                                   {row.stats}
                                 </span>
                               </span>

@@ -154,10 +154,10 @@ export default function HomeNews({ data, lang = DEFAULT_LANG }) {
           </div>
 
           {/* TEXT */}
-          <div className="absolute flex bottom-8 left-8 right-8 md:justify-between md:items-center flex-col md:flex-row">
+          <div className="absolute flex bottom-8 left-8 right-8 md:justify-between  flex-col md:flex-row">
             <div className="mt-4 max-w-[380px]">
               <h3
-                className="text-white text-[32px] leading-[34px] font-medium mb-4"
+                className="text-white text-[32px] leading-[34px] font-medium mb-6"
                 dangerouslySetInnerHTML={{ __html: webinarPost.title.rendered }}
               />
               {/* CTA BUTTON */}
@@ -217,7 +217,7 @@ export default function HomeNews({ data, lang = DEFAULT_LANG }) {
         {/* ------------------------------------------------------------
            RIGHT SIDE — TWO SMALL POSTS
         ------------------------------------------------------------ */}
-        <div className="flex flex-col gap-8">
+        <div className="flex flex-col gap-6">
           {otherPosts.map((post) => {
             const img =
               post?._embedded?.["wp:featuredmedia"]?.[0]?.source_url || "";
@@ -235,7 +235,7 @@ export default function HomeNews({ data, lang = DEFAULT_LANG }) {
                 className="flex gap-6 group items-center"
               >
                 {/* IMAGE */}
-                <div className="w-[140px] h-[200px] overflow-hidden rounded-lg">
+                <div className="w-[140px] h-[204px] overflow-hidden rounded-lg">
                   {img && (
                     <Image
                       src={img}
@@ -249,17 +249,17 @@ export default function HomeNews({ data, lang = DEFAULT_LANG }) {
 
                 {/* TEXT AREA */}
                 <div className="flex-1">
-                  <span className="bg-white/20 border border-gray-300 w-[85px] mb-3 text-gray-700 px-3 py-[6px] rounded-full text-xs flex items-center gap-2 mb-2">
+                  <span className="bg-white/20 border border-gray-300 w-[85px] mb-3 text-[#9192A0] px-3 py-[6px] rounded-full text-xs flex items-center gap-2 mb-2">
                     <span className="h-2 w-2 bg-[var(--color-accent)] rounded-full"></span>
                     {category}
                   </span>
 
                   <h4
-                    className="font-medium text-[18px] leading-[26px] mb-3"
+                    className="font-medium text-[18px] leading-[26px] mb-4"
                     dangerouslySetInnerHTML={{ __html: post.title.rendered }}
                   />
 
-                  <p className="text-[14px] text-gray-500">
+                  <p className="text-[14px] text-[#9192A0]">
                     <Image
                       src={CalenerSvg}
                       width={12}

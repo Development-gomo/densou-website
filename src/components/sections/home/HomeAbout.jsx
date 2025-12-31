@@ -63,25 +63,19 @@ export default function AboutUs({ data }) {
                   "
             >
               {/* LEFT SLOT (dot area, fixed width) */}
-              <span className="relative w-2 h-2 flex items-center justify-center">
+              <span className="relative w-2 h-2 display-block flex items-center justify-center">
                 <span
-                  className="
-                        absolute h-2 w-2 rounded-full bg-[#27E0C0]
+                  className="absolute h-2 w-2 rounded-full bg-[#27E0C0]
                         transition-all duration-300 ease-out
-                        group-hover:opacity-0 group-hover:-translate-x-1
-                      "
-                ></span>
+                        group-hover:opacity-0 group-hover:-translate-x-1"></span>
               </span>
 
               {/* TEXT (slides left on hover) */}
-              <span
-                className="
+              <span className="
                       flex-1 text-[16px] leading-none
                       transition-all duration-300 ease-out 
                       group-hover:-translate-x-4
-                      whitespace-nowrap
-                    "
-              >
+                      whitespace-nowrap">
                 {cta_text}
               </span>
 
