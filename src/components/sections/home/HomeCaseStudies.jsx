@@ -142,8 +142,8 @@ export default function HomeCaseStudies({ data, lang = "en" }) {
 
             return (
               <SwiperSlide key={item.id}>
-                <div className="grid grid-cols-1 lg:grid-cols-2 rounded-2xl overflow-hidden bg-white">
-                  <div className="bg-[var(--color-brand)] w-[600px] text-white min-h-[400px]  p-6 lg:p-12 flex flex-col justify-center">
+                <div className="grid grid-cols-1 lg:grid-cols-2 rounded-lg overflow-hidden bg-[var(--color-brand)]">
+                  <div className=" bg-[var(--color-brand)] w-[600px] text-white z-20 p-6 lg:p-12 flex flex-col justify-center">
                     <h3
                       className="text-[24px] leading-[32px] md:text-[32px] lg:leading-[40px]"
                       dangerouslySetInnerHTML={{ __html: title }}
@@ -232,7 +232,7 @@ export default function HomeCaseStudies({ data, lang = "en" }) {
                       </>
                     )}
                   </div>
-                  <div className="relative h-[350px] lg:h-[500px]">
+                  <div className="relative z-10 h-[350px] lg:h-full">
                     {img && (
                       <Image
                         src={img}
@@ -244,7 +244,7 @@ export default function HomeCaseStudies({ data, lang = "en" }) {
 
                     {/* CLIENT LOGO */}
                     {clientLogo && (
-                      <div className="absolute max-w-[134px] top-6 right-6 bg-white/30 backdrop-blur-xl px-3 py-3 rounded-sm">
+                      <div className="absolute max-w-[134px] top-12 right-12 bg-white/30 backdrop-blur-xl px-3 py-3 rounded-sm">
                         <Image
                           src={clientLogo}
                           alt="client logo"

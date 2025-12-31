@@ -113,7 +113,7 @@ export default function Header({ lang = "en", currentSlug = "", entryType = "pag
             className="
               backdrop-blur-xl bg-white/20 
               px-8 py-4 rounded-full shadow-lg border border-[#FFFFFF33]
-              flex items-center gap-8 lg:absolute lg:left-1/3
+              flex items-center gap-8 lg:absolute lg:left-[29%]
             "
           >
             <ul className="flex items-center gap-9 relative">
