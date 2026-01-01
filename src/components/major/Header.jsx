@@ -113,7 +113,7 @@ export default function Header({ lang = "en", currentSlug = "", entryType = "pag
             className="
               backdrop-blur-xl bg-white/20 
               px-8 py-4 rounded-full shadow-lg border border-[#FFFFFF33]
-              flex items-center gap-8 lg:absolute lg:left-[29%]
+              flex items-center gap-8 lg:absolute lg:left-[27%]
             "
           >
             <ul className="flex items-center gap-9 relative">
@@ -141,9 +141,7 @@ export default function Header({ lang = "en", currentSlug = "", entryType = "pag
                       }
                       className="
                             text-white/90 text-[15px]
-                            hover:text-white transition flex items-center gap-2
-                          "
-                    >
+                            hover:text-white transition flex items-center gap-2">
                       {item.title}
 
                       {item.children?.length > 0 && (
