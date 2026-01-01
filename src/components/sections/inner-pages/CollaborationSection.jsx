@@ -18,21 +18,21 @@ const CollaborationSection = ({ data }) => {
 
   return (
     <section className="bg-[var(--color-brand)] text-white">
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 py-12 md:py-30 web-width px-6">
+      <div className="flex md:gap-4 md:gap-12 py-12 md:py-30 web-width px-6">
         {/* Sub Heading */}
-        <div className="">
+        <div className="lg:w-[45%]">
           {sub_heading && (
             <div className="flex items-center gap-2 mb-1">
               <span className="h-2 w-2 rounded-full bg-[var(--color-accent)]"></span>
-              <span className="subheading-label text-white/70 uppercase">
+              <span className="subheading-label uppercase">
                 {sub_heading}
               </span>
             </div>
           )}
 
-          {heading && <h2 className="section-heading text-white">{heading}</h2>}
+          {heading && <h2 className="section-heading text-white" dangerouslySetInnerHTML={{ __html: heading }} />}
         </div>
-        <div>
+        <div className="lg:w-[55%]">
           {/* Image */}
           {image && (
             <motion.div

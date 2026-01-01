@@ -55,6 +55,12 @@ export async function getPostBySlug(slug, lang = DEFAULT_LANG) {
   return getSingleEntry("posts", slug, lang);
 }
 
+export async function getAllTeam(lang = DEFAULT_LANG) {
+  return await fetchWP(
+    `/wp/v2/team?per_page=100&_embed&lang=${lang}`
+  );
+}
+
 export async function getMediaById(id) {
   if (!id) return null;
   try {

@@ -37,15 +37,15 @@ export default function Overview({ data }) {
         />
 
         {/* MAIN HEADING + 2 COLUMN LAYOUT */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-12">
+        <div className="flex md:gap-4 md:gap-12">
           {/* LEFT COLUMN — MAIN H2 + ONELINER */}
-          <div></div>
+          <div className="lg:w-[45%]"></div>
 
           {/* RIGHT COLUMN — CONTENT HEADING + BODY + CTA */}
-          <div>
+          <div  className="lg:w-[55%]">
             {/* Content heading */}
             {content_heading && (
-              <h3 className="content-heading mb-4">{content_heading}</h3>
+              <h3 className="content-heading  max-w-[500px] mb-4">{content_heading}</h3>
             )}
 
             {/* Paragraph */}
@@ -61,12 +61,11 @@ export default function Overview({ data }) {
               <Link
                 href={cta_url}
                 className="
-                    gap-2 group relative inline-flex items-center select-none 
+                    gap-3 group relative inline-flex items-center select-none 
                     rounded-sm bg-[var(--color-brand)] px-6 py-4 text-white 
                     transition-all duration-300 hover:bg-[var(--color-brand)] 
-                    w-[135px] overflow-hidden
-                  "
-              >
+                    w-[140px] overflow-hidden
+                  ">
                 {/* LEFT SLOT (dot area, fixed width) */}
                 <span className="relative w-6 flex items-center justify-center">
                   <span

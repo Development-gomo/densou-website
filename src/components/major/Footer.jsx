@@ -123,7 +123,7 @@ export default async function Footer({ lang = DEFAULT_LANG }) {
             {sub_heading && (
               <div className="flex items-center gap-2 mb-1">
                 <span className="h-2 w-2 rounded-full bg-[var(--color-accent)]"></span>
-                <span className="subheading-label text-white/70 uppercase">
+                <span className="subheading-label text-[#9192A0] uppercase">
                   {sub_heading}
                 </span>
               </div>
