@@ -222,7 +222,7 @@ export default async function Footer({ lang = DEFAULT_LANG }) {
             </div>
             <div className="relative">
               {column_iii_text && (
-                <div className="h-[195px] lg:h-[205px] bg-[#272D7E] md:text-[18px] mt-[12px] mb-[8px] rounded-sm p-3 lg:p-6 flex items-end text-white/80 leading-[26px]">
+                <div className="h-[195px] lg:h-[205px] bg-[#272D7E] md:text-[18px] mt-[13px] mb-[8px] rounded-sm p-3 lg:p-6 flex items-end text-white/80 leading-[26px]">
                   <i>{column_iii_text}</i>
                 </div>
               )}

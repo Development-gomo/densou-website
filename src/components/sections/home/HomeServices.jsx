@@ -130,9 +130,10 @@ export default function HomeServices({ data, lang = DEFAULT_LANG }) {
           spaceBetween={24}
           centeredSlides={false}
           breakpoints={{
-            320: { slidesPerView: 1.1 },
-            640: { slidesPerView: 2 },
-            1280: { slidesPerView: 3 },
+            320: { slidesPerView: 1 },
+            640: { slidesPerView: 1.5 },
+            800: { slidesPerView: 2 },
+            1024: { slidesPerView: 3 },
           }}
           className="overflow-visible service-swiper"
         >
