@@ -39,25 +39,26 @@ export default function TeamSection({ data, lang }) {
   if (team_cards === "Disable") return null;
 
   return (
-    <section className="py-20">
-      <div className="mx-auto max-w-[1300px] px-4">
+    <section className="team-section py-12 md:py-30 web-width px-6">
+      <div className="">
         {/* Header */}
-        <div className="max-w-3xl mb-12">
+        <div className="max-w-3xl mb-6">
           {sub_heading && (
-            <p className="text-xs uppercase tracking-[0.35em] text-gray-500 mb-3">
-              {sub_heading}
-            </p>
+            <div className="flex items-center gap-2 mb-2 md:mb-4">
+                <span className="h-2 w-2 rounded-full bg-[var(--color-accent)]"></span>
+                <span className="subheading-label uppercase">{sub_heading}</span>
+            </div>
           )}
-
           {heading && (
-            <h2 className="text-4xl font-medium mb-4">
-              {heading}
-            </h2>
+            <div
+                className="section-heading mb-6 "
+                dangerouslySetInnerHTML={{ __html: heading }}
+                />
           )}
 
           {short_text && (
             <div
-              className="text-gray-600"
+              className="max-w-[510px]"
               dangerouslySetInnerHTML={{ __html: short_text }}
             />
           )}
@@ -68,7 +69,7 @@ export default function TeamSection({ data, lang }) {
           <select
             value={activeFilter}
             onChange={(e) => setActiveFilter(e.target.value)}
-            className="min-w-[260px] rounded-md border border-gray-300 px-4 py-2 text-sm"
+            className="min-w-[260px] rounded-sm bg-[var(--color-brand)] border border-gray-300 px-4 py-2 text-white"
           >
             {filters.map((f) => (
               <option key={f.slug} value={f.slug}>
@@ -86,7 +87,7 @@ export default function TeamSection({ data, lang }) {
             return (
               <div
                 key={member.id}
-                className="relative overflow-hidden rounded-xl bg-gray-100"
+                className="relative overflow-hidden rounded-md bg-gray-100"
               >
                 {/* Image */}
                 <div className="relative aspect-[3/4]">

@@ -234,3 +234,67 @@ export async function getPageBySlugInLang(slug, lang) {
   const page = await getPageBySlug(slug, lang);
   return page;
 }
+
+// Team type
+
+export function extractTeamTypes(member) {
+  const types = [];
+
+  // Preferred: embedded taxonomy
+  const embedded = member?._embedded?.["wp:term"] || [];
+  embedded.flat().forEach((term) => {
+    if (term.taxonomy === "teamtype") {
+      types.push({
+        id: term.id,
+        slug: term.slug,
+        name: term.name,
+      });
+    }
+  });
+
+  // Fallback: class_list
+  if (types.length === 0 && Array.isArray(member?.class_list)) {
+    member.class_list.forEach((cls) => {
+      if (cls.startsWith("teamtype-")) {
+        const slug = cls.replace("teamtype-", "");
+        types.push({
+          slug,
+          name: slug.replace(/-/g, " "),
+        });
+      }
+    });
+  }
+
+  return types;
+}
+
+export function buildTeamFilters(team = []) {
+  const map = {};
+
+  team.forEach((member) => {
+    extractTeamTypes(member).forEach((type) => {
+      map[type.slug] = type;
+    });
+  });
+
+  return [
+    { slug: "all", name: "All" },
+    ...Object.values(map),
+  ];
+}
+
+export function filterTeamByType(team = [], activeType = "all") {
+  if (activeType === "all") return team;
+
+  return team.filter((member) =>
+    extractTeamTypes(member).some(
+      (type) => type.slug === activeType
+    )
+  );
+}
+export function getTeamImage(member) {
+  return (
+    member?._embedded?.["wp:featuredmedia"]?.[0]?.source_url ||
+    null
+  );
+}

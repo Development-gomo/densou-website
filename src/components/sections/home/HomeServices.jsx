@@ -140,8 +140,7 @@ export default function HomeServices({ data, lang = DEFAULT_LANG }) {
         centeredSlides={true} 
         breakpoints={{
           320: { slidesPerView: 1.1 },
-          640: { slidesPerView: 2.5 },
-          1024: { slidesPerView: 3.1 },
+          640: { slidesPerView: 2 },
           1280: { slidesPerView: 3.58 },
         }}
       >
@@ -155,7 +154,7 @@ export default function HomeServices({ data, lang = DEFAULT_LANG }) {
           const service_icon = service?.acf?.service_icon?.url || "";
 
           return (
-            <SwiperSlide key={service.id}>
+            <SwiperSlide key={service.id} className="lg:w-[410px]">
               <Link
                 href={
                   lang === "en"
@@ -170,7 +169,7 @@ export default function HomeServices({ data, lang = DEFAULT_LANG }) {
                     alt={service.title.rendered}
                     width={410}
                     height={500}
-                    className="w-full h-[500px] object-cover transition-all duration-500 group-hover:scale-105 lg:w-[410px]"
+                    className="w-full h-[500px] object-cover transition-all duration-500 group-hover:scale-105"
                   />
                 )}
 

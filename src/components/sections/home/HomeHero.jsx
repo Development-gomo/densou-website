@@ -62,7 +62,7 @@ export default function HomeHero({ data }) {
       </div>
 
       {/* Gradient Overlay */}
-      <div className="absolute inset-0 bg-gradient-to-b from-black/0 via-black/40 to-black/70 -z-10"></div>
+      <div className="absolute inset-0 bg-gradient-to-b from-black/0 via-black/0 to-black/0 -z-10"></div>
 
       {/* HERO TEXT */}
       <div className="relative min-h-[100vh] web-width px-6 lg:px-50 py-24 lg:py-36 h-full flex flex-col items-start justify-center lg:justify-start">
@@ -180,7 +180,7 @@ export default function HomeHero({ data }) {
               {testimonialSlides.map((item, index) => (
                 <SwiperSlide key={index}>
                   <div className="text-white caption-text max-w-[320px] mx-auto">
-                    <p className="mt-2 opacity-90">{item.testimonial}</p>
+                    <p className="">{item.testimonial}</p>
                     <p className="mt-2 font-semibold">{item.client_name}</p>
                   </div>
                 </SwiperSlide>

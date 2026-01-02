@@ -107,7 +107,7 @@ export default function Header({ lang = "en", currentSlug = "", entryType = "pag
         </Link>
 
         {/* DESKTOP MENU */}
-        <nav className="hidden md:flex items-center gap-8 ">
+        <nav className="hidden lg:flex items-center gap-8 ">
           {/* Centered glass menu wrapper */}
           <div
             className="
@@ -141,7 +141,7 @@ export default function Header({ lang = "en", currentSlug = "", entryType = "pag
                       }
                       className="
                             text-white/90 text-[15px]
-                            hover:text-white transition flex items-center gap-2">
+                            hover:text-white transition leading-[18px] flex items-center gap-2">
                       {item.title}
 
                       {item.children?.length > 0 && (
@@ -279,14 +279,14 @@ export default function Header({ lang = "en", currentSlug = "", entryType = "pag
 
         {/* MOBILE MENU BUTTON */}
         <button
-          className="md:hidden text-white text-3xl"
+          className="lg:hidden text-white text-3xl"
           onClick={() => setMobileOpen(true)}
         >
           ☰
         </button>
         {/* MOBILE SLIDE-IN MENU */}
         {mobileOpen && (
-          <div className="fixed inset-0 z-[60] bg-black/60 backdrop-blur-sm md:hidden">
+          <div className="fixed inset-0 z-[60] bg-black/60 backdrop-blur-sm lg:hidden">
             <div className="absolute right-0 top-0 h-full w-72 bg-[var(--color-brand)] shadow-xl flex flex-col">
               {/* HEADER */}
               <div className="p-6 flex items-center justify-between">
