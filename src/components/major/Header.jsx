@@ -10,12 +10,15 @@ import DownSvg from "../../../public/down-arrow.svg";
 import ArrowSvgB from "../../../public/right-arrow-black.png";
 import { getMenu, getThemeOptions, getTranslationBySlug } from "@/lib/api";
 
-export default function Header({ lang = "en", currentSlug = "", entryType = "page", pathPrefix = "" }) {
+export default function Header({
+  lang = "en",
+  currentSlug = "",
+  entryType = "page",
+  pathPrefix = "",
+}) {
   const [menu, setMenu] = useState(null);
   const [options, setOptions] = useState(null);
-  const [altLangUrl, setAltLangUrl] = useState(
-    lang === "en" ? "/da" : "/"
-  );
+  const [altLangUrl, setAltLangUrl] = useState(lang === "en" ? "/da" : "/");
   const [scrolled, setScrolled] = useState(false);
   const isLoading = !menu;
   const isHeaderLoading = !menu || !options;
@@ -50,12 +53,26 @@ export default function Header({ lang = "en", currentSlug = "", entryType = "pag
 
   // Sticky header classes
   const headerClasses = scrolled
-    ? "fixed top-0 w-full z-50 text-white transition-all duration-300  py-4 bg-[var(--color-brand)] shadow-md"
+    ? "fixed top-0 w-full z-50 text-white transition-all duration-300 py-4 backdrop-blur-[30px] bg-black/35 shadow-md"
     : "fixed top-0 w-full z-50 text-white transition-all duration-300 bg-transparent  py-8";
 
   // Mobile menu state
   const [mobileOpen, setMobileOpen] = useState(false);
   const [openSubmenu, setOpenSubmenu] = useState(null);
+
+  const [langOpen, setLangOpen] = useState(false);
+  const langRef = React.useRef(null);
+
+  useEffect(() => {
+    const handleClickOutside = (e) => {
+      if (langRef.current && !langRef.current.contains(e.target)) {
+        setLangOpen(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
 
   useEffect(() => {
     async function fetchAltLangUrl() {
@@ -107,7 +124,7 @@ export default function Header({ lang = "en", currentSlug = "", entryType = "pag
         </Link>
 
         {/* DESKTOP MENU */}
-        <nav className="hidden lg:flex items-center gap-8 ">
+        <nav className="hidden lg:flex items-center gap-4 ">
           {/* Centered glass menu wrapper */}
           <div
             className="
@@ -141,7 +158,8 @@ export default function Header({ lang = "en", currentSlug = "", entryType = "pag
                       }
                       className="
                             text-white/90 text-[15px]
-                            hover:text-white transition leading-[18px] flex items-center gap-2">
+                            hover:text-white transition leading-[18px] flex items-center gap-2"
+                    >
                       {item.title}
 
                       {item.children?.length > 0 && (
@@ -198,12 +216,46 @@ export default function Header({ lang = "en", currentSlug = "", entryType = "pag
           </div>
 
           {/* Language Switcher */}
-          <Link
-            href={altLangUrl}
-            className="text-white/70 hover:text-white text-sm font-semibold"
-          >
-            {lang === "en" ? "DA" : "EN"}
-          </Link>
+          <div ref={langRef} className="relative">
+            {/* Trigger */}
+            <button
+              type="button"
+              onClick={() => setLangOpen((v) => !v)}
+              className="flex items-center gap-2
+      text-white/70 hover:text-white text-sm leading-[14px] font-semibold
+      backdrop-blur-xl bg-white/20 px-4 py-4 rounded-sm
+      border border-[#FFFFFF33] transition"
+            >
+              <span>{lang === "en" ? "EN" : "DA"}</span>
+
+              {/* Arrow */}
+              <span
+                className={`transition-transform duration-300 ${
+                  langOpen ? "rotate-180" : ""
+                }`}
+              >
+                <Image src={DownSvg} alt="arrow" width={10} height={10} />
+              </span>
+            </button>
+
+            {/* Dropdown */}
+            {langOpen && (
+              <div
+                className="absolute right-0 mt-2 min-w-full rounded-sm
+        backdrop-blur-xl bg-white/20 border border-[#FFFFFF33]
+        shadow-lg overflow-hidden z-50"
+              >
+                <Link
+                  href={altLangUrl}
+                  onClick={() => setLangOpen(false)}
+                  className="block px-4 py-3 text-sm text-white/80
+          hover:text-white hover:bg-white/10 transition"
+                >
+                  {lang === "en" ? "DA" : "EN"}
+                </Link>
+              </div>
+            )}
+          </div>
 
           {/* CTA BUTTON */}
           {!options?.button_text || !options?.button_url ? (
@@ -370,12 +422,13 @@ export default function Header({ lang = "en", currentSlug = "", entryType = "pag
                         onClick={() => setOpenSubmenu(null)}
                       >
                         <Image
-                              src={DownSvg}
-                              alt="arrow"
-                              width={16}
-                              height={16}
-                              className="rotate-90"
-                            /> Back
+                          src={DownSvg}
+                          alt="arrow"
+                          width={16}
+                          height={16}
+                          className="rotate-90"
+                        />{" "}
+                        Back
                       </button>
 
                       {/* Parent title */}
@@ -421,7 +474,7 @@ export default function Header({ lang = "en", currentSlug = "", entryType = "pag
 
               {/* FOOTER (STATIC) */}
               <div className="p-6 border-t border-white/10 flex flex-col gap-4">
-               {/* Language Switcher */}
+                {/* Language Switcher */}
                 <Link
                   href={altLangUrl}
                   className="text-white/80 mb-4"
@@ -453,22 +506,24 @@ export default function Header({ lang = "en", currentSlug = "", entryType = "pag
                     }}
                   >
                     <span className="relative w-6 flex items-center justify-center">
-                    <span
-                      className="
+                      <span
+                        className="
                             absolute h-2 w-2 rounded-full bg-[#191F68]
                             transition-all duration-300 ease-out
                             group-hover:opacity-0 group-hover:-translate-x-1
                           "
-                    ></span>
-                  </span>
-                    <span className="text-black 
+                      ></span>
+                    </span>
+                    <span
+                      className="text-black 
                             flex-1 text-[16px] leading-none
                             transition-all duration-300 ease-out
                             group-hover:-translate-x-4
-                            whitespace-nowrap">
+                            whitespace-nowrap"
+                    >
                       {options.button_text}
                     </span>
-                    
+
                     <span className="relative w-4 flex items-center justify-center">
                       <span
                         className="
@@ -477,7 +532,12 @@ export default function Header({ lang = "en", currentSlug = "", entryType = "pag
                               group-hover:opacity-100 group-hover:-translate-x-2
                             "
                       >
-                        <Image src={ArrowSvgB} width={13} height={13} alt="arrow" />
+                        <Image
+                          src={ArrowSvgB}
+                          width={13}
+                          height={13}
+                          alt="arrow"
+                        />
                       </span>
                     </span>
                   </Link>

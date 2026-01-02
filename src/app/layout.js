@@ -3,7 +3,7 @@ import { Instrument_Sans, Tinos } from "next/font/google";
 
 const instrumentSans = Instrument_Sans({
   subsets: ["latin"],
-  weight: ["400", "500", "600"],
+  weight: ["400", "500", "600" , "700"],
   variable: "--font-instrument-sans",
   style: ["normal", "italic"], 
   display: "swap",

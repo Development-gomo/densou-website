@@ -174,13 +174,13 @@ export default function HomeServices({ data, lang = DEFAULT_LANG }) {
                 )}
 
                 {/* OVERLAY */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/40 to-transparent"></div>
+                <div className="absolute inset-0 bg-gradient-to-t from-black/100 via-black/0 to-transparent"></div>
 
                 {/* LABEL BADGE */}
                 <div className="absolute top-6 left-6">
                   <span className="
-                    bg-white/20 backdrop-blur-xl text-white px-6 py-4
-                    rounded-full flex items-center gap-2 text-sm
+                    bg-white/20 backdrop-blur-xl text-white px-6 py-3
+                    rounded-full flex items-center gap-2 text-sm leading-[18px]
                   ">
                      {service_icon && (
                       <Image
@@ -198,17 +198,17 @@ export default function HomeServices({ data, lang = DEFAULT_LANG }) {
                 {/* ARROW TOP RIGHT */}
                 <div className="absolute top-6 right-8 transition-all duration-300">
                   <div className="
-                    w-13 h-13 rounded-full bg-[var(--color-brand)]
+                    w-12 h-12 rounded-full bg-[var(--color-brand)]
                     flex items-center justify-center
                     transition-all duration-300
                   ">
-                    <Image src={ArrowSvg} width={16} height={16} alt="go" />
+                    <Image src={ArrowSvg} width={15} height={15} alt="go" />
                   </div>
                 </div>
 
                 {/* EXCERPT */}
                 <div className="absolute bottom-6 left-6 right-6">
-                  <div className="text-white text-[24px] lg:text-[32px]" dangerouslySetInnerHTML={{ __html: excerpt  }} />
+                  <div className="text-white text-[24px] lg:text-[32px] leading-[38px]" dangerouslySetInnerHTML={{ __html: excerpt  }} />
                 </div>
               </Link>
             </SwiperSlide>
