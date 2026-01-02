@@ -128,8 +128,8 @@ export default function Header({
           {/* Centered glass menu wrapper */}
           <div
             className="
-              backdrop-blur-xl bg-white/20 
-              px-8 py-4 rounded-full shadow-lg border border-[#FFFFFF33]
+              backdrop-blur-[16px] bg-white/25 
+              px-8 py-4 rounded-full   border border-[#FFFFFF33]
               flex items-center gap-8 lg:absolute lg:left-[29%]
             "
           >
@@ -221,8 +221,8 @@ export default function Header({
             <button
               type="button"
               onClick={() => setLangOpen((v) => !v)}
-              className="flex items-center gap-2
-      text-white/70 hover:text-white text-sm leading-[14px] font-semibold
+              className="flex items-center gap-2 cursor-pointer
+      text-white/70 hover:text-white text-sm leading-[14px]
       backdrop-blur-xl bg-white/20 px-4 py-4 rounded-sm
       border border-[#FFFFFF33] transition"
             >
@@ -248,8 +248,8 @@ export default function Header({
                 <Link
                   href={altLangUrl}
                   onClick={() => setLangOpen(false)}
-                  className="block px-4 py-3 text-sm text-white/80
-          hover:text-white hover:bg-white/10 transition"
+                  className="block px-4 py-3 text-sm text-white/80 backdrop-blur-xl
+          hover:text-white bg-black/30 transition"
                 >
                   {lang === "en" ? "DA" : "EN"}
                 </Link>

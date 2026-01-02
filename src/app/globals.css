@@ -211,7 +211,9 @@ span.subheading-label.text-\[var\(--color-accent\)\],
   }
 }
 
-
+.overflow-visible.service-swiper {
+  overflow: visible !important;
+}
 
 /* Content heading */
 .content-heading {
