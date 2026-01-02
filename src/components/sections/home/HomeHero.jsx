@@ -39,8 +39,20 @@ export default function HomeHero({ data }) {
   return (
     <section className="relative w-full  overflow-hidden hero">
       {/* BG IMAGE/VIDEO */}
-      <div className="absolute inset-0 -z-10">
-        {bgVideo ? (
+      <div
+        className="absolute inset-0 -z-10"
+        style={
+          bgVideo
+            ? {}
+            : {
+                backgroundImage: `url(${bgImage})`,
+                backgroundSize: "cover",
+                backgroundPosition: "center top", // 👈 IMPORTANT
+                backgroundRepeat: "no-repeat",
+              }
+        }
+      >
+        {bgVideo && (
           <video
             src={bgVideo}
             autoPlay
@@ -48,15 +60,6 @@ export default function HomeHero({ data }) {
             muted
             playsInline
             className="w-full h-full object-cover"
-          />
-        ) : (
-          <Image
-            src={bgImage}
-            alt="Hero Background"
-
-            fill
-            className="object-cover"
-            priority
           />
         )}
       </div>
@@ -77,32 +80,32 @@ export default function HomeHero({ data }) {
               __html: heading.replace(/<em>(.*?)<\/em>/g, `<em>$1</em>`),
             }}
           />
-          </div>
-          <div className="lg:m-auto lg:absolute right-[22%] top-[50%]">
-              <motion.div
-                initial={{ opacity: 0, y: 25 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 1, delay: 0.2 }}
-                className="body-text max-w-[360px] mt-4 text-white"
-                dangerouslySetInnerHTML={{ __html: shortHeading }}
-              />
-            {/* Scroll Button */}
-            <motion.a
-              onClick={(e) => {
-                e.preventDefault();
-                document
-                  .querySelector("#next")
-                  ?.scrollIntoView({ behavior: "smooth" });
-              }}
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.3 }}
-              className="mt-5 w-12 h-12 rounded-full bg-[var(--color-accent)] translate-y-0 transition-all duration-300
+        </div>
+        <div className="lg:m-auto lg:absolute right-[22%] top-[50%]">
+          <motion.div
+            initial={{ opacity: 0, y: 25 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1, delay: 0.2 }}
+            className="body-text max-w-[360px] mt-4 text-white"
+            dangerouslySetInnerHTML={{ __html: shortHeading }}
+          />
+          {/* Scroll Button */}
+          <motion.a
+            onClick={(e) => {
+              e.preventDefault();
+              document
+                .querySelector("#next")
+                ?.scrollIntoView({ behavior: "smooth" });
+            }}
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.3 }}
+            className="mt-5 w-12 h-12 rounded-full bg-[var(--color-accent)] translate-y-0 transition-all duration-300
                 flex items-center justify-center shadow-md hover:translate-y-[6px] cursor-pointer"
-            >
-              <Image src={DownArrow} alt="arrow" width={13} height={13} />
-            </motion.a>
-          </div>  
+          >
+            <Image src={DownArrow} alt="arrow" width={13} height={13} />
+          </motion.a>
+        </div>
       </div>
 
       {/* CLIENT LOGOS + TESTIMONIAL */}
@@ -136,7 +139,9 @@ export default function HomeHero({ data }) {
 
                 return (
                   <SwiperSlide key={index}>
-                    <div className={`flex flex-col items-center transition-all`}>
+                    <div
+                      className={`flex flex-col items-center transition-all`}
+                    >
                       {/* Logo */}
                       {item.logo?.url && (
                         <Image
@@ -164,12 +169,12 @@ export default function HomeHero({ data }) {
           {/* RIGHT — VERTICAL TESTIMONIAL SLIDER */}
           <div className="md:max-w-[30%] h-[80px] overflow-hidden">
             <Swiper
-              modules={[Autoplay]}  
-              direction={'vertical'}
+              modules={[Autoplay]}
+              direction={"vertical"}
               onSwiper={(swiper) => (logoSwiperRef = swiper)}
               autoplay={{
                 delay: 2500, // REQUIRED
-                reverseDirection: true, 
+                reverseDirection: true,
                 disableOnInteraction: false,
               }}
               loop={true}
@@ -190,57 +195,55 @@ export default function HomeHero({ data }) {
         </div>
         <div className="px-6 md:hidden">
           <Swiper
-              modules={[Autoplay]}
-              autoplay={{
-                delay: 2500, // REQUIRED
-                reverseDirection: true, // Slide LEFT → RIGHT
-                disableOnInteraction: false,
-              }}
-              loop={true}
-              allowTouchMove={true}
-              speed={800}
-              slidesPerView={1}
-              spaceBetween={30}
-              onSlideChange={(swiper) => {
-                setActiveIndex(swiper.realIndex);
-                testiSwiperRef?.slideToLoop(swiper.realIndex);
-              }}            >
-            
-              {statsSlides.map((item, index) => {
-                const isActive = index === activeIndex;
+            modules={[Autoplay]}
+            autoplay={{
+              delay: 2500, // REQUIRED
+              reverseDirection: true, // Slide LEFT → RIGHT
+              disableOnInteraction: false,
+            }}
+            loop={true}
+            allowTouchMove={true}
+            speed={800}
+            slidesPerView={1}
+            spaceBetween={30}
+            onSlideChange={(swiper) => {
+              setActiveIndex(swiper.realIndex);
+              testiSwiperRef?.slideToLoop(swiper.realIndex);
+            }}
+          >
+            {statsSlides.map((item, index) => {
+              const isActive = index === activeIndex;
 
-                return (
-                  <SwiperSlide key={index}>
-                    <div
-                      className={`flex flex-col items-center transition-all`}
-                    >
-                      {/* Logo */}
-                      {item.logo?.url && (
-                        <Image
-                          src={item.logo.url}
-                          alt="client logo"
-                          width={90}
-                          height={38}
-                          className="object-contain"
-                        />
-                      )}
+              return (
+                <SwiperSlide key={index}>
+                  <div className={`flex flex-col items-center transition-all`}>
+                    {/* Logo */}
+                    {item.logo?.url && (
+                      <Image
+                        src={item.logo.url}
+                        alt="client logo"
+                        width={90}
+                        height={38}
+                        className="object-contain"
+                      />
+                    )}
 
-                      {/* Show statistics ONLY for active logo */}
-                      {item.statistics && (
-                        <p className="caption-text mt-3 text-white">
-                          {item.statistics}
-                        </p>
-                      )}
-                      <div className="text-white text-center">
-                        <p className="mt-2 opacity-90">{item.testimonial}</p>
-                        <p className="mt-2 font-semibold">{item.client_name}</p>
-                      </div>
+                    {/* Show statistics ONLY for active logo */}
+                    {item.statistics && (
+                      <p className="caption-text mt-3 text-white">
+                        {item.statistics}
+                      </p>
+                    )}
+                    <div className="text-white text-center">
+                      <p className="mt-2 opacity-90">{item.testimonial}</p>
+                      <p className="mt-2 font-semibold">{item.client_name}</p>
                     </div>
-                  </SwiperSlide>
-                );
-              })}
-            </Swiper>
-          </div>
+                  </div>
+                </SwiperSlide>
+              );
+            })}
+          </Swiper>
+        </div>
       </div>
     </section>
   );
