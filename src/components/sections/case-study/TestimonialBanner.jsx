@@ -1,0 +1,70 @@
+"use client";
+
+import Image from "next/image";
+
+export default function TestimonialBanner({ data }) {
+  if (!data) return null;
+
+  const { bg_image, heading, testimonial, name, person_organization } = data;
+
+  return (
+    <section className="relative w-full h-[560px] md:h-[640px] overflow-hidden">
+      {/* BACKGROUND IMAGE */}
+      {bg_image?.url && (
+        <Image
+          src={bg_image.url}
+          alt="Testimonial background"
+          fill
+          priority
+          className="object-cover"
+        />
+      )}
+
+      {/* DARK OVERLAY (matches reference) */}
+      <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/50 to-black/20" />
+
+      {/* CONTENT */}
+      <div className="relative z-10 h-full">
+        <div className="web-width px-6 h-full flex flex-col justify-between py-12 md:py-20">
+          {/* TOP RIGHT HEADING */}
+          {heading && (
+            <div className="flex justify-end">
+              <h2
+                className="
+                  max-w-[520px]
+                  text-right
+                  text-white
+                  text-[36px] md:text-[44px]
+                  leading-[44px] md:leading-[52px]
+                  font-serif
+                "
+                dangerouslySetInnerHTML={{ __html: heading }}
+              />
+            </div>
+          )}
+
+          {/* TESTIMONIAL */}
+          <div className="max-w-[680px]">
+            {testimonial && (
+              <blockquote className="text-white text-[18px] md:text-[20px] leading-[30px] mb-8">
+                “{testimonial}”
+              </blockquote>
+            )}
+
+            {/* AUTHOR */}
+            <div className="text-white">
+              {name && <p className="font-medium">{name}</p>}
+            </div>
+            <div className="flex items-start gap-3">
+              {/* ACCENT DOT */}
+              <span className="mt-2 h-2 w-2 rounded-full bg-[var(--color-accent)]"></span>
+              {person_organization && (
+                <p className="text-white text-sm">{person_organization}</p>
+              )}
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}

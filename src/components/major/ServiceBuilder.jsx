@@ -4,13 +4,10 @@ import { DEFAULT_LANG } from "@/config";
 
 const CaseHero = dynamic(() => import("../sections/case-study/CaseHero"));
 const RealtedCase = dynamic(() => import("../sections/case-study/RealtedCase"));
-const CaseCtaBanner = dynamic(() => import("../sections/case-study/CtaBanner"));
-const ResultSection = dynamic(() => import("../sections/case-study/ResultSection"));
-const TestimonialBanner = dynamic(() => import("../sections/case-study/TestimonialBanner"));
 
 // case study page builder
 
-export default function CaseStudyBuilder({ sections, lang = DEFAULT_LANG }) {
+export default function ServicePageBuilder({ sections, lang = DEFAULT_LANG }) {
   if (!sections) return null;
 
   return (
@@ -21,12 +18,6 @@ export default function CaseStudyBuilder({ sections, lang = DEFAULT_LANG }) {
             return <CaseHero key={i} data={block} lang={lang} />;
           case "casestudies_section":
             return <RealtedCase key={i} data={block} lang={lang} />;
-          case "cta_banner":
-            return <CaseCtaBanner key={i} data={block} lang={lang} />;
-          case "result_section":
-              return <ResultSection key={i} data={block} />;
-          case "testimonial_banner":
-              return <TestimonialBanner key={i} data={block} />;
 
           default:
             return null;

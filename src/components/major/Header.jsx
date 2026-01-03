@@ -12,7 +12,7 @@ import { getMenu, getThemeOptions, getTranslationBySlug } from "@/lib/api";
 import { DEFAULT_LANG } from "@/config";
 
 export default function Header({
-  lang = DEFAULT_LANG,
+  lang = "en",
   currentSlug = "",
   entryType = "page",
   pathPrefix = "",
@@ -339,7 +339,7 @@ export default function Header({
         </button>
         {/* MOBILE SLIDE-IN MENU */}
         {mobileOpen && (
-          <div className="fixed inset-0 z-[60] bg-black/60 backdrop-blur-sm lg:hidden">
+          <div className="fixed h-[100vh] inset-0 z-[60] bg-black/60 backdrop-blur-sm lg:hidden">
             <div className="absolute right-0 top-0 h-full w-72 bg-[var(--color-brand)] shadow-xl flex flex-col">
               {/* HEADER */}
               <div className="p-6 flex items-center justify-between">

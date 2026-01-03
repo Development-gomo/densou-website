@@ -5,7 +5,7 @@ import React from "react";
 import DownArrow from "../../../../public/hero-down-arrow.png";
 import { motion } from "framer-motion";
 
-export default function CaseHero({ data }) {
+export default function ServiceHero({ data }) {
   const bgImage = data?.bg_image?.url || "";
   const heading = data?.heading || "";
   const sub_heading = data?.sub_heading || "";
