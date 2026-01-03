@@ -12,6 +12,7 @@ const InnerHero = dynamic(() => import("../sections/inner-pages/InnerHero"));
 const Overview = dynamic(() => import("../sections/inner-pages/Overview"));
 const CollaborationSection = dynamic(() => import("../sections/inner-pages/CollaborationSection"));
 const TeamSection = dynamic(() => import("../sections/inner-pages/Teams"));
+const CoreValueSection = dynamic(() => import("../sections/inner-pages/CoreValue"));
 
 export default function PageBuilder({ sections, lang = "en" }) {
   if (!sections) return null;
@@ -34,10 +35,10 @@ export default function PageBuilder({ sections, lang = "en" }) {
 
           case "casestudies_section":
             return <HomeCaseStudies key={i} data={block} lang={lang} />;
-            
+
           case "news_section":
             return <HomeNews key={i} data={block} lang={lang} />;
-           
+
           case "hero_section":
             return <InnerHero key={i} data={block} lang={lang} />;
 
@@ -46,9 +47,13 @@ export default function PageBuilder({ sections, lang = "en" }) {
 
           case "collaboration_section":
             return <CollaborationSection key={i} data={block} lang={lang} />;
-          
-            case "team_section":
+
+          case "team_section":
             return <TeamSection key={i} data={block} lang={lang} />;
+
+          case "core_value_section":
+            return <CoreValueSection key={i} data={block} />;
+
           default:
             return null;
         }

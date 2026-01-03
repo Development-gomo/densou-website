@@ -277,7 +277,7 @@ export default function Header({
                     w-[150px] overflow-hidden
                       ${
                         scrolled
-                          ? "bg-[var(--color-brand)]"
+                          ? "bg-[var(--color-accent)]"
                           : "bg-[var(--color-brand)]"
                       }`}
             >
@@ -290,7 +290,7 @@ export default function Header({
                         group-hover:opacity-0 group-hover:-translate-x-1
                          ${
                            scrolled
-                             ? "bg-[var(--color-accent)]"
+                             ? "bg-[var(--color-brand)]"
                              : "bg-[var(--color-accent)]"
                          }`}
                 ></span>
@@ -303,7 +303,7 @@ export default function Header({
                       transition-all duration-300 ease-out 
                       group-hover:-translate-x-4
                       whitespace-nowrap
-                      ${scrolled ? "text-white" : "text-white"}`}
+                      ${scrolled ? "text-[var(--color-brand)]" : "text-white"}`}
               >
                 {options.button_text}
               </span>
@@ -319,7 +319,7 @@ export default function Header({
                       "
                 >
                   {scrolled ? (
-                    <Image src={ArrowSvg} alt="arrow" width={13} height={13} />
+                    <Image src={ArrowSvgB} alt="arrow" width={13} height={13} />
                   ) : (
                     <Image src={ArrowSvg} alt="arrow" width={13} height={13} />
                   )}
