@@ -1,6 +1,7 @@
 //src/components/major/PageBuilder.jsx
 
 import dynamic from "next/dynamic";
+import { DEFAULT_LANG } from "@/config";
 
 const Hero = dynamic(() => import("../sections/home/HomeHero"));
 const AboutUs = dynamic(() => import("../sections/home/HomeAbout"));
@@ -14,7 +15,7 @@ const CollaborationSection = dynamic(() => import("../sections/inner-pages/Colla
 const TeamSection = dynamic(() => import("../sections/inner-pages/Teams"));
 const CoreValueSection = dynamic(() => import("../sections/inner-pages/CoreValue"));
 
-export default function PageBuilder({ sections, lang = "en" }) {
+export default function PageBuilder({ sections, lang = DEFAULT_LANG }) {
   if (!sections) return null;
 
   return (

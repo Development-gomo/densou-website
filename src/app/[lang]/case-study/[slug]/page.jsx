@@ -1,7 +1,8 @@
 // src/app/[lang]/case-study/[slug]/page.jsx
 
 import Header from "@/components/major/Header";
-import PageBuilder from "@/components/major/PageBuilder";
+//import PageBuilder from "@/components/major/PageBuilder";
+import CaseStudyBuilder from "@/components/major/CasestudyBuilder";
 import Footer from "@/components/major/Footer";
 import { resolveParams } from "@/lib/params";
 import { getCaseStudyBySlug } from "@/lib/api";
@@ -31,7 +32,7 @@ export default async function CaseStudySinglePage({ params }) {
         pathPrefix="case-study"
       />
       <main>
-        <PageBuilder sections={caseStudy?.acf?.page_builder} lang={lang} />
+        <CaseStudyBuilder sections={caseStudy?.acf?.case_study_builder} lang={lang} />
       </main>
       <Footer lang={lang} currentSlug={slug} />
     </>

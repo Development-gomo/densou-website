@@ -2,6 +2,7 @@
 
 import Header from "@/components/major/Header";
 import PageBuilder from "@/components/major/PageBuilder";
+import Footer from "@/components/major/Footer";
 import { resolveParams } from "@/lib/params";
 import { getPostBySlug, getMediaById } from "@/lib/api";
 import { buildMetadataFromYoast } from "@/lib/seo";
@@ -67,7 +68,7 @@ export default async function postSinglePage({ params }) {
         entryType="post"
         pathPrefix="post"
       />
-
+      <div className="h-[112px] w-full bg-black"></div> 
       <main className="px-4 py-12 space-y-8">
         <article className="max-w-4xl mx-auto space-y-6">
 
@@ -105,6 +106,7 @@ export default async function postSinglePage({ params }) {
           <PostBody entry={post} lang={lang} />
         </article>
       </main>
+      <Footer lang={lang} currentSlug={slug} />
     </>
   );
 }

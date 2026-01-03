@@ -9,9 +9,10 @@ import ArrowSvg from "../../../public/right-arrow.svg";
 import DownSvg from "../../../public/down-arrow.svg";
 import ArrowSvgB from "../../../public/right-arrow-black.png";
 import { getMenu, getThemeOptions, getTranslationBySlug } from "@/lib/api";
+import { DEFAULT_LANG } from "@/config";
 
 export default function Header({
-  lang = "en",
+  lang = DEFAULT_LANG,
   currentSlug = "",
   entryType = "page",
   pathPrefix = "",
