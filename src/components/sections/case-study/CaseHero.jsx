@@ -30,7 +30,7 @@ export default function CaseHero({ data }) {
       <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-black/60 to-black/80 -z-10"></div>
 
       {/* HERO TEXT */}
-      <div className="relative min-h-[100vh] web-width px-6 py-16 lg:py-20 h-full flex flex-col items-start justify-end">
+      <div className="relative min-h-[100vh] web-width px-6 py-16 lg:py-30 h-full flex flex-col items-start justify-end">
         <div className="md:flex items-end justify-between gap-20">
           <div className="">
           {sub_heading && (

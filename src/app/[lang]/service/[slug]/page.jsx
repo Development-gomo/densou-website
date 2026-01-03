@@ -2,6 +2,7 @@
 
 import Header from "@/components/major/Header";
 import PageBuilder from "@/components/major/PageBuilder";
+import ServicePageBuilder from "@/components/major/ServiceBuilder";
 import Footer from "@/components/major/Footer";
 import { resolveParams } from "@/lib/params";
 import { getServiceBySlug } from "@/lib/api";
@@ -31,7 +32,7 @@ export default async function ServiceSinglePage({ params }) {
         pathPrefix="service"
       />
       <main>
-        <PageBuilder sections={service?.acf?.page_builder} lang={lang} />
+        <ServicePageBuilder sections={service?.acf?.services_page_builder} lang={lang} />
       </main>
       <Footer lang={lang} currentSlug={slug} />
     </>

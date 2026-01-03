@@ -30,8 +30,7 @@ export default function ServiceHero({ data }) {
       <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-black/60 to-black/80 -z-10"></div>
 
       {/* HERO TEXT */}
-      <div className="relative min-h-[100vh] web-width px-6 py-16 lg:py-20 h-full flex flex-col items-start justify-end">
-        <div className="md:flex items-end justify-between gap-20">
+      <div className="relative min-h-[100vh] web-width px-6 py-16 lg:py-30 h-full flex flex-col items-start justify-end">
           <div className="">
           {sub_heading && (
             <motion.p
@@ -67,10 +66,6 @@ export default function ServiceHero({ data }) {
               <Image src={DownArrow} alt="arrow" width={13} height={13} />
             </motion.a>
             </h1>
-        </div>
-        <div className="max-w-[140px] bg-white/30 backdrop-blur-xl px-3 py-3 rounded-sm mt-6">
-          <Image src={logo} alt="Case Study Logo" width={150} height={75} className=""/>
-        </div>
         </div>
       </div>
     </section>

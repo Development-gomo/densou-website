@@ -1,3 +1,4 @@
+// src/components/major/CasestudyBuilder.jsx
 
 import dynamic from "next/dynamic";
 import { DEFAULT_LANG } from "@/config";
