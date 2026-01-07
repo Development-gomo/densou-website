@@ -106,7 +106,7 @@ export default function Header({
 
   return (
     <header className={headerClasses}>
-      <div className="web-width mx-auto px-6 flex items-center justify-between">
+      <div className="web-width mx-auto px-6 flex items-center justify-between relative">
         {/* LOGO */}
         <Link
           href={lang === "en" ? "/" : `/${lang}`}
@@ -131,7 +131,7 @@ export default function Header({
             className="
               backdrop-blur-[16px] bg-white/25 
               px-8 py-4 rounded-full   border border-[#FFFFFF33]
-              flex items-center gap-8 lg:absolute lg:left-[29%]
+              flex items-center gap-8 lg:absolute lg:left-[338px]
             "
           >
             <ul className="flex items-center gap-9 relative">
