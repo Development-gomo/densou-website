@@ -81,7 +81,7 @@ export default function HomeHero({ data }) {
             }}
           />
         </div>
-        <div className="lg:m-auto lg:absolute right-[22%] top-[50%]">
+        <div className="lg:m-auto lg:absolute right-[22%] top-[360px]">
           <motion.div
             initial={{ opacity: 0, y: 25 }}
             animate={{ opacity: 1, y: 0 }}
