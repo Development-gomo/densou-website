@@ -62,8 +62,8 @@ export default function InnerHero({ data }) {
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.3 }}
-              className="block md:inline-block w-12 h-12 text-center pt-[18px] pl-[18px] rounded-full bg-[var(--color-accent)] translate-y-1 transition-all duration-300 shadow-md hover:translate-y-[10px] cursor-pointer md:ml-4 mt-4 md:mt-0">
-              <Image src={DownArrow} alt="arrow" width={13} height={13} />
+              className="block md:inline-block w-16 h-16 text-center pt-[24px] pl-[24px] rounded-full bg-[var(--color-accent)] translate-y-2 transition-all duration-300 shadow-md hover:translate-y-[14px] cursor-pointer md:ml-4 mt-4 md:mt-0">
+              <Image src={DownArrow} alt="arrow" width={16} height={16} />
             </motion.a>
             </h1>
         </div>

@@ -126,8 +126,8 @@ i, em {
   }
 
   .heading-xl {
-    font-size: 64px;
-    line-height: 74px;
+    font-size: 80px;
+    line-height: 86px;
   }
   
   .heading-xl p,
@@ -173,6 +173,7 @@ i, em {
   font-weight: 500;
   letter-spacing: 0.6px;
   color: var(--color-grey);
+  text-transform: uppercase;
 }
 
 .subheading-label.text-white {

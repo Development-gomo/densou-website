@@ -158,7 +158,7 @@ export default function Header({
                           : item.url
                       }
                       className="
-                            text-white/90 text-[15px]
+                            text-white/90 text-[15px] 
                             hover:text-white transition leading-[18px] flex items-center gap-2"
                     >
                       {item.title}
@@ -179,10 +179,9 @@ export default function Header({
                     {item.children?.length > 0 && (
                       <ul
                         className="
-                            absolute left-1/2 top-[20px] mt-1 
+                            absolute left-1/2 top-[0px] mt-1 
                             -translate-x-1/2 min-w-[180px]
-                            backdrop-blur-xl bg-white/20
-                            rounded-xl py-2 shadow-lg
+                            pt-8
                             opacity-0 pointer-events-none
                             group-hover:opacity-100 group-hover:pointer-events-auto
                             transition-all duration-300
@@ -199,9 +198,9 @@ export default function Header({
                                     : `/${lang}${sub.url}` // Prefix for Danish
                                   : sub.url
                               }
-                              className="
-                                    block px-3 py-2 text-white/90 text-sm
-                                    hover:text-white hover:bg-white/10 transition
+                              className="backdrop-blur-[16px] bg-black/25 py-2
+                                    block px-4 py-3 text-white/90 text-sm
+                                    hover:text-white transition
                                   "
                             >
                               {sub.title}
