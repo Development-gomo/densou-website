@@ -88,7 +88,7 @@ export default async function Footer({ lang = DEFAULT_LANG }) {
 
   // FOOTER DATA
   const quickLinks = extractLinksFromHtml(widgets?.quick_links);
-  const services = extractLinksFromHtml(widgets?.services).map((s) => s.label);
+    const services = extractLinksFromHtml(widgets?.services);
   const offices = extractOfficesFromHtml(widgets?.offices);
 
   const servicesTitle = widgets?.services_title || "Services";
@@ -299,9 +299,13 @@ export default async function Footer({ lang = DEFAULT_LANG }) {
                       <p className="mb-6 text-[14px] uppercase tracking-[0.17px] text-[#9192A0]">
                         {servicesTitle}
                       </p>
-                      <ul className="space-y-2 text-base text-white/80">
+                      <ul className="space-y-2 text-base font-normal text-white/80">
                         {services.map((service) => (
-                          <li key={service}>{service}</li>
+                          <li key={service.label}>
+                            <Link href={service.href} className="hover:text-white/70">
+                              {service.label}
+                            </Link>
+                          </li>
                         ))}
                       </ul>
                     </div>

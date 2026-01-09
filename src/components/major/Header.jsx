@@ -185,7 +185,7 @@ export default function Header({
                             opacity-0 pointer-events-none
                             group-hover:opacity-100 group-hover:pointer-events-auto
                             transition-all duration-300
-                            z-[200]
+                            z-[-9]
                           "
                       >
                         {item.children.map((sub) => (
