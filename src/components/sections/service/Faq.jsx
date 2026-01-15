@@ -1,64 +1,80 @@
 "use client";
 
-import React, { useState } from "react";
+import { useState } from "react";
+import Image from "next/image";
+import PlusIcon from "../../../../public/plus-light.svg";
 
 export default function Faq({ data }) {
-  const { sub_heading, heading, faqs } = data;
+  const { sub_heading, heading, faqs = [] } = data;
+  const [openIndex, setOpenIndex] = useState(0); // first open by default
 
-  const [activeIndex, setActiveIndex] = useState(null);
-
-  // Function to handle toggling the accordion
-  const toggleAccordion = (index) => {
-    setActiveIndex(activeIndex === index ? null : index);
+  const toggle = (index) => {
+    setOpenIndex(index === openIndex ? null : index);
   };
 
   return (
     <section className="bg-[var(--color-brand)] text-white">
-      <div className="py-12 md:py-30 web-width px-6">
-        {/* Sub Heading */}
+      <div className="web-width px-6 py-12 md:py-30">
+        {/* SUB HEADING */}
         {sub_heading && (
-          <div className="flex items-center gap-2 mb-2 md:mb-4">
-            <span className="h-2 w-2 rounded-full bg-[var(--color-accent)]"></span>
-            <span className="subheading-label uppercase">{sub_heading}</span>
+          <div className="flex items-center gap-2 mb-4">
+            <span className="h-2 w-2 rounded-full bg-[var(--color-accent)]" />
+            <span className="subheading-label">{sub_heading}</span>
           </div>
         )}
 
-        {/* Heading */}
+        {/* MAIN HEADING */}
         {heading && (
-          <div
-            className="section-heading mb-6"
+          <h2
+            className="section-heading mb-12"
             dangerouslySetInnerHTML={{ __html: heading }}
           />
         )}
 
-        {/* FAQ List */}
-        <div className="faq-list space-y-6">
-          {faqs.map((faq, index) => (
-            <div
-              key={index}
-              className="faq-item border-b border-white/20 pb-4"
-            >
-              {/* FAQ Number */}
-              <div className="faq-number text-[16px] text-[var(--color-accent)] font-semibold">
-                ({String(index + 1).padStart(2, "0")})
-              </div>
+        {/* FAQ LIST */}
+        <div className="divide-y divide-[#91929f4d]">
+          {faqs.map((faq, index) => {
+            const isOpen = openIndex === index;
 
-              {/* FAQ Question */}
-              <div
-                className="faq-question text-lg font-semibold cursor-pointer"
-                onClick={() => toggleAccordion(index)}
-              >
-                {faq.question}
-              </div>
+            return (
+              <div key={index} className="py-6 md:py-8 [&:nth-last-child(1)]:pb-0">
+                <button
+                  onClick={() => toggle(index)}
+                  className="w-full flex items-start gap-4 md:gap-20 text-left cursor-pointer"
+                >
+                  {/* NUMBER */}
+                  <span className="text-[var(--color-accent)] text-sm md:text-base min-w-[48px] pt-1">
+                    ({String(index + 1).padStart(2, "0")})
+                  </span>
 
-              {/* FAQ Answer (Accordion Toggle) */}
-              {activeIndex === index && (
-                <div className="faq-answer text-sm text-gray-200 mt-3">
-                  {faq.answers}
-                </div>
-              )}
-            </div>
-          ))}
+                  {/* QUESTION */}
+                  <span className="flex-1 content-heading text-white">
+                    {faq.question}
+                  </span>
+
+                  {/* ICON */}
+                  <span className="text-[16px] leading-none">
+                    <Image
+                      src={PlusIcon}
+                      alt="toggle icon"
+                      width={16}
+                      height={16}
+                      className={`transition-transform duration-300 ${
+                        isOpen ? "rotate-45" : ""
+                      }`}
+                    />
+                  </span>
+                </button>
+
+                {/* ANSWER */}
+                {isOpen && (
+                  <div className="ml-[64px] md:ml-[128px] mt-6 text-white">
+                    <div dangerouslySetInnerHTML={{ __html: faq.answers }} />
+                  </div>
+                )}
+              </div>
+            );
+          })}
         </div>
       </div>
     </section>
