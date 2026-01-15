@@ -5,19 +5,12 @@ import { motion, AnimatePresence } from "framer-motion";
 
 export default function CoreValueSection({ data }) {
   const { sub_heading, core_value = [] } = data || {};
-
   const [activeIndex, setActiveIndex] = useState(0);
-
-  /* ----------------------------
-     Auto slide
-  ----------------------------- */
   useEffect(() => {
     if (!core_value.length) return;
 
     const interval = setInterval(() => {
-      setActiveIndex((prev) =>
-        prev === core_value.length - 1 ? 0 : prev + 1
-      );
+      setActiveIndex((prev) => (prev === core_value.length - 1 ? 0 : prev + 1));
     }, 4000); // 4s per slide
 
     return () => clearInterval(interval);

@@ -247,6 +247,12 @@ span.subheading-label.text-\[var\(--color-accent\)\],
   font-weight: 500;
 }
 
+.analyser-index button:nth-last-child(1) span {
+    opacity: 0;
+    border: none;
+    margin: 0;
+}
+
 /* ==========================================
    SLIDER TEXT (client logos)
 ========================================== */

@@ -8,7 +8,6 @@ import ArrowSvg from "../../../../public/right-arrow.svg";
 
 export default function Overview({ data }) {
   if (!data) return null;
-
   const {
     sub_heading,
     heading,
@@ -42,10 +41,12 @@ export default function Overview({ data }) {
           <div className="lg:w-[45%]"></div>
 
           {/* RIGHT COLUMN — CONTENT HEADING + BODY + CTA */}
-          <div  className="lg:w-[55%]">
+          <div className="lg:w-[55%]">
             {/* Content heading */}
             {content_heading && (
-              <h3 className="content-heading  max-w-[500px] mb-4">{content_heading}</h3>
+              <h3 className="content-heading  max-w-[500px] mb-4">
+                {content_heading}
+              </h3>
             )}
 
             {/* Paragraph */}
@@ -65,7 +66,8 @@ export default function Overview({ data }) {
                     rounded-sm bg-[var(--color-brand)] px-6 py-4 text-white 
                     transition-all duration-300 hover:bg-[var(--color-brand)] 
                     w-[140px] overflow-hidden
-                  ">
+                  "
+              >
                 {/* LEFT SLOT (dot area, fixed width) */}
                 <span className="relative w-6 flex items-center justify-center">
                   <span
