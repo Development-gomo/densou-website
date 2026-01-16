@@ -41,14 +41,14 @@ export default function KeyProblemSection({ data }) {
         {/* MAIN HEADING */}
         {heading && (
           <h2
-            className="section-heading max-w-4xl mb-14"
+            className="section-heading mb-8 md:mb-14"
             dangerouslySetInnerHTML={{ __html: heading }}
           />
         )}
 
         {/* CARDS GRID */}
-        <div className="grid gap-2 md:gap-4 sm:grid-cols-2 lg:grid-cols-4">
-          {key_problem.map((item, index) => (
+        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+          {key_problem.map((item, index) => ( 
             <div
               key={index}
               className="
@@ -69,7 +69,7 @@ export default function KeyProblemSection({ data }) {
 
               {/* TITLE */}
               {item.heading && (
-                <h3 className="text-[24px] mb-3">
+                <h3 className="text-[24px] leading-[30px] mb-3">
                   {item.heading}
                 </h3>
               )}

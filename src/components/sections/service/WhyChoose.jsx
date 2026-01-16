@@ -106,11 +106,11 @@ export default function WhyChoose({ data }) {
           </div>
 
           {/* RIGHT GRID */}
-          <div className="grid grid-cols-2 gap-4 mt-8 lg:mt-0">
+          <div className="grid md:grid-cols-2 gap-4 mt-8 lg:mt-0">
             {key_solutions.map((item, index) => (
               <div
                 key={index}
-                className="lg:max-w-[310px] p-4
+                className="lg:max-w-[310px] p-6
                 lg:px-8 lg:py-8 rounded-sm backdrop-blur-[24px] bg-white/10"
               >
                 {item.icons?.url && (
