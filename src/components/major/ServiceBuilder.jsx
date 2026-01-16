@@ -11,6 +11,7 @@ const Faq = dynamic(() => import("../sections/service/Faq"));
 const WhyChoose = dynamic(() => import("../sections/service/WhyChoose"));
 const OurApproach = dynamic(() => import("../sections/service/OurApproach"));
 const OurServicesSection = dynamic(() => import("../sections/service/OurServicesSection"));
+const KeyProblemSection = dynamic(() => import("../sections/service/KeyProblemSection"));
 
 // Service page builder
 
@@ -37,6 +38,8 @@ export default function ServicePageBuilder({ sections, lang = DEFAULT_LANG }) {
             return <OurApproach key={i} data={block} lang={lang} />;  
           case "our_services_section":
             return <OurServicesSection key={i} data={block} lang={lang} />;  
+          case "key_problem_section":
+            return <KeyProblemSection key={i} data={block} lang={lang} />;  
           default:
             return null;
         }

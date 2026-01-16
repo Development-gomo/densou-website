@@ -26,7 +26,7 @@ export default function Faq({ data }) {
         {/* MAIN HEADING */}
         {heading && (
           <h2
-            className="section-heading mb-12"
+            className="section-heading mb-6 md:mb-12"
             dangerouslySetInnerHTML={{ __html: heading }}
           />
         )}

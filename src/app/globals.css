@@ -253,6 +253,15 @@ span.subheading-label.text-\[var\(--color-accent\)\],
     margin: 0;
 }
 
+.border-btm:nth-child(1) button:after {
+    content: "";
+    position: absolute;
+    border-bottom: 1px solid #ccc;
+    width: 97%;
+    bottom: 0;
+    right: 0;
+}
+
 /* ==========================================
    SLIDER TEXT (client logos)
 ========================================== */

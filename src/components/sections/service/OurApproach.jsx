@@ -24,7 +24,7 @@ export default function OurApproach({ data }) {
 
         {heading && (
           <h2
-            className="section-heading  mb-16"
+            className="section-heading mb-6 md:mb-16"
             dangerouslySetInnerHTML={{ __html: heading }}
           />
         )}
@@ -38,14 +38,14 @@ export default function OurApproach({ data }) {
           <div className="lg:w-[55%]">
             <h3 className="content-heading mb-8">{section_heading}</h3>
             {/* STEP INDICATOR */}
-            <div className="analyser-index relative flex items-center gap-6 mb-18">
+            <div className="analyser-index relative flex items-center gap-6 mb-8 md:mb-18">
               {analysis_list.map((_, index) => {
                 const isActive = index === activeIndex;
                 return (
                   <button
                     key={index}
                     onClick={() => setActiveIndex(index)}
-                    className={`w-16 h-16 rounded-full flex items-center justify-center text-[20px] font-medium transition cursor-pointer relative transation-all duration-300
+                    className={`w-16 h-16 rounded-full flex items-center justify-center text-[20px] transition cursor-pointer relative transation-all duration-300 font-[var(--font-serif)]
                       ${
                         isActive
                           ? "bg-[var(--color-accent)] active md:mr-[175px]"
