@@ -10,7 +10,6 @@ export default function ResultSection({ data }) {
   return (
     <section className="py-12 md:py-30 bg-white">
       <div className="web-width px-6">
-
         {/* SUB HEADING */}
         {sub_heading && (
           <div className="flex items-center gap-2 mb-4">
@@ -24,44 +23,48 @@ export default function ResultSection({ data }) {
         {/* MAIN HEADING */}
         {heading && (
           <div
-            className="section-heading max-w-[780px] mb-16"
+            className="section-heading max-w-[990px] mb-8 md:mb-16"
             dangerouslySetInnerHTML={{ __html: heading }}
           />
         )}
-
-        {/* RESULTS GRID */}
-        {counters.length > 0 && (
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {counters.map((item, index) => (
-              <div
-                key={index}
-                className="bg-[#F4F4F6] rounded-lg p-8 flex flex-col justify-between min-h-[240px]"
-              >
-                {/* NUMBER */}
-                <div className="flex items-start">
-                  <span className="text-[64px] leading-[72px] font-medium text-black">
-                    {item.number}
-                  </span>
-
-                  {item.suffix && (
-                    <span className="text-[32px] leading-[36px] font-medium text-[var(--color-accent)] ml-1 mt-2">
-                      {item.suffix}
-                    </span>
-                  )}
-                </div>
-
-                {/* DESCRIPTION */}
-                {item.short_text && (
+        <div className="flex flex-col lg:flex-row md:gap-20">
+        {/* LEFT META COLUMN */}
+          <div className="md:w-[25%]"></div>
+          <div className="md:w-[75%]">
+            {/* RESULTS GRID */}
+            {counters.length > 0 && (
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                {counters.map((item, index) => (
                   <div
-                    className=" mt-6 max-w-[240px]"
-                    dangerouslySetInnerHTML={{ __html: item.short_text }}
-                  />
-                )}
-              </div>
-            ))}
-          </div>
-        )}
+                    key={index}
+                    className="bg-[#F4F4F6] rounded-lg p-8 flex flex-col justify-between gap-10 md:min-h-[260px]"
+                  >
+                    {/* NUMBER */}
+                    <div className="relative">
+                      <span className="text-[80px] leading-[70px] font-medium">
+                        {item.number}
+                      </span>
 
+                      {item.suffix && (
+                        <span className="text-[50px] leading-[50px] font-medium text-[var(--color-accent)] ml-1 absolute top-[-5px]">
+                          {item.suffix}
+                        </span>
+                      )}
+                    </div>
+
+                    {/* DESCRIPTION */}
+                    {item.short_text && (
+                      <div
+                        className=" mt-6"
+                        dangerouslySetInnerHTML={{ __html: item.short_text }}
+                      />
+                    )}
+                  </div>
+                ))}
+              </div>
+            )}
+        </div>
+        </div>
       </div>
     </section>
   );

@@ -6,29 +6,25 @@ import ArrowSvg from "../../../../public/right-arrow.svg";
 
 export default function CaseCtaBanner({ data, lang = "en" }) {
   if (!data) return null;
-
   const { heading, short_text, cta_text, cta_url } = data;
-
   return (
     <section className="py-12 md:py-24 bg-[var(--color-brand)] text-white">
       <div className="web-width px-6">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-16 items-center">
-
-          {/* LEFT – BIG HEADING */}
-          {heading && (
-            <h2
-              className="text-[36px] md:text-[48px] leading-[44px] md:leading-[56px] font-medium"
-              dangerouslySetInnerHTML={{ __html: heading }}
-            />
-          )}
-
-          {/* RIGHT – TEXT + CTA */}
-          <div className="max-w-[420px]">
-            {short_text && (
-              <p className="text-white/90 mb-6">
-                {short_text}
-              </p>
+        {/* TWO COLUMN LAYOUT */}
+        <div className="flex flex-col lg:flex-row md:gap-15">
+          {/* LEFT META COLUMN */}
+          <div className="md:w-[55%]">
+            {/* LEFT – BIG HEADING */}
+            {heading && (
+              <h2
+                className="text-[36px] md:text-[48px] leading-[44px] md:leading-[56px] font-medium"
+                dangerouslySetInnerHTML={{ __html: heading }}
+              />
             )}
+          </div>
+          {/* RIGHT – TEXT + CTA */}
+          <div className="md:w-[45%]">
+            {short_text && <p className="text-white/90 mb-6">{short_text}</p>}
 
             {cta_text && cta_url && (
               <Link

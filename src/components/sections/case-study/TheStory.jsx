@@ -1,6 +1,8 @@
 "use client";
 
 import { motion } from "framer-motion";
+import Image from "next/image";
+import Quote from "../../../../public/quote-icon.png";
 
 export default function StorySection({ data }) {
   if (!data) return null;
@@ -8,58 +10,87 @@ export default function StorySection({ data }) {
   const {
     sub_heading,
     heading,
+    content_heading,
     short_text,
-    quote_text,
-    quote_citation,
+    review_text,
+    review_by,
+    section_image,
   } = data;
 
   return (
-    <section className="py-12 md:py-30 web-width px-6">
-      {/* Subheading */}
-      {sub_heading && (
-        <div className="flex items-center gap-2 mb-2 md:mb-4">
-          <span className="h-2 w-2 rounded-full bg-[var(--color-accent)]"></span>
-          <span className="subheading-label uppercase">{sub_heading}</span>
+    <>
+      {" "}
+      <section className="py-12 md:py-30 web-width px-6">
+        {/* Subheading with dot */}
+        {sub_heading && (
+          <div className="flex items-center gap-2 mb-6">
+            <span className="h-2 w-2 rounded-full bg-[#00F5C4]"></span>
+            <span className="subheading-label uppercase">{sub_heading}</span>
+          </div>
+        )}
+
+        {/* Main Heading */}
+        {heading && (
+          <div
+            className="section-heading mb-8 md:mb-14 max-w-[990px]"
+            dangerouslySetInnerHTML={{ __html: heading }}
+          />
+        )}
+
+        {/* Two-Column Layout: Content + Quote */}
+        <div className="flex flex-col lg:flex-row md:gap-20">
+          {/* LEFT META COLUMN */}
+          <div className="md:w-[40%]"></div>
+          <div className="md:w-[60%]">
+            {content_heading && (
+              <div
+                className="content-heading mb-6 max-w-[560px]"
+                dangerouslySetInnerHTML={{ __html: content_heading }}
+              />
+            )}
+            {short_text && (
+              <div
+                className="body-text max-w-[560px] mb-6"
+                dangerouslySetInnerHTML={{ __html: short_text }}
+              />
+            )}
+            {review_text && (
+              <motion.div
+                initial={{ opacity: 0, y: 25 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8 }}
+                className="bg-[#00D084] max-w-[630px] text-white p-6 md:p-8 rounded-lg"
+              >
+                <p className="text-2xl">
+                    <Image src={Quote} width={24} height={24} alt="Quote Icon" className="block mb-3" />
+                    {review_text}
+                </p>
+                {review_by && (
+                  <p className="text-sm mt-4"><span className="h-2 w-2 rounded-full bg-white inline-block mr-2"></span> {review_by}</p>
+                )}
+              </motion.div>
+            )}
+          </div>
         </div>
-      )}
 
-      {/* Heading */}
-      {heading && (
-        <div
-          className="section-heading mb-6 md:mb-13 max-w-[820px]"
-          dangerouslySetInnerHTML={{ __html: heading }}
-        />
-      )}
-
-      {/* Content: Story */}
-      <div className="flex flex-col md:flex-row md:gap-12">
-        {/* Left Column: Story Text */}
-        <div className="lg:w-[55%] space-y-6 text-sm text-gray-500">
-          {short_text && (
-            <div
-              className="body-text max-w-[520px] mb-6"
-              dangerouslySetInnerHTML={{ __html: short_text }}
+        {/* Optional Image Section */}
+      </section>
+      {section_image && (
+        <section className="image-breaker">
+          <motion.div
+            initial={{ opacity: 0, y: 25 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            className="relative w-full h-[400px] lg:h-[500px]  overflow-hidden"
+          >
+            <img
+              src={section_image.url}
+              alt="Story image"
+              className="object-cover w-full h-full"
             />
-          )}
-        </div>
-
-        {/* Right Column: Quote */}
-        <div className="lg:w-[45%] mt-6 lg:mt-0">
-          {quote_text && (
-            <motion.div
-              initial={{ opacity: 0, y: 25 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8 }}
-              className="bg-[#00F5C4] text-white rounded-xl p-8 space-y-4"
-            >
-              <p className="text-lg italic">“{quote_text}”</p>
-              {quote_citation && (
-                <p className="text-sm text-gray-900 font-semibold">{quote_citation}</p>
-              )}
-            </motion.div>
-          )}
-        </div>
-      </div>
-    </section>
+          </motion.div>
+        </section>
+      )}
+    </>
   );
 }

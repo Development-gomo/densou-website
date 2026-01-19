@@ -39,7 +39,7 @@ const CollaborationSection = ({ data }) => {
               initial={{ opacity: 0, y: 25 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8 }}
-              className="relative w-full h-[300px] lg:h-[400px] rounded-lg overflow-hidden mb-10"
+              className="relative w-full h-[300px] lg:h-[400px] rounded-lg overflow-hidden mb-16"
             >
               <Image
                 src={image.url}
@@ -51,14 +51,14 @@ const CollaborationSection = ({ data }) => {
             </motion.div>
           )}
 
-          <div className="div flex gap-10 mb-6">
+          <div className="div flex gap-10 mb-8">
           {/* Content Heading */}
           {content_heading && (
             <motion.h2
               initial={{ opacity: 0, y: 25 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8 }}
-              className="content-heading text-white mt-6"
+              className="content-heading text-white"
             >
               {content_heading}
             </motion.h2>
@@ -73,7 +73,7 @@ const CollaborationSection = ({ data }) => {
               <Image
                 src={logo.url}
                 alt="Collaboration image"
-                width={244}
+                width={144}
                 height={120}
                 objectFit="contain"
                 className="object-contain"

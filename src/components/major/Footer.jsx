@@ -190,7 +190,7 @@ export default async function Footer({ lang = DEFAULT_LANG }) {
           <div className="grid grid-cols-3 gap-2">
             <div className="relative">
               {column_i_text && (
-                <div className="h-[195px] bg-[#272D7E] mb-[8px] md:text-[18px] rounded-sm p-3 lg:p-6 flex items-end mt-5 lg:mt-34 text-white/80 leading-[26px]">
+                <div className="h-[195px] bg-[#272D7E] mb-[10px] md:text-[18px] rounded-sm p-3 lg:p-6 flex items-end mt-5 lg:mt-34 text-white/80 leading-[26px]">
                   <i>{column_i_text}</i>
                 </div>
               )}
@@ -222,7 +222,7 @@ export default async function Footer({ lang = DEFAULT_LANG }) {
             </div>
             <div className="relative">
               {column_iii_text && (
-                <div className="h-[195px] lg:h-[205px] bg-[#272D7E] md:text-[18px] mt-[13px] mb-[8px] rounded-sm p-3 lg:p-6 flex items-end text-white/80 leading-[26px]">
+                <div className="h-[195px] lg:h-[205px] bg-[#272D7E] md:text-[18px] mt-[20px] md:mt-[13px] mb-[8px] rounded-sm p-3 lg:p-6 flex items-end text-white/80 leading-[26px]">
                   <i>{column_iii_text}</i>
                 </div>
               )}

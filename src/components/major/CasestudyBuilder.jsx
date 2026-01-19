@@ -10,6 +10,7 @@ const ResultSection = dynamic(() => import("../sections/case-study/ResultSection
 const TestimonialBanner = dynamic(() => import("../sections/case-study/TestimonialBanner"));
 const CaseIntroduction = dynamic(() => import("../sections/case-study/Introduction"));
 const StorySection = dynamic(() => import("../sections/case-study/TheStory"));
+const ChallengesAndSolutionSection = dynamic(() => import("../sections/case-study/ChallengesAndSolutionSection"));
 
 // case study page builder
 
@@ -34,6 +35,8 @@ export default function CaseStudyBuilder({ sections, lang = DEFAULT_LANG }) {
               return <CaseIntroduction key={i} data={block} lang={lang} />;
           case "story_section":
               return <StorySection key={i} data={block} lang={lang} />;
+          case "challenges_and_solution":
+              return <ChallengesAndSolutionSection key={i} data={block} lang={lang} />;    
 
           default:
             return null;

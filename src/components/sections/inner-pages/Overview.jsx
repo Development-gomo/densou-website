@@ -44,7 +44,7 @@ export default function Overview({ data }) {
           <div className="lg:w-[55%]">
             {/* Content heading */}
             {content_heading && (
-              <h3 className="content-heading  max-w-[500px] mb-4">
+              <h3 className="content-heading  max-w-[490px] mb-4">
                 {content_heading}
               </h3>
             )}
@@ -52,7 +52,7 @@ export default function Overview({ data }) {
             {/* Paragraph */}
             {short_text && (
               <div
-                className="body-text max-w-[500px] mb-6"
+                className="body-text max-w-[490px] mb-6"
                 dangerouslySetInnerHTML={{ __html: short_text }}
               />
             )}

@@ -68,7 +68,7 @@ export default function CaseHero({ data }) {
             </motion.a>
             </h1>
         </div>
-        <div className="max-w-[140px] bg-white/30 backdrop-blur-xl px-3 py-3 rounded-sm mt-6">
+        <div className="max-w-[140px] bg-white/30 backdrop-blur-xl px-3 py-3 rounded-sm mt-12 md:mt-6">
           <Image src={logo} alt="Case Study Logo" width={150} height={75} className=""/>
         </div>
         </div>

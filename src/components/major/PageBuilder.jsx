@@ -53,7 +53,7 @@ export default function PageBuilder({ sections, lang = DEFAULT_LANG }) {
             return <TeamSection key={i} data={block} lang={lang} />;
 
           case "core_value_section":
-            return <CoreValueSection key={i} data={block} />;
+            return <CoreValueSection key={i} data={block} lang={lang} />;
 
           default:
             return null;

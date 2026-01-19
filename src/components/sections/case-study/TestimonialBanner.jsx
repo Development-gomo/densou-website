@@ -25,17 +25,17 @@ export default function TestimonialBanner({ data }) {
 
       {/* CONTENT */}
       <div className="relative z-10 h-full">
-        <div className="web-width px-6 h-full flex flex-col justify-between py-12 md:py-20">
+        <div className="web-width px-6 h-full flex flex-col justify-between py-12 md:py-16">
           {/* TOP RIGHT HEADING */}
           {heading && (
             <div className="flex justify-end">
-              <h2
+              <div
                 className="
-                  max-w-[520px]
+                  max-w-[660px]
                   text-right
                   text-white
-                  text-[36px] md:text-[44px]
-                  leading-[44px] md:leading-[52px]
+                  text-[36px] md:text-[64px]
+                  leading-[44px] md:leading-[72px]
                   font-serif
                 "
                 dangerouslySetInnerHTML={{ __html: heading }}
@@ -46,7 +46,7 @@ export default function TestimonialBanner({ data }) {
           {/* TESTIMONIAL */}
           <div className="max-w-[680px]">
             {testimonial && (
-              <blockquote className="text-white text-[18px] md:text-[20px] leading-[30px] mb-8">
+              <blockquote className="text-white content-heading mb-8">
                 “{testimonial}”
               </blockquote>
             )}
@@ -55,7 +55,7 @@ export default function TestimonialBanner({ data }) {
             <div className="text-white">
               {name && <p className="font-medium">{name}</p>}
             </div>
-            <div className="flex items-start gap-3">
+            <div className="flex items-start gap-2">
               {/* ACCENT DOT */}
               <span className="mt-2 h-2 w-2 rounded-full bg-[var(--color-accent)]"></span>
               {person_organization && (

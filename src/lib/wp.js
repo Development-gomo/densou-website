@@ -34,7 +34,6 @@ async function getSingleEntry(endpoint, slug, lang = DEFAULT_LANG) {
       entries[0]
     );
   } catch (err) {
-   // console.error(`⚠️ getSingleEntry failed for ${endpoint}:`, err.message);
     return null;
   }
 }
@@ -66,7 +65,6 @@ export async function getMediaById(id) {
   try {
     return await fetchWP(`/wp/v2/media/${id}`);
   } catch (err) {
-   // console.error("⚠️ getMediaById failed:", err.message);
     return null;
   }
 }
