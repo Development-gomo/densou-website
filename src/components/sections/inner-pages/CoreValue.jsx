@@ -11,7 +11,7 @@ export default function CoreValueSection({ data }) {
 
     const interval = setInterval(() => {
       setActiveIndex((prev) => (prev === core_value.length - 1 ? 0 : prev + 1));
-    }, 4000); // 4s per slide
+    }, 4000);
 
     return () => clearInterval(interval);
   }, [core_value.length]);
