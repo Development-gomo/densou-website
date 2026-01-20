@@ -83,7 +83,7 @@ export default function Header({
           currentSlug,
           lang,
           altLang,
-          entryType
+          entryType,
         );
         if (translation?.slug) {
           const prefix = pathPrefix ? `/${pathPrefix}` : "";
@@ -151,10 +151,8 @@ export default function Header({
                   <li key={item.id} className="relative group">
                     <Link
                       href={
-                        item.url.startsWith("/")
-                          ? lang === "en"
-                            ? item.url // No prefix for English
-                            : `/${lang}${item.url}` // Prefix for Danish
+                        lang === "da" && item.url.startsWith("/")
+                          ? `/da${item.url}`
                           : item.url
                       }
                       className="
@@ -192,10 +190,8 @@ export default function Header({
                           <li key={sub.id}>
                             <Link
                               href={
-                                sub.url.startsWith("/")
-                                  ? lang === "en"
-                                    ? sub.url // No prefix for English
-                                    : `/${lang}${sub.url}` // Prefix for Danish
+                                lang === "da" && sub.url.startsWith("/")
+                                  ? `/da${sub.url}`
                                   : sub.url
                               }
                               className="backdrop-blur-[16px] bg-black/25 py-2
@@ -365,8 +361,11 @@ export default function Header({
                   {menu?.main?.map((item) => {
                     const hasChildren = item.children?.length > 0;
 
+                    // Update the href logic for MAIN MENU PANEL to match desktop menu behavior
                     const parentHref = item.url.startsWith("/")
-                      ? `/${lang}${item.url}`
+                      ? lang === "da"
+                        ? `/da${item.url}`
+                        : item.url // No prefix for English
                       : item.url;
 
                     return (

@@ -141,7 +141,7 @@ export default async function Footer({ lang = DEFAULT_LANG }) {
 
             {cta_text && cta_url && (
               <Link
-                href={cta_url.startsWith("/") ? `/${lang}${cta_url}` : cta_url}
+                href={lang === 'da' && cta_url.startsWith("/") ? `/da${cta_url}` : cta_url}
                 className=" mt-8
                       gap-3 group relative inline-flex items-center
                       rounded-sm bg-[var(--color-accent)] px-6 py-4 text-white
@@ -280,7 +280,7 @@ export default async function Footer({ lang = DEFAULT_LANG }) {
                         key={item.label}
                         className="flex items-center relative group justify-between text-xl md:text-[32px] border-b border-white/10 mb-0 py-2 [&:nth-child(1)]:pt-0"
                       >
-                        <Link href={item.href} className=" hover:text-white/70">
+                        <Link href={lang === 'da' ? `/da${item.href}` : item.href} className=" hover:text-white/70">
                           {item.label}
                           <Image src={RightSVG} width={19} height={19} alt="arrow" className="opacity-0 group-hover:opacity-100 absolute right-3 top-5 " />
                         </Link>

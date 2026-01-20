@@ -294,6 +294,22 @@ span.subheading-label.text-\[var\(--color-accent\)\],
  
 }
 
+.marquee-wrapper {
+  display: inline-block;
+  white-space: nowrap;
+  animation: marquee 4s linear infinite;
+}
+
+@keyframes marquee {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(-100%);
+  }
+}
+
+
 /* ==========================================
    SLIDER TEXT (client logos)
 ========================================== */

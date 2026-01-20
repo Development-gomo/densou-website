@@ -1,11 +1,12 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 
 export default function CoreValueSection({ data }) {
   const { sub_heading, core_value = [] } = data || {};
   const [activeIndex, setActiveIndex] = useState(0);
+
   useEffect(() => {
     if (!core_value.length) return;
 
@@ -31,20 +32,24 @@ export default function CoreValueSection({ data }) {
           </p>
         )}
 
-        {/* Big animated word */}
+        {/* Marquee-like scroll */}
         <div className="relative mb-16">
-          <AnimatePresence mode="wait">
-            <motion.h2
-              key={activeItem.heading}
-              initial={{ opacity: 0, x: 80 }}
-              animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0, x: -80 }}
-              transition={{ duration: 0.8, ease: "easeOut" }}
-              className="text-[clamp(3rem,12vw,9rem)] font-medium uppercase leading-none text-[#00F5C4]"
-            >
+          <motion.div
+            key={activeItem.heading}
+            className="marquee-wrapper"
+            animate={{
+              x: [-1000, 0],
+            }}
+            transition={{
+              duration: 4,
+              ease: "linear",
+              loop: Infinity,
+            }}
+          >
+            <h2 className="text-[clamp(3rem,12vw,9rem)] font-medium uppercase leading-none text-[#00F5C4]">
               {activeItem.heading}
-            </motion.h2>
-          </AnimatePresence>
+            </h2>
+          </motion.div>
 
           {/* Ghost word (background) */}
           <div className="pointer-events-none absolute right-0 top-1/2 hidden -translate-y-1/2 select-none text-[clamp(3rem,12vw,9rem)] font-medium uppercase text-white/10 lg:block">
@@ -54,23 +59,21 @@ export default function CoreValueSection({ data }) {
 
         {/* Description */}
         <div className="max-w-xl">
-          <AnimatePresence mode="wait">
-            <motion.div
-              key={activeIndex}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -20 }}
-              transition={{ duration: 0.6 }}
-            >
-              <p className="mb-2 text-sm text-[#00F5C4]">
-                ({String(activeIndex + 1).padStart(2, "0")})
-              </p>
+          <motion.div
+            key={activeIndex}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            transition={{ duration: 0.6 }}
+          >
+            <p className="mb-2 text-sm text-[#00F5C4]">
+              ({String(activeIndex + 1).padStart(2, "0")})
+            </p>
 
-              <p className="text-base leading-relaxed text-white/80">
-                {activeItem.text_area}
-              </p>
-            </motion.div>
-          </AnimatePresence>
+            <p className="text-base leading-relaxed text-white/80">
+              {activeItem.text_area}
+            </p>
+          </motion.div>
         </div>
 
         {/* Progress dots */}

@@ -194,10 +194,10 @@ export default function HomeNews({ data, lang = DEFAULT_LANG }) {
                 </span>
               </p>
             </div>
-            <div className="div  sm:mt-5">
+            <div className="div mt-6 md:mt-0">
               {(webinarPost?.acf?.webinar_date ||
                 webinarPost?.acf?.webinar_time) && (
-                <div className="text-white/90  mb-4">
+                <div className="text-white/90 md:mb-4">
                   <p className="text-sm">Starts:</p>
                   <p className="font-semibold">
                     {webinarPost?.acf?.webinar_date || ""}

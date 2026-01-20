@@ -97,7 +97,7 @@ export default function TeamSection({ data, lang }) {
       </div>
 
       {/* Team Grid */}
-      <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
+      <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
         {filteredTeam.map((member) => {
           const image = getTeamImage(member);
 
@@ -119,7 +119,7 @@ export default function TeamSection({ data, lang }) {
               </div>
 
               {/* Info */}
-              <div className="absolute inset-x-0 max-w-[91%] bottom-4 left-4 bg-white/10 backdrop-blur-[24px] p-4 text-white">
+              <div className="absolute inset-x-0 max-w-[270px] bottom-4 left-4 bg-white/10 backdrop-blur-[24px] p-4 text-white">
                 <p className="font-medium">{member.title.rendered}</p>
                 <p className="text-sm opacity-80">{member?.acf?.job_title}</p>
               </div>
