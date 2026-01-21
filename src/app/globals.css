@@ -98,9 +98,11 @@ em {
   .heading-xl p i {
     line-height: 58px;
   }
+
   section#case-section {
-    padding-bottom: 80px;
+    padding-bottom: 120px;
   }
+
   #home #services-section {
     padding-top: 0;
   }
@@ -340,5 +342,8 @@ span.subheading-label.text-\[var\(--color-accent\)\],
   }
   .section-heading br {
     display: none;
+  }
+  section#case-section {
+    padding-bottom: 60px;
   }
 }

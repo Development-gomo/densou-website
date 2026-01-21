@@ -48,7 +48,7 @@ export default function RealtedCase({ data, lang = "en" }) {
   if (!cases.length) return null;
 
   return (
-    <section id="case-section" className="pt-12 md:pt-30">
+    <section id="case-section" className="py-15 md:py-30">
       {/* FULL WIDTH WRAPPER */}
       <div className="w-full px-6 web-width">
         {/* SUB HEADING */}

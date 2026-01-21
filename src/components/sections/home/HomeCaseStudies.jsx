@@ -50,7 +50,7 @@ export default function HomeCaseStudies({ data, lang = "en" }) {
   return (
     <>
       <div id="next"></div>
-      <section id="case-section" className="pt-12 md:pt-30">
+      <section id="case-section" className="pt-15 md:pt-30">
         {/* FULL WIDTH WRAPPER */}
         <div className="w-full px-6 web-width">
           {/* SUB HEADING */}
