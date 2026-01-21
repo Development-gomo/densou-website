@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import ArrowSvg from "../../../../public/right-arrow.svg";
+import ArrowSvg from "../../../../public/right-arrow-black.png";
 
 export default function CaseCtaBanner({ data, lang = "en" }) {
   if (!data) return null;
@@ -11,7 +11,7 @@ export default function CaseCtaBanner({ data, lang = "en" }) {
     <section className="py-15 md:py-24 bg-[var(--color-brand)] text-white">
       <div className="web-width px-6">
         {/* TWO COLUMN LAYOUT */}
-        <div className="flex flex-col lg:flex-row md:gap-15">
+        <div className="flex flex-col lg:flex-row md:gap-27">
           {/* LEFT META COLUMN */}
           <div className="md:w-[55%]">
             {/* LEFT – BIG HEADING */}
@@ -40,7 +40,7 @@ export default function CaseCtaBanner({ data, lang = "en" }) {
                   rounded-sm bg-[var(--color-accent)] px-6 py-4
                   text-black font-medium
                   transition-all duration-300
-                  w-[180px] overflow-hidden select-none
+                  w-[144px] overflow-hidden select-none
                 "
               >
                 {/* LEFT DOT */}

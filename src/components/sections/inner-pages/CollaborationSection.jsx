@@ -22,7 +22,7 @@ const CollaborationSection = ({ data }) => {
         {/* Sub Heading */}
         <div className="lg:w-[45%]">
           {sub_heading && (
-            <div className="flex items-center gap-2 mb-1">
+            <div className="flex items-center gap-2 mb-4">
               <span className="h-2 w-2 rounded-full bg-[var(--color-accent)]"></span>
               <span className="subheading-label uppercase">
                 {sub_heading}
@@ -39,7 +39,7 @@ const CollaborationSection = ({ data }) => {
               initial={{ opacity: 0, y: 25 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8 }}
-              className="relative w-full h-[300px] lg:h-[400px] rounded-lg overflow-hidden mb-16"
+              className="relative w-full h-[300px] lg:h-[400px] rounded-lg overflow-hidden mb-14"
             >
               <Image
                 src={image.url}

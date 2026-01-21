@@ -31,7 +31,7 @@ export default function Overview({ data }) {
           <span className="subheading-label uppercase">{sub_heading}</span>
         </div>
         <div
-          className="section-heading mb-6 md:mb-13"
+          className="section-heading mb-6 md:mb-14"
           dangerouslySetInnerHTML={{ __html: heading }}
         />
 
@@ -44,7 +44,7 @@ export default function Overview({ data }) {
           <div className="lg:w-[55%]">
             {/* Content heading */}
             {content_heading && (
-              <h3 className="content-heading  max-w-[490px] mb-4">
+              <h3 className="content-heading  max-w-[490px] mb-6">
                 {content_heading}
               </h3>
             )}

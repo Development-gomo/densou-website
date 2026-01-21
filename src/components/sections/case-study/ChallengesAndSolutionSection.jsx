@@ -38,7 +38,8 @@ export default function ChallengesAndSolutionSection({ data }) {
       {/* Two-Column Layout: Left (Challenge) + Right (Solution) */}
       <div className="flex flex-col md:flex-row md:gap-12">
         {/* Left Column: Challenge */}
-        <div className="lg:w-[50%]">
+        {content_heading && (
+          <div className="lg:w-[50%]">
           <div className="bg-[#f4f4f5] p-12 rounded-tl-lg rounded-tr-lg ">
             {content_heading && (
               <div
@@ -69,8 +70,10 @@ export default function ChallengesAndSolutionSection({ data }) {
             </div>
           )}
         </div>
+        )}
 
         {/* Right Column: Solution */}
+         {content_heading_solution && (
         <div className="lg:w-[50%] mt-6 lg:mt-0">
           <div className="bg-[#191F68] rounded-tl-lg rounded-tr-lg p-12 text-white">
             {content_heading_solution && (
@@ -102,6 +105,7 @@ export default function ChallengesAndSolutionSection({ data }) {
             </div>
           )}
         </div>
+         )}
       </div>
     </section>
   );

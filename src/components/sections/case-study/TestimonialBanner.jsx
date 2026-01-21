@@ -21,7 +21,7 @@ export default function TestimonialBanner({ data }) {
       )}
 
       {/* DARK OVERLAY (matches reference) */}
-      <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/50 to-black/20" />
+      {/* <div className="absolute inset  -0 bg-gradient-to-r from-black/80 via-black/50 to-black/20" /> */}
 
       {/* CONTENT */}
       <div className="relative z-10 h-full">
@@ -44,7 +44,7 @@ export default function TestimonialBanner({ data }) {
           )}
 
           {/* TESTIMONIAL */}
-          <div className="max-w-[680px]">
+          <div className="max-w-[700px]">
             {testimonial && (
               <blockquote className="text-white content-heading mb-8">
                 “{testimonial}”
@@ -55,13 +55,14 @@ export default function TestimonialBanner({ data }) {
             <div className="text-white">
               {name && <p className="font-medium">{name}</p>}
             </div>
+            {person_organization && (
             <div className="flex items-start gap-2">
               {/* ACCENT DOT */}
               <span className="mt-2 h-2 w-2 rounded-full bg-[var(--color-accent)]"></span>
-              {person_organization && (
+              
                 <p className="text-white text-sm">{person_organization}</p>
-              )}
             </div>
+             )}
           </div>
         </div>
       </div>

@@ -74,11 +74,11 @@ export default function TeamSection({ data, lang }) {
 
       {/* Filter Dropdown */}
       <div className="mb-14">
-        <div className="form-group relative max-w-[260px]">
+        <div className="form-group relative max-w-[307px]">
           <select
             value={activeFilter}
             onChange={(e) => setActiveFilter(e.target.value)}
-            className="team-filter min-w-[260px] rounded-sm bg-[var(--color-brand)] border border-gray-300 px-6 py-2 text-white h-[48px] capitalize"
+            className="team-filter min-w-[307px] rounded-sm bg-[var(--color-brand)] border border-gray-300 px-6 py-2 text-white h-[48px] capitalize"
           >
             {filters.map((f) => (
               <option key={f.slug} value={f.slug}>
