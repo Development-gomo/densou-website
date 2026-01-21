@@ -8,7 +8,7 @@ export default function CaseCtaBanner({ data, lang = "en" }) {
   if (!data) return null;
   const { heading, short_text, cta_text, cta_url } = data;
   return (
-    <section className="py-12 md:py-24 bg-[var(--color-brand)] text-white">
+    <section className="py-15 md:py-24 bg-[var(--color-brand)] text-white">
       <div className="web-width px-6">
         {/* TWO COLUMN LAYOUT */}
         <div className="flex flex-col lg:flex-row md:gap-15">

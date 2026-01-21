@@ -30,6 +30,7 @@ export default async function ServiceSinglePage({ params }) {
         currentSlug={slug}
         entryType="services"
         pathPrefix="service"
+        entryId={service?.id}
       />
       <main>
         <ServicePageBuilder sections={service?.acf?.services_page_builder} lang={lang} />

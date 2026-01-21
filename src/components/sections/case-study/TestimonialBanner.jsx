@@ -25,7 +25,7 @@ export default function TestimonialBanner({ data }) {
 
       {/* CONTENT */}
       <div className="relative z-10 h-full">
-        <div className="web-width px-6 h-full flex flex-col justify-between py-12 md:py-16">
+        <div className="web-width px-6 h-full flex flex-col justify-between py-15 md:py-16">
           {/* TOP RIGHT HEADING */}
           {heading && (
             <div className="flex justify-end">

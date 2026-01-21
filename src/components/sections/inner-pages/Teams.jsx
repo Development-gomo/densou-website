@@ -47,7 +47,7 @@ export default function TeamSection({ data, lang }) {
   if (team_cards === "Disable") return null;
 
   return (
-    <section className="team-section py-12 md:py-30 web-width px-6">
+    <section className="team-section py-15 md:py-30 web-width px-6">
       {/* Section Heading */}
       <div className="max-w-3xl mb-6">
         {sub_heading && (

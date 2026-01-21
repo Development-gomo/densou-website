@@ -33,7 +33,7 @@ export default async function LangScopedNotFound({ params }) {
           Go to homepage
         </Link>
       </main>
-          <Footer/>
+          <Footer lang={lang} />
     </>
   );
 }

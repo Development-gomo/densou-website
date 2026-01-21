@@ -18,7 +18,7 @@ const CollaborationSection = ({ data }) => {
 
   return (
     <section className="bg-[var(--color-brand)] text-white">
-      <div className="flex md:gap-4 md:gap-12 py-12 md:py-30 web-width px-6">
+      <div className="lg:flex md:gap-4 md:gap-12 py-15 md:py-30 web-width px-6">
         {/* Sub Heading */}
         <div className="lg:w-[45%]">
           {sub_heading && (
@@ -30,7 +30,7 @@ const CollaborationSection = ({ data }) => {
             </div>
           )}
 
-          {heading && <h2 className="section-heading text-white" dangerouslySetInnerHTML={{ __html: heading }} />}
+          {heading && <h2 className="section-heading text-white mb-6" dangerouslySetInnerHTML={{ __html: heading }} />}
         </div>
         <div className="lg:w-[55%]">
           {/* Image */}
@@ -51,7 +51,7 @@ const CollaborationSection = ({ data }) => {
             </motion.div>
           )}
 
-          <div className="div flex gap-10 mb-8">
+          <div className="div md:flex gap-10 mb-8">
           {/* Content Heading */}
           {content_heading && (
             <motion.h2
@@ -68,7 +68,7 @@ const CollaborationSection = ({ data }) => {
               initial={{ opacity: 0, y: 25 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8 }}
-              className="bg-white rounded-full flex items-center justify-center p-6"
+              className="bg-white rounded-full inline-block  mt-6 md:mt-0 md:flex items-center justify-center p-6"
             >
               <Image
                 src={logo.url}

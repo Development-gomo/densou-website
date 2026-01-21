@@ -88,7 +88,7 @@ export default async function Footer({ lang = DEFAULT_LANG }) {
 
   // FOOTER DATA
   const quickLinks = extractLinksFromHtml(widgets?.quick_links);
-    const services = extractLinksFromHtml(widgets?.services);
+  const services = extractLinksFromHtml(widgets?.services);
   const offices = extractOfficesFromHtml(widgets?.offices);
 
   const servicesTitle = widgets?.services_title || "Services";
@@ -106,9 +106,7 @@ export default async function Footer({ lang = DEFAULT_LANG }) {
     socialLinks.push(["x", themeOptions.social.x]);
   }
 
-  const hasMainContent =
-    quickLinks.length > 0 || services.length > 0 || offices.length > 0;
-
+  const hasMainContent = quickLinks.length > 0 || services.length > 0 || offices.length > 0;
   const hasBottomRow = footerLogo || copyrightText || socialLinks.length > 0;
 
   return (
@@ -302,7 +300,8 @@ export default async function Footer({ lang = DEFAULT_LANG }) {
                       <ul className="space-y-2 text-base font-normal text-white/80">
                         {services.map((service) => (
                           <li key={service.label}>
-                            <Link href={service.href} className="hover:text-white/70">
+                            <Link 
+                            href={lang === 'da' ? `/da${service.href}` : service.href} className="hover:text-white/70">
                               {service.label}
                             </Link>
                           </li>

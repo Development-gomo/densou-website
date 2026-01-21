@@ -31,7 +31,7 @@ export default function WhyChoose({ data }) {
         </div>
       )}
 
-      <div className="web-width px-6 py-12 md:py-44 text-white">
+      <div className="web-width px-6 py-15 md:py-44 text-white">
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-10 items-center">
 
           {/* LEFT CONTENT */}

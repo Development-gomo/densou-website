@@ -18,7 +18,7 @@ export default function ChallengesAndSolutionSection({ data }) {
   } = data;
 
   return (
-    <section id="challenges-and-solution" className="py-12 md:py-30 web-width px-6">
+    <section id="challenges-and-solution" className="py-15 md:py-30 web-width px-6">
       {/* Subheading with dot */}
       {sub_heading && (
         <div className="flex items-center gap-2 mb-6">

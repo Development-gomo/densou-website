@@ -34,7 +34,7 @@ export default function RelatedServices({ data, lang = DEFAULT_LANG }) {
   if (!services.length) return null;
 
   return (
-    <section id="services-section" className="py-12 md:py-30 overflow-hidden">
+    <section id="services-section" className="py-15 md:py-30 overflow-hidden">
       {/* FULL WIDTH WRAPPER */}
       <div className="w-full px-6 web-width">
         {/* SUB HEADING */}

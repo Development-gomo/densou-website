@@ -8,6 +8,7 @@ import { getPostBySlug, getMediaById } from "@/lib/api";
 import { buildMetadataFromYoast } from "@/lib/seo";
 import Image from "next/image";
 import { notFound } from "next/navigation";
+import { DEFAULT_LANG } from "@/config";
 
 /* ---------------------------------------------------------
    COMPONENT: PostBody
@@ -25,7 +26,7 @@ function PostBody({ entry, lang }) {
   if (contentHtml) {
     return (
       <div
-        className="prose prose-lg max-w-3xl mx-auto"
+        className="max-w-3xl mx-auto [&>p]:mb-6"
         dangerouslySetInnerHTML={{ __html: contentHtml }}
       />
     );
@@ -44,7 +45,7 @@ function PostBody({ entry, lang }) {
 --------------------------------------------------------- */
 export default async function postSinglePage({ params }) {
   const parsed = resolveParams(await params);
-  const lang = parsed?.lang || "en";
+  const lang = parsed?.lang || DEFAULT_LANG;
   const slug = parsed?.slug;
 
   if (!slug) notFound();
@@ -67,26 +68,27 @@ export default async function postSinglePage({ params }) {
         currentSlug={slug}
         entryType="post"
         pathPrefix="post"
+        entryId={post?.id}
       />
       <div className="h-[112px] w-full bg-black"></div> 
-      <main className="px-4 py-12 space-y-8">
+      <main className="px-4 py-15 space-y-8">
         <article className="max-w-4xl mx-auto space-y-6">
 
           {/* TITLE */}
           {post?.title?.rendered && (
             <h1
-              className="text-4xl font-semibold"
+              className="text-4xl font-semibold text-center"
               dangerouslySetInnerHTML={{ __html: post.title.rendered }}
             />
           )}
 
           {/* EXCERPT */}
-          {post?.excerpt?.rendered && (
+          {/* {post?.excerpt?.rendered && (
             <div
               className="text-lg text-gray-600"
               dangerouslySetInnerHTML={{ __html: post.excerpt.rendered }}
             />
-          )}
+          )} */}
 
           {/* HERO IMAGE */}
           {heroImage && (
@@ -116,7 +118,7 @@ export default async function postSinglePage({ params }) {
 --------------------------------------------------------- */
 export async function generateMetadata({ params }) {
   const parsed = resolveParams(await params);
-  const lang = parsed?.lang || "en";
+  const lang = parsed?.lang || DEFAULT_LANG;
   const slug = parsed?.slug;
 
   if (!slug) {

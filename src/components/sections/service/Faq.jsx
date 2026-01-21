@@ -14,7 +14,7 @@ export default function Faq({ data }) {
 
   return (
     <section className="bg-[var(--color-brand)] text-white">
-      <div className="web-width px-6 py-12 md:py-30">
+      <div className="web-width px-6 py-15 md:py-30">
         {/* SUB HEADING */}
         {sub_heading && (
           <div className="flex items-center gap-2 mb-4">

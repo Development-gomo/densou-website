@@ -8,7 +8,7 @@ export default function ResultSection({ data }) {
   const { sub_heading, heading, counters = [] } = data;
 
   return (
-    <section className="py-12 md:py-30 bg-white">
+    <section className="py-15 md:py-30 bg-white">
       <div className="web-width px-6">
         {/* SUB HEADING */}
         {sub_heading && (

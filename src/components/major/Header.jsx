@@ -8,7 +8,7 @@ import Image from "next/image";
 import ArrowSvg from "../../../public/right-arrow.svg";
 import DownSvg from "../../../public/down-arrow.svg";
 import ArrowSvgB from "../../../public/right-arrow-black.png";
-import { getMenu, getThemeOptions, getTranslationBySlug } from "@/lib/api";
+import { getMenu, getThemeOptions, getEntryTranslations } from "@/lib/api";
 import { DEFAULT_LANG } from "@/config";
 
 export default function Header({
@@ -16,6 +16,7 @@ export default function Header({
   currentSlug = "",
   entryType = "page",
   pathPrefix = "",
+  entryId = null, // Added: entry ID for dynamic translation lookup
 }) {
   const [menu, setMenu] = useState(null);
   const [options, setOptions] = useState(null);
@@ -79,30 +80,35 @@ export default function Header({
     async function fetchAltLangUrl() {
       try {
         const altLang = lang === "en" ? "da" : "en";
-        const translation = await getTranslationBySlug(
-          currentSlug,
-          lang,
-          altLang,
-          entryType,
-        );
-        if (translation?.slug) {
-          const prefix = pathPrefix ? `/${pathPrefix}` : "";
-          const langPrefix = altLang === "en" ? "" : `/${altLang}`;
-          setAltLangUrl(`${langPrefix}${prefix}/${translation.slug}`);
-        } else {
-          // Default to the homepage if no translation is found
-          setAltLangUrl(altLang === "en" ? "/" : `/${altLang}`);
+        
+        // Use entryId for dynamic translation lookup if available
+        if (entryId) {
+          // Call the working translations endpoint: /myroutes/v1/translations/[ID]
+          const translations = await getEntryTranslations(entryId, entryType, lang);
+          
+          if (translations && translations[altLang]?.slug) {
+            const translatedSlug = translations[altLang].slug;
+            const prefix = pathPrefix ? `/${pathPrefix}` : "";
+            const langPrefix = altLang === "en" ? "" : `/${altLang}`;
+            const finalUrl = `${langPrefix}${prefix}/${translatedSlug}`;
+            setAltLangUrl(finalUrl);
+            return;
+          }
         }
+        
+        // Fallback: if no entryId or translation not found, go to homepage
+        const fallbackUrl = altLang === "en" ? "/" : `/${altLang}`;
+        setAltLangUrl(fallbackUrl);
+        
       } catch (error) {
-        console.error("Failed to fetch translation:", error);
         setAltLangUrl(lang === "en" ? "/da" : "/"); // Fallback
       }
     }
 
-    if (currentSlug && currentSlug !== "/") {
+    if (entryId || (currentSlug && currentSlug !== "/")) {
       fetchAltLangUrl();
     }
-  }, [lang, currentSlug, entryType, pathPrefix]);
+  }, [lang, currentSlug, entryType, pathPrefix, entryId]);
 
   return (
     <header className={headerClasses}>
@@ -434,7 +440,9 @@ export default function Header({
                       <Link
                         href={
                           item.url.startsWith("/")
-                            ? `/${lang}${item.url}`
+                            ? lang === "en"
+                              ? item.url
+                              : `/${lang}${item.url}`
                             : item.url
                         }
                         className="text-white text-lg font-semibold"
@@ -453,7 +461,9 @@ export default function Header({
                             key={sub.id}
                             href={
                               sub.url.startsWith("/")
-                                ? `/${lang}${sub.url}`
+                                ? lang === "en"
+                                  ? sub.url
+                                  : `/${lang}${sub.url}`
                                 : sub.url
                             }
                             className="text-white/80 text-base hover:text-white transition"

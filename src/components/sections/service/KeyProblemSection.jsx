@@ -26,7 +26,7 @@ export default function KeyProblemSection({ data }) {
         </div>
       )}
 
-      <div className="web-width px-6 py-12 md:py-30">
+      <div className="web-width px-6 py-15 md:py-30">
 
         {/* SUB HEADING */}
         {sub_heading && (

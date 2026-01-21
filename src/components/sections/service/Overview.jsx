@@ -22,7 +22,7 @@ export default function ServiceOverview({ data }) {
     <>
       <section
         id="next"
-        className="about-section py-12 md:py-30 web-width px-6"
+        className="about-section py-15 md:py-30 web-width px-6"
       >
         {/* SUB HEADING WITH DOT */}
         <div className="flex items-center gap-2 mb-2 md:mb-4">

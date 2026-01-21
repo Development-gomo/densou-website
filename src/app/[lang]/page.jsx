@@ -17,7 +17,7 @@ export default async function LangHomePage({ params }) {
 
   return (
     <>
-      <Header lang={lang} />
+      <Header lang={lang} entryType="pages" entryId={page?.id} />
       <main id="home">
         <PageBuilder sections={page?.acf?.page_builder} lang={lang} />
       </main>

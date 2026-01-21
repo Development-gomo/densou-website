@@ -24,7 +24,7 @@ export default async function SinglePage({ params }) {
 
   return (
     <>
-      <Header lang={lang} currentSlug={slug} />
+      <Header lang={lang} currentSlug={slug} entryType="pages" entryId={data?.id} />
       <main>
         <PageBuilder sections={acf.page_builder} lang={lang} />
       </main>
