@@ -243,15 +243,12 @@ export default function Header({
             {/* Dropdown */}
             {langOpen && (
               <div
-                className="absolute right-0 mt-2 min-w-full rounded-sm
-        backdrop-blur-xl bg-white/20 border border-[#FFFFFF33]
-        shadow-lg overflow-hidden z-50"
+                className="absolute right-0 mt-2 min-w-full rounded-sm border border-[#FFFFFF33] shadow-lg overflow-hidden z-50"
               >
                 <Link
                   href={altLangUrl}
                   onClick={() => setLangOpen(false)}
-                  className="block px-4 py-3 text-sm text-white/80 backdrop-blur-xl
-          hover:text-white bg-black/30 transition"
+                  className="block px-4 py-3 text-sm text-white/80 backdrop-blur-[16px] bg-black/25  hover:text-white transition"
                 >
                   {lang === "en" ? "DA" : "EN"}
                 </Link>
