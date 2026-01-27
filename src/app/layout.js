@@ -1,6 +1,7 @@
 import "./globals.css";
 import { Instrument_Sans, Tinos } from "next/font/google";
 import { DEFAULT_LANG } from "@/config";
+import Head from "next/head";
 
 const instrumentSans = Instrument_Sans({
   subsets: ["latin"],
@@ -21,6 +22,9 @@ const tinos = Tinos({
 export default function RootLayout({ children }) {
   return (
     <html lang={DEFAULT_LANG} className={`${instrumentSans.variable} ${tinos.variable}`}>
+      <Head>
+        {/* Add scrips here */}
+      </Head>
       <body>{children}</body>
     </html>
   );

@@ -12,7 +12,7 @@ import { getMenu, getThemeOptions, getEntryTranslations } from "@/lib/api";
 import { DEFAULT_LANG } from "@/config";
 
 export default function Header({
-  lang = "en",
+  lang = DEFAULT_LANG,
   currentSlug = "",
   entryType = "page",
   pathPrefix = "",
