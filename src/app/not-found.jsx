@@ -1,6 +1,7 @@
 // src/app/not-found.jsx
 
 import Link from "next/link";
+import Image from "next/image";
 import ArrowSvg from "../../public/right-arrow.svg";
 
 export default function GlobalNotFound() {
