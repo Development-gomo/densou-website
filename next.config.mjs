@@ -17,6 +17,16 @@ const nextConfig = {
     ],
   },
 
+  async redirects() {
+    return [
+      {
+        source: "/frontpage",
+        destination: "/",
+        permanent: true,  // Permanent redirect (HTTP 301)
+      },
+    ];
+  },
+
   async rewrites() {
     return [
       // Danish language (specific paths first)
