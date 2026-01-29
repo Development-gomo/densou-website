@@ -355,9 +355,9 @@ export default async function Footer({ lang = DEFAULT_LANG }) {
               </div>
 
               {/* COPYRIGHT + SOCIAL */}
-              <div className="flex justify-between items-center">
+              <div className="flex justify-between items-center copyright-social-gap">
                 {copyrightText && (
-                  <p className=" text-[#9192A0]">{copyrightText}</p>
+                  <p className="text-[#9192A0]" dangerouslySetInnerHTML={{ __html: copyrightText }} />
                 )}
 
                 {/* SOCIAL */}

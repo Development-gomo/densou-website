@@ -331,6 +331,25 @@ span.subheading-label.text-\[var\(--color-accent\)\],
     top: 15px;
 }
 
+.copyright-social-gap p a:hover {
+    color: #fff;
+    transition: color 0.3s ease;
+}
+
+.privacy-text p {
+  margin-bottom: 1em;
+}
+
+.privacy-text ul {
+    margin-bottom: 1em;
+    list-style: disc;
+    list-style-position: outside;
+    margin-left: 25px;
+}
+
+.privacy-text ul li {
+  margin-bottom: 0.5em;
+}
 /* ==========================================
    SLIDER TEXT (client logos)
 ========================================== */

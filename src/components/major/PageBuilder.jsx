@@ -14,6 +14,7 @@ const Overview = dynamic(() => import("../sections/inner-pages/Overview"));
 const CollaborationSection = dynamic(() => import("../sections/inner-pages/CollaborationSection"));
 const TeamSection = dynamic(() => import("../sections/inner-pages/Teams"));
 const CoreValueSection = dynamic(() => import("../sections/inner-pages/CoreValue"));
+const LargeContent = dynamic(() => import("../sections/inner-pages/LargeContent"));
 
 export default function PageBuilder({ sections, lang = DEFAULT_LANG }) {
   if (!sections) return null;
@@ -54,6 +55,9 @@ export default function PageBuilder({ sections, lang = DEFAULT_LANG }) {
 
           case "core_value_section":
             return <CoreValueSection key={i} data={block} lang={lang} />;
+
+          case "large_content_section":
+            return <LargeContent key={i} data={block} lang={lang} />;  
 
           default:
             return null;
