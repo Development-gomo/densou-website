@@ -43,7 +43,7 @@ export default function HomeCounter({ data, lang = "en" }) {
           {/* SUBHEADING */}
           {sub_heading && (
             <div className="flex items-center gap-2 mb-2 md:mb-4">
-              <span className="h-2 w-2 rounded-full bg-[#27E0C0]"></span>
+              <span className="h-2 w-2 rounded-full bg-[-var(--color-accent)]"></span>
               <span className="subheading-label text-white ">
                 {sub_heading}
               </span>
@@ -58,7 +58,7 @@ export default function HomeCounter({ data, lang = "en" }) {
 
           {/* DESCRIPTION */}
           {short_text && (
-            <div className="text-white max-w-[420px] mb-6"
+            <div className="text-white max-w-[440px] mb-6"
               dangerouslySetInnerHTML={{ __html: short_text }}
             />
           )}
@@ -115,7 +115,7 @@ export default function HomeCounter({ data, lang = "en" }) {
           {counters.map((item, i) => (
             <div
               key={i}
-              className=" lg:max-w-[300px] p-4
+              className=" lg:max-w-[312px] p-4
                 lg:px-8 lg:py-10 rounded-sm backdrop-blur-[24px] bg-white/10
                 shadow-lg
               "

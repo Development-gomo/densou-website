@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import Image from "next/image";
 import DownArrow from "../../../../public/down-arrow.svg";
+import Email from "../../../../public/email.svg";
 import { DEFAULT_LANG } from "@/config";
 
 import {
@@ -128,10 +129,10 @@ export default function TeamSection({ data, lang }) {
               {member?.acf?.email && (
                 <a
                   href={`mailto:${member.acf.email}`}
-                  className="absolute right-4 top-4 z-10 flex h-9 w-9 items-center justify-center rounded-full bg-[#1c2a7a] text-white transition hover:opacity-90"
+                  className="absolute right-4 top-4 z-10 flex h-8 w-8 items-center justify-center rounded-full bg-[#1c2a7a] text-white transition hover:opacity-90"
                   aria-label="Email"
                 >
-                  ✉
+                 <Image src={Email} alt="Email" width={11} height={11} />
                 </a>
               )}
             </div>
