@@ -24,7 +24,7 @@ export default function OurApproach({ data }) {
 
         {heading && (
           <h2
-            className="section-heading mb-6 md:mb-16"
+            className="section-heading mb-6 md:mb-14"
             dangerouslySetInnerHTML={{ __html: heading }}
           />
         )}
@@ -36,9 +36,9 @@ export default function OurApproach({ data }) {
 
           {/* RIGHT COLUMN — CONTENT HEADING + BODY + CTA */}
           <div className="lg:w-[55%]">
-            <h3 className="content-heading mb-8">{section_heading}</h3>
+            <h3 className="text-[24px] leading-[32px] md:text-[40px] md:leading-[38px] font-medium mb-8">{section_heading}</h3>
             {/* STEP INDICATOR */}
-            <div className="analyser-index relative flex items-center gap-6 mb-8 md:mb-18">
+            <div className="analyser-index relative flex items-center gap-4 mb-8 md:mb-18">
               {analysis_list.map((_, index) => {
                 const isActive = index === activeIndex;
                 return (
@@ -56,7 +56,7 @@ export default function OurApproach({ data }) {
                     {["I", "II", "III", "IV"][index]}
                   <span className={`${
                         isActive
-                          ? "opacity-100 absolute border border-[#91929f59] md:w-[170px] left-18"
+                          ? "opacity-100 absolute border border-[#91929f59] md:w-[175px] left-18"
                           : "opacity-0" 
                       }`}></span>
                   </button>
@@ -74,7 +74,7 @@ export default function OurApproach({ data }) {
                 )}
 
                 {activeItem.short_text && (
-                  <p className="text-gray-600 max-w-xl leading-relaxed mb-6">
+                  <p className="text-gray-600 max-w-[480px] leading-relaxed mb-6">
                     {activeItem.short_text}
                   </p>
                 )}

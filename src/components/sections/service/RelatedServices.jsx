@@ -160,7 +160,7 @@ export default function RelatedServices({ data, lang = DEFAULT_LANG }) {
                   {/* LABEL BADGE */}
                   <div className="absolute top-6 left-6">
                     <span
-                      className="
+                      className="service-link
                     bg-white/20 backdrop-blur-xl text-white px-6 py-3
                     rounded-full flex items-center gap-2 text-sm leading-[18px]
                   "

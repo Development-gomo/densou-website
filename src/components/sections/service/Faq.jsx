@@ -26,13 +26,13 @@ export default function Faq({ data }) {
         {/* MAIN HEADING */}
         {heading && (
           <h2
-            className="section-heading mb-6 md:mb-12"
+            className="section-heading mb-8 md:mb-14"
             dangerouslySetInnerHTML={{ __html: heading }}
           />
         )}
 
         {/* FAQ LIST */}
-        <div className="divide-y divide-[#91929f4d]">
+        <div className="divide-y divide-[#91929f4d] border-t border-[#91929f4d]">
           {faqs.map((faq, index) => {
             const isOpen = openIndex === index;
 
@@ -40,10 +40,10 @@ export default function Faq({ data }) {
               <div key={index} className="py-6 md:py-8 [&:nth-last-child(1)]:pb-0">
                 <button
                   onClick={() => toggle(index)}
-                  className="w-full flex items-start gap-4 md:gap-20 text-left cursor-pointer"
+                  className="w-full flex items-center gap-4 md:gap-20 text-left cursor-pointer"
                 >
                   {/* NUMBER */}
-                  <span className="text-[var(--color-accent)] text-sm md:text-base min-w-[48px] pt-1">
+                  <span className="text-[var(--color-accent)] text-sm md:text-base min-w-[30px] pt-1">
                     ({String(index + 1).padStart(2, "0")})
                   </span>
 
@@ -68,7 +68,7 @@ export default function Faq({ data }) {
 
                 {/* ANSWER */}
                 {isOpen && (
-                  <div className="ml-[64px] md:ml-[128px] mt-6 text-white">
+                  <div className="ml-[64px] md:ml-[108px] mt-6 max-w-[1104px] text-white">
                     <div dangerouslySetInnerHTML={{ __html: faq.answers }} />
                   </div>
                 )}

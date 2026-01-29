@@ -62,7 +62,7 @@ export default function OurServicesSection({ data }) {
                 return (
                   <div
                     key={index}
-                    className="py-6 md:py-8 [&:nth-last-child(1)]:pb-0 [&:nth-child(1)]:pt-0 border-btm relative"
+                    className="py-6 md:py-8 [&:nth-child(1)]:pt-0 border-btm relative"
                   >
                     <button
                       onClick={() => toggleService(index)}
@@ -92,12 +92,12 @@ export default function OurServicesSection({ data }) {
                     {/* SERVICE DETAILS (expand when open) */}
                     {isOpen && (
                       <div className="ml-8 mt-6">
-                        <div className="text-white w-[80%]">{service.short_text}</div>
+                        <div className="text-white max-w-[540px]">{service.short_text}</div>
                         {service.cta_text && service.cta_url && (
                           <Link
                             href={service.cta_url}
-                            className="mt-8 gap-3 group relative inline-flex items-center
-                                    rounded-sm bg-[var(--color-accent)] px-6 py-4 text-white
+                            className="mt-6 gap-3 group relative inline-flex items-center
+                                    rounded-sm bg-[var(--color-accent)] px-6 py-[14px] text-white
                                     transition-all duration-300 hover:bg-[var(--color-accent)]
                                     w-[155px] overflow-hidden select-none"
                           >

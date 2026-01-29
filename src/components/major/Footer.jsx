@@ -119,7 +119,7 @@ export default async function Footer({ lang = DEFAULT_LANG }) {
           {/* First Column with max-width 415px */}
           <div className="max-w-[415px] w-full">
             {sub_heading && (
-              <div className="flex items-center gap-2 mb-1">
+              <div className="flex items-center gap-2 mb-4">
                 <span className="h-2 w-2 rounded-full bg-[var(--color-accent)]"></span>
                 <span className="subheading-label text-[#9192A0] uppercase">
                   {sub_heading}
@@ -188,7 +188,7 @@ export default async function Footer({ lang = DEFAULT_LANG }) {
           <div className="grid grid-cols-3 gap-2">
             <div className="relative">
               {column_i_text && (
-                <div className="h-[195px] bg-[#272D7E] mb-[10px] md:text-[18px] rounded-sm p-3 lg:p-6 flex items-end mt-5 lg:mt-34 text-white/80 leading-[26px]">
+                <div className="h-[195px] bg-[#272D7E] mb-[10px] md:text-[18px] rounded-sm p-3 lg:p-6 flex items-end mt-5 lg:mt-34 text-white leading-[26px]">
                   <i>{column_i_text}</i>
                 </div>
               )}
@@ -213,14 +213,14 @@ export default async function Footer({ lang = DEFAULT_LANG }) {
                 />
               )}
               {column_ii_text && (
-                <div className="h-[195px] lg:h-[175px] md:text-[18px] bg-[#272D7E] mt-[8px] rounded-sm p-3 lg:p-6 flex items-end text-white/80 leading-[26px]">
+                <div className="h-[195px] lg:h-[175px] md:text-[18px] bg-[#272D7E] mt-[8px] rounded-sm p-3 lg:p-6 flex items-end text-white leading-[26px]">
                   <i>{column_ii_text}</i>
                 </div>
               )}
             </div>
             <div className="relative">
               {column_iii_text && (
-                <div className="h-[195px] lg:h-[205px] bg-[#272D7E] md:text-[18px] mt-[20px] md:mt-[13px] mb-[8px] rounded-sm p-3 lg:p-6 flex items-end text-white/80 leading-[26px]">
+                <div className="h-[195px] lg:h-[205px] bg-[#272D7E] md:text-[18px] mt-[20px] md:mt-[13px] mb-[8px] rounded-sm p-3 lg:p-6 flex items-end text-white leading-[26px]">
                   <i>{column_iii_text}</i>
                 </div>
               )}
@@ -276,11 +276,11 @@ export default async function Footer({ lang = DEFAULT_LANG }) {
                     {quickLinks.map((item) => (
                       <li
                         key={item.label}
-                        className="flex items-center relative group justify-between text-xl md:text-[32px] border-b border-white/10 mb-0 py-2 [&:nth-child(1)]:pt-0"
+                        className="flex items-center relative group justify-between text-xl md:text-[32px] border-b border-white/10 mb-0 py-[10.5px] [&:nth-child(1)]:pt-0 footer-quick-link"
                       >
                         <Link href={lang === 'da' ? `/da${item.href}` : item.href} className=" hover:text-white/70">
                           {item.label}
-                          <Image src={RightSVG} width={19} height={19} alt="arrow" className="opacity-0 group-hover:opacity-100 absolute right-3 top-5 " />
+                          <Image src={RightSVG} width={19} height={19} alt="arrow" className="opacity-0 group-hover:opacity-100 absolute right-3 top-6 " />
                         </Link>
                       </li>
                     ))}
@@ -294,10 +294,10 @@ export default async function Footer({ lang = DEFAULT_LANG }) {
                   {/* SERVICES */}
                   {services.length > 0 && (
                     <div>
-                      <p className="mb-6 text-[14px] uppercase tracking-[0.17px] text-[#9192A0]">
+                      <p className="mb-6 text-[14px] font-[500] uppercase tracking-[0.17px] text-[#9192A0]">
                         {servicesTitle}
                       </p>
-                      <ul className="space-y-2 text-base font-normal text-white/80">
+                      <ul className="space-y-2 text-base font-normal text-white/90 leading-[30px]">
                         {services.map((service) => (
                           <li key={service.label}>
                             <Link 
@@ -313,16 +313,16 @@ export default async function Footer({ lang = DEFAULT_LANG }) {
                   {/* OFFICES */}
                   {offices.length > 0 && (
                     <div>
-                      <p className="mb-6 text-[14px] uppercase tracking-[0.17px] text-[#9192A0]">
+                      <p className="mb-6 text-[14px] font-[500] uppercase tracking-[0.17px] text-[#9192A0]">
                         {officesTitle}
                       </p>
                       <div className="space-y-6 text-[16px]">
                         {offices.map((office) => (
                           <div key={office.title}>
-                            <p className="mb-2 font-semibold uppercase">
+                            <p className="mb-3 font-[500] uppercase">
                               {office.title}
                             </p>
-                            <ul className="space-y-1 text-white/80">
+                            <ul className="space-y-1 text-white">
                               {office.lines.map((line, i) => (
                                 <li key={i} dangerouslySetInnerHTML={{ __html: line }} />
                               ))}

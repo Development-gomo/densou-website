@@ -267,10 +267,10 @@ span.subheading-label.text-\[var\(--color-accent\)\],
   margin: 0;
 }
 
-.border-btm:nth-child(1) button:after {
+.border-btm button:after {
   content: "";
   position: absolute;
-  border-bottom: 1px solid #ccc;
+  border-bottom: 1px solid #91929F;
   width: 97%;
   bottom: 0;
   right: 0;
@@ -321,6 +321,16 @@ span.subheading-label.text-\[var\(--color-accent\)\],
   letter-spacing: 0.6px;
   color: #9192A0 !important;
 }
+
+.service-link img {
+  height: 24px !important;
+  width: auto !important;
+}
+
+.footer-quick-link:nth-child(1) img {
+    top: 15px;
+}
+
 /* ==========================================
    SLIDER TEXT (client logos)
 ========================================== */
