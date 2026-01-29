@@ -27,11 +27,11 @@ export default function InnerHero({ data }) {
       </div>
 
       {/* Gradient Overlay */}
-      <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-[#00000050] to-[#000000] -z-10"></div>
+      {/* <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-[#00000050] to-[#000000] -z-10"></div> */}
 
       {/* HERO TEXT */}
       <div className="relative min-h-[100vh] web-width px-6 py-24 lg:py-20 h-full flex flex-col items-start  justify-end">
-        <div className="">
+        <div className="max-w-[1046px]">
           {sub_heading && (
             <motion.p
               initial={{ opacity: 0, y: 15 }}

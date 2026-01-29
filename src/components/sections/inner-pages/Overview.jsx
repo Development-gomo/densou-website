@@ -52,7 +52,7 @@ export default function Overview({ data }) {
             {/* Paragraph */}
             {short_text && (
               <div
-                className="body-text max-w-[490px] mb-6"
+                className="max-w-[490px] mb-6"
                 dangerouslySetInnerHTML={{ __html: short_text }}
               />
             )}
@@ -65,14 +65,14 @@ export default function Overview({ data }) {
                     gap-3 group relative inline-flex items-center select-none 
                     rounded-sm bg-[var(--color-brand)] px-6 py-4 text-white 
                     transition-all duration-300 hover:bg-[var(--color-brand)] 
-                    w-[140px] overflow-hidden
+                    w-[144px] overflow-hidden
                   "
               >
                 {/* LEFT SLOT (dot area, fixed width) */}
                 <span className="relative w-6 flex items-center justify-center">
                   <span
                     className="
-                        absolute h-2 w-2 rounded-full bg-[#27E0C0]
+                        absolute h-2 w-2 rounded-full bg-[var(--color-accent)]
                         transition-all duration-300 ease-out
                         group-hover:opacity-0 group-hover:-translate-x-1
                       "
