@@ -23,8 +23,8 @@ export default function StorySection({ data }) {
       <section className="py-15 md:py-30 web-width px-6">
         {/* Subheading with dot */}
         {sub_heading && (
-          <div className="flex items-center gap-2 mb-6">
-            <span className="h-2 w-2 rounded-full bg-[#00F5C4]"></span>
+          <div className="flex items-center gap-2 mb-4">
+            <span className="h-2 w-2 rounded-full bg-[var(--color-accent)]"></span>
             <span className="subheading-label uppercase">{sub_heading}</span>
           </div>
         )}
@@ -40,8 +40,8 @@ export default function StorySection({ data }) {
         {/* Two-Column Layout: Content + Quote */}
         <div className="flex flex-col lg:flex-row md:gap-25">
           {/* LEFT META COLUMN */}
-          <div className="md:w-[40%]"></div>
-          <div className="md:w-[60%]">
+          <div className="md:w-[35%]"></div>
+          <div className="md:w-[65%]">
             {content_heading && (
               <div
                 className="content-heading mb-6 max-w-[560px]"
@@ -50,7 +50,7 @@ export default function StorySection({ data }) {
             )}
             {short_text && (
               <div
-                className="body-text max-w-[560px] mb-6"
+                className="body-text max-w-[560px] mb-8 md:mb-10"
                 dangerouslySetInnerHTML={{ __html: short_text }}
               />
             )}
@@ -66,7 +66,7 @@ export default function StorySection({ data }) {
                     {review_text}
                 </p>
                 {review_by && (
-                  <p className="text-sm mt-4"><span className="h-2 w-2 rounded-full bg-white inline-block mr-2"></span> {review_by}</p>
+                  <p className="text-sm mt-5"><span className="h-2 w-2 rounded-full bg-white inline-block mr-2"></span> {review_by}</p>
                 )}
               </motion.div>
             )}
@@ -81,7 +81,7 @@ export default function StorySection({ data }) {
             initial={{ opacity: 0, y: 25 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
-            className="relative w-full h-[400px] lg:h-[500px]  overflow-hidden"
+            className="relative w-full h-[400px] lg:h-[450px]  overflow-hidden"
           >
             <img
               src={section_image.url}

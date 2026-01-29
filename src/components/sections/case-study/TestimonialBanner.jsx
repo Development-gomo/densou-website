@@ -8,7 +8,7 @@ export default function TestimonialBanner({ data }) {
   const { bg_image, heading, testimonial, name, person_organization } = data;
 
   return (
-    <section className="relative w-full h-[560px] md:h-[640px] overflow-hidden">
+    <section className="relative w-full h-[560px] md:h-[620px] overflow-hidden bg-black">
       {/* BACKGROUND IMAGE */}
       {bg_image?.url && (
         <Image
@@ -52,7 +52,7 @@ export default function TestimonialBanner({ data }) {
             )}
 
             {/* AUTHOR */}
-            <div className="text-white">
+            <div className="text-white font-bold m-1">
               {name && <p className="font-medium">{name}</p>}
             </div>
             {person_organization && (

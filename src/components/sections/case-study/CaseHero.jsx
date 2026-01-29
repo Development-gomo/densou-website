@@ -3,6 +3,7 @@
 import Image from "next/image";
 import React from "react";
 import DownArrow from "../../../../public/hero-down-arrow.png";
+import Overlay from "../../../../public/overlay.png";
 import { motion } from "framer-motion";
 
 export default function CaseHero({ data }) {
@@ -12,7 +13,7 @@ export default function CaseHero({ data }) {
   const logo = data?.logo?.url || "";
 
   return (
-    <section id="inner-hero" className="relative w-full  overflow-hidden hero">
+    <section id="inner-hero" className="relative w-full overflow-hidden hero">
       {/* BG IMAGE/VIDEO */}
       <div className="absolute inset-0 -z-10">
         {bgImage &&  
@@ -27,7 +28,8 @@ export default function CaseHero({ data }) {
       </div>
 
       {/* Gradient Overlay */}
-      {/* <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-black/60 to-black/80 -z-10"></div> */}
+      {/* <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-black/60 to-black/80 -z-10"></div>
+      <div className="absolute inset-0 -z-10"><Image src={Overlay} alt="Overlay" fill className="object-cover" /></div> */}
 
       {/* HERO TEXT */}
       <div className="relative min-h-[100vh] web-width px-6 py-16 lg:py-25 h-full flex flex-col items-start justify-end">

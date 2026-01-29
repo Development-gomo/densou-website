@@ -21,7 +21,7 @@ export default function ChallengesAndSolutionSection({ data }) {
     <section id="challenges-and-solution" className="py-15 md:py-30 web-width px-6">
       {/* Subheading with dot */}
       {sub_heading && (
-        <div className="flex items-center gap-2 mb-6">
+        <div className="flex items-center gap-2 mb-4">
           <span className="h-2 w-2 rounded-full bg-[#00F5C4]"></span>
           <span className="subheading-label uppercase">{sub_heading}</span>
         </div>
@@ -30,20 +30,20 @@ export default function ChallengesAndSolutionSection({ data }) {
       {/* Heading */}
       {heading && (
         <div
-          className="section-heading mb-8 md:mb-12 max-w-[990px]"
+          className="section-heading mb-8 md:mb-14 max-w-[990px]"
           dangerouslySetInnerHTML={{ __html: heading }}
         />
       )}
 
       {/* Two-Column Layout: Left (Challenge) + Right (Solution) */}
-      <div className="flex flex-col md:flex-row md:gap-12">
+      <div className="flex flex-col md:flex-row md:gap-4">
         {/* Left Column: Challenge */}
         {content_heading && (
           <div className="lg:w-[50%]">
           <div className="bg-[#f4f4f5] p-12 rounded-tl-lg rounded-tr-lg ">
             {content_heading && (
               <div
-                className="content-heading mb-6"
+                className="text-[40px] leading-[1.2] mb-6"
                 dangerouslySetInnerHTML={{ __html: content_heading }}
               />
             )}
@@ -51,7 +51,7 @@ export default function ChallengesAndSolutionSection({ data }) {
             {/* Bullet points for challenge */}
             {short_text && (
               <div
-                className="bullet-box mb-6"
+                className="bullet-box"
                 dangerouslySetInnerHTML={{ __html: short_text }}
               />
             )}
@@ -78,7 +78,7 @@ export default function ChallengesAndSolutionSection({ data }) {
           <div className="bg-[#191F68] rounded-tl-lg rounded-tr-lg p-12 text-white">
             {content_heading_solution && (
               <div
-                className="content-heading text-white mb-6"
+                className="text-[40px] leading-[1.2] text-white mb-6"
                 dangerouslySetInnerHTML={{ __html: content_heading_solution }}
               />
             )}
@@ -86,7 +86,7 @@ export default function ChallengesAndSolutionSection({ data }) {
             {/* Bullet points for solution */}
             {short_text_solution && (
               <div
-                className="bullet-box mb-6"
+                className="bullet-box"
                 dangerouslySetInnerHTML={{ __html: short_text_solution }}
               />
             )}

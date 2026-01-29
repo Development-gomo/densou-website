@@ -55,7 +55,7 @@ export default function ResultSection({ data }) {
                     {/* DESCRIPTION */}
                     {item.short_text && (
                       <div
-                        className=" mt-6"
+                        className="text-[18px] mt-6"
                         dangerouslySetInnerHTML={{ __html: item.short_text }}
                       />
                     )}

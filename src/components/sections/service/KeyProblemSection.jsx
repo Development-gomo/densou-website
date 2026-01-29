@@ -41,7 +41,7 @@ export default function KeyProblemSection({ data }) {
         {/* MAIN HEADING */}
         {heading && (
           <h2
-            className="section-heading mb-8 md:mb-14"
+            className="section-heading mb-8 md:mb-14 max-w-[1150px]"
             dangerouslySetInnerHTML={{ __html: heading }}
           />
         )}
@@ -69,9 +69,9 @@ export default function KeyProblemSection({ data }) {
 
               {/* TITLE */}
               {item.heading && (
-                <h3 className="text-[24px] leading-[30px] mb-3">
+                <p className="text-[24px] leading-[30px] font-[600] mb-3">
                   {item.heading}
-                </h3>
+                </p>
               )}
 
               {/* TEXT */}
