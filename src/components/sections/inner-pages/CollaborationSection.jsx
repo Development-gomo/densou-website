@@ -39,7 +39,7 @@ const CollaborationSection = ({ data }) => {
               initial={{ opacity: 0, y: 25 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8 }}
-              className="relative w-full h-[300px] lg:h-[400px] rounded-lg overflow-hidden mb-14"
+              className="relative w-full h-[300px] rounded-lg overflow-hidden mb-14"
             >
               <Image
                 src={image.url}
