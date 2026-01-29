@@ -340,6 +340,10 @@ span.subheading-label.text-\[var\(--color-accent\)\],
   margin-bottom: 1em;
 }
 
+.privacy-text p b {
+    font-size: 20px;
+}
+
 .privacy-text ul {
     margin-bottom: 1em;
     list-style: disc;
