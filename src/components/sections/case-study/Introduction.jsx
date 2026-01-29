@@ -38,20 +38,21 @@ export default function CaseIntroduction({ data }) {
       {/* MAIN HEADING */}
       {heading && (
         <div
-          className="section-heading mb-6 md:mb-13"
+          className="section-heading mb-6 md:mb-14 max-w-[1040px]"
           dangerouslySetInnerHTML={{ __html: heading }}
         />
       )}
 
       {/* TWO COLUMN LAYOUT */}
-      <div className="flex flex-col lg:flex-row md:gap-20">
+      <div className="flex flex-col lg:flex-row md:gap-25">
         {/* LEFT META COLUMN */}
         <div className="md:w-[40%]"></div>
-        <div className="md:w-[15%] space-y-6 text-gray-500">
+        <div className="md:w-[60%] flex flex-col lg:flex-row md:gap-25">
+        <div className="md:w-[30%] space-y-6 text-gray-500">
           {/* Client */}
           {client_name && (
             <div>
-              <p className="uppercase text-xs tracking-widest mb-1">Client</p>
+              <p className="uppercase text-xs tracking-widest mb-2">Client</p>
               <p className="text-black font-medium">{client_name}</p>
             </div>
           )}
@@ -59,7 +60,7 @@ export default function CaseIntroduction({ data }) {
           {/* Services */}
           {services_offered && (
             <div>
-              <p className="uppercase text-xs tracking-widest mb-1">Services</p>
+              <p className="uppercase text-xs tracking-widest mb-2">Services</p>
               <ul className="space-y-1">
                 {splitLines(services_offered).map((item, i) => (
                   <li key={i} className="text-black"
@@ -73,7 +74,7 @@ export default function CaseIntroduction({ data }) {
           {/* Categories */}
           {category && (
             <div>
-              <p className="uppercase text-xs tracking-widest mb-1">
+              <p className="uppercase text-xs tracking-widest mb-2">
                 Categories
               </p>
               <ul className="space-y-1">
@@ -89,17 +90,17 @@ export default function CaseIntroduction({ data }) {
           {/* Date */}
           {date && (
             <div>
-              <p className="uppercase text-xs tracking-widest mb-1">Date</p>
+              <p className="uppercase text-xs tracking-widest mb-2">Date</p>
               <p className="text-black">{date}</p>
             </div>
           )}
         </div>
 
         {/* RIGHT CONTENT COLUMN */}
-        <div className="md:w-[55%] mt-10 lg:mt-0">
+        <div className="md:w-[70%] mt-10 lg:mt-0">
           {/* Content Heading */}
           {content_heading && (
-            <h3 className="content-heading max-w-[520px] mb-4">
+            <h3 className="content-heading mb-4">
               {content_heading}
             </h3>
           )}
@@ -162,6 +163,7 @@ export default function CaseIntroduction({ data }) {
             </Link>
           )}
         </div>
+      </div>
       </div>
     </section>
   );

@@ -90,8 +90,8 @@ export default function TeamSection({ data, lang }) {
           <Image
             src={DownArrow}
             alt="Down arrow"
-            width={12}
-            height={12}
+            width={16}
+            height={14}
             className="absolute top-5 right-4"
           />
         </div>
@@ -120,9 +120,9 @@ export default function TeamSection({ data, lang }) {
               </div>
 
               {/* Info */}
-              <div className="absolute inset-x-0 max-w-[270px] bottom-4 left-4 bg-white/10 backdrop-blur-[24px] p-4 text-white">
+              <div className="absolute rounded-sm inset-x-0 max-w-[270px] bottom-4 left-4 bg-white/10 backdrop-blur-[24px] p-4 text-white">
                 <p className="font-medium">{member.title.rendered}</p>
-                <p className="text-sm opacity-80">{member?.acf?.job_title}</p>
+                <p className="text-sm opacity-80 team-title">{member?.acf?.job_title}</p>
               </div>
 
               {/* Email Button */}

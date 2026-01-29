@@ -38,7 +38,7 @@ export default function StorySection({ data }) {
         )}
 
         {/* Two-Column Layout: Content + Quote */}
-        <div className="flex flex-col lg:flex-row md:gap-20">
+        <div className="flex flex-col lg:flex-row md:gap-25">
           {/* LEFT META COLUMN */}
           <div className="md:w-[40%]"></div>
           <div className="md:w-[60%]">

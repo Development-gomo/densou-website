@@ -69,7 +69,7 @@ export default function CaseHero({ data }) {
         </div>
 
         {logo && (
-          <div className="w-[150px] bg-white/30 backdrop-blur-xl px-3 py-3 rounded-sm mt-12 md:mt-6">
+          <div className=" bg-white/30 backdrop-blur-xl px-3 py-3 rounded-sm mt-12 md:mt-6">
             <Image src={logo} alt="Case Study Logo" width={150} height={75} className=""/>
           </div>
         )}

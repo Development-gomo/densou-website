@@ -73,19 +73,19 @@ export default function CoreValueSection({ data })  {
   const activeItem = core_value[activeIndex];
 
   return (
-    <section className="relative overflow-hidden bg-[#151B5D] text-white">
+    <section className="relative overflow-hidden bg-[var(--color-brand)] text-white">
       <div className="pt-15 md:pt-30 web-width px-6">
         {/* Sub heading */}
         {sub_heading && (
           <p className="mb-10 flex items-center gap-2 text-xs uppercase tracking-[0.35em] text-white/60">
-            <span className="h-2 w-2 rounded-full bg-[#00F5C4]" />
+            <span className="h-2 w-2 rounded-full bg-[var(--color-accent)]" />
             {sub_heading}
           </p>
         )}
       </div>
       <div className="full-width pb-15 md:pb-30 px-6 md:px-0">
         {/* Marquee slider */}
-        <div className="relative mb-8">
+        <div className="relative mb-6">
           {/* Left fade gradient */}
           <div className="pointer-events-none absolute left-0 top-0 z-10 h-full w-32 bg-gradient-to-r from-[#151B5D] to-transparent" />
           
@@ -124,9 +124,9 @@ export default function CoreValueSection({ data })  {
                   
                   {/* Heading text */}
                   <h2
-                    className={`text-[clamp(2.5rem,10vw,7rem)] font-medium uppercase leading-none transition-all duration-500 ${
+                    className={`text-[clamp(2.5rem,10vw,7rem)] font-semibold uppercase leading-none transition-all duration-500 core-text ${
                       isActive
-                        ? "text-[#00F5C4]"
+                        ? "text-[var(--color-accent)]"
                         : "text-white/20"
                     }`}
                   >
@@ -144,7 +144,7 @@ export default function CoreValueSection({ data })  {
             key={activeIndex}
             className="max-w-[400px] md:mr-[250px] animate-fade-in md:flex gap-4"
           >
-            <p className="mb-6 md:mb-0 text-sm text-[#00FEC3]">
+            <p className="mb-6 md:mb-0 text-[#00FEC3]">
               ({String(activeIndex + 1).padStart(2, "0")})
             </p>
 

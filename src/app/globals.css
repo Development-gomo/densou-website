@@ -308,7 +308,19 @@ span.subheading-label.text-\[var\(--color-accent\)\],
   }
 }
 
+.team-title {
+  font-family: var(--font-serif) !important;
+}
 
+.core-text {
+  font-weight: 600 !important;
+  letter-spacing: 5.6px;
+}
+
+.tracking-widest {
+  letter-spacing: 0.6px;
+  color: #9192A0 !important;
+}
 /* ==========================================
    SLIDER TEXT (client logos)
 ========================================== */
