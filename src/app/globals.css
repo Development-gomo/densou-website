@@ -270,7 +270,7 @@ span.subheading-label.text-\[var\(--color-accent\)\],
 .border-btm button:after {
   content: "";
   position: absolute;
-  border-bottom: 1px solid #91929F;
+  border-bottom: 1px solid #91929f4d;
   width: 97%;
   bottom: 0;
   right: 0;
@@ -354,6 +354,16 @@ span.subheading-label.text-\[var\(--color-accent\)\],
 .privacy-text ul li {
   margin-bottom: 0.5em;
 }
+
+.result-number:nth-child(1) .suffix-text {
+    font-size: 78px;
+}
+
+#key-problems .gap-4 img.object-contain {
+    height: 30px;
+    width: auto;
+}
+
 /* ==========================================
    SLIDER TEXT (client logos)
 ========================================== */

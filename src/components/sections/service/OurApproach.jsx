@@ -45,7 +45,7 @@ export default function OurApproach({ data }) {
                   <button
                     key={index}
                     onClick={() => setActiveIndex(index)}
-                    className={`w-16 h-16 rounded-full flex items-center justify-center text-[20px] transition cursor-pointer relative transation-all duration-300 font-[var(--font-serif)]
+                    className={`w-16 h-16 rounded-full flex items-center justify-center text-[20px] transition cursor-pointer relative transation-all duration-300 font-serif
                       ${
                         isActive
                           ? "bg-[var(--color-accent)] active md:mr-[175px]"

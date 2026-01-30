@@ -43,7 +43,7 @@ export default function HomeCounter({ data, lang = "en" }) {
           {/* SUBHEADING */}
           {sub_heading && (
             <div className="flex items-center gap-2 mb-2 md:mb-4">
-              <span className="h-2 w-2 rounded-full bg-[-var(--color-accent)]"></span>
+              <span className="h-2 w-2 rounded-full bg-[var(--color-accent)]"></span>
               <span className="subheading-label text-white ">
                 {sub_heading}
               </span>

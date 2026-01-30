@@ -53,7 +53,7 @@ export default function TestimonialBanner({ data }) {
 
             {/* AUTHOR */}
             <div className="text-white font-bold m-1">
-              {name && <p className="font-medium">{name}</p>}
+              {name && <p className="font-bold">{name}</p>}
             </div>
             {person_organization && (
             <div className="flex items-start gap-2">

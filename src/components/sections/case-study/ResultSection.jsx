@@ -23,7 +23,7 @@ export default function ResultSection({ data }) {
         {/* MAIN HEADING */}
         {heading && (
           <div
-            className="section-heading max-w-[990px] mb-8 md:mb-16"
+            className="section-heading max-w-[990px] mb-8 md:mb-14"
             dangerouslySetInnerHTML={{ __html: heading }}
           />
         )}
@@ -37,16 +37,16 @@ export default function ResultSection({ data }) {
                 {counters.map((item, index) => (
                   <div
                     key={index}
-                    className="bg-[#F4F4F6] rounded-lg p-8 flex flex-col justify-between gap-10 md:min-h-[260px]"
+                    className="result-number bg-[#F4F4F6] rounded-lg p-8 flex flex-col justify-between gap-10 md:min-h-[260px]"
                   >
                     {/* NUMBER */}
-                    <div className="relative">
+                    <div className="relative ">
                       <span className="text-[80px] leading-[70px] font-medium">
                         {item.number}
                       </span>
 
                       {item.suffix && (
-                        <span className="text-[50px] leading-[50px] font-medium text-[var(--color-accent)] ml-1 absolute top-[-5px]">
+                        <span className="suffix-text text-[50px] leading-[50px] font-medium text-[var(--color-accent)] ml-1 absolute top-[-5px]">
                           {item.suffix}
                         </span>
                       )}

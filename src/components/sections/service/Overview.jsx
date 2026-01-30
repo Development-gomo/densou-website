@@ -30,7 +30,7 @@ export default function ServiceOverview({ data }) {
           <span className="subheading-label uppercase">{sub_heading}</span>
         </div>
         <div
-          className="section-heading mb-8 md:mb-16"
+          className="section-heading mb-8 md:mb-14"
           dangerouslySetInnerHTML={{ __html: heading }}
         />
 
