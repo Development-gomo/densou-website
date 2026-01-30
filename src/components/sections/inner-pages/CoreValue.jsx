@@ -4,12 +4,12 @@ import { useEffect, useState, useRef } from "react";
 import Image from "next/image";
 import Seperator from "../../../../public/seperator.svg";
 
-export default function CoreValueSection({ data })  {
+export default function CoreValueSection({ data }) {
   const { sub_heading, core_value = [] } = data || {};
   const [activeIndex, setActiveIndex] = useState(0);
   const scrollRef = useRef(null);
   const itemRefs = useRef([]);
-  
+
   // Duplicate items for seamless looping
   const items = [...core_value, ...core_value, ...core_value];
 
@@ -22,28 +22,28 @@ export default function CoreValueSection({ data })  {
     let animationId;
     let scrollPos = 0;
     const scrollSpeed = 1.2; // pixels per frame
-    
+
     // Get the width of one set of items
     const singleSetWidth = scrollContainer.scrollWidth / 3;
 
     const animate = () => {
       scrollPos += scrollSpeed;
-      
+
       // Reset to beginning when we've scrolled one full set
       if (scrollPos >= singleSetWidth) {
         scrollPos = 0;
       }
-      
+
       scrollContainer.scrollLeft = scrollPos;
-      
+
       // Calculate which item is currently active (in center)
       const containerCenter = scrollContainer.offsetWidth / 2;
       const scrollCenter = scrollPos + containerCenter;
-      
+
       // Find which item is closest to center
       let closestIndex = 0;
       let closestDistance = Infinity;
-      
+
       itemRefs.current.forEach((item, i) => {
         if (item && i < core_value.length) {
           const itemCenter = item.offsetLeft + item.offsetWidth / 2;
@@ -54,7 +54,7 @@ export default function CoreValueSection({ data })  {
           }
         }
       });
-      
+
       setActiveIndex(closestIndex);
       animationId = requestAnimationFrame(animate);
     };
@@ -77,10 +77,10 @@ export default function CoreValueSection({ data })  {
       <div className="pt-15 md:pt-30 web-width px-6">
         {/* Sub heading */}
         {sub_heading && (
-          <p className="mb-10 flex items-center gap-2 text-xs uppercase tracking-[0.35em] text-white/60">
-            <span className="h-2 w-2 rounded-full bg-[var(--color-accent)]" />
-            {sub_heading}
-          </p>
+          <div className="flex items-center gap-2 mb-4">
+            <span className="h-2 w-2 rounded-full bg-[var(--color-accent)]"></span>
+            <span className="subheading-label uppercase">{sub_heading}</span>
+          </div>
         )}
       </div>
       <div className="full-width pb-15 md:pb-30 px-6 md:px-0">
@@ -88,7 +88,7 @@ export default function CoreValueSection({ data })  {
         <div className="relative mb-6">
           {/* Left fade gradient */}
           <div className="pointer-events-none absolute left-0 top-0 z-10 h-full w-32 bg-gradient-to-r from-[#151B5D] to-transparent" />
-          
+
           {/* Right fade gradient */}
           <div className="pointer-events-none absolute right-0 top-0 z-10 h-full w-32 bg-gradient-to-l from-[#151B5D] to-transparent" />
 
@@ -96,12 +96,12 @@ export default function CoreValueSection({ data })  {
           <div
             ref={scrollRef}
             className="flex gap-8 overflow-hidden whitespace-nowrap scrollbar-hide md:gap-10"
-            style={{ scrollBehavior: 'auto' }}
+            style={{ scrollBehavior: "auto" }}
           >
             {items.map((item, i) => {
               const originalIndex = i % core_value.length;
               const isActive = originalIndex === activeIndex;
-              
+
               return (
                 <div
                   key={`${item.heading}-${i}`}
@@ -115,19 +115,21 @@ export default function CoreValueSection({ data })  {
                   {/* Dot indicator */}
                   <span
                     className={`h-8 w-8 shrink-0 rounded-full border-2 transition-all duration-300 ${
-                      isActive
-                        ? "opacity-100"
-                        : "opacity-60"
+                      isActive ? "opacity-100" : "opacity-60"
                     }`}
-                    
-                  ><Image src={Seperator} alt="Seperator" width={30} height={30} /></span>
-                  
+                  >
+                    <Image
+                      src={Seperator}
+                      alt="Seperator"
+                      width={30}
+                      height={30}
+                    />
+                  </span>
+
                   {/* Heading text */}
                   <h2
                     className={`text-[clamp(2.5rem,10vw,7rem)] font-semibold uppercase leading-none transition-all duration-500 core-text ${
-                      isActive
-                        ? "text-[var(--color-accent)]"
-                        : "text-white/20"
+                      isActive ? "text-[var(--color-accent)]" : "text-white/20"
                     }`}
                   >
                     {item.heading}
@@ -164,8 +166,14 @@ export default function CoreValueSection({ data })  {
           scrollbar-width: none;
         }
         @keyframes fadeIn {
-          from { opacity: 0; transform: translateY(10px); }
-          to { opacity: 1; transform: translateY(0); }
+          from {
+            opacity: 0;
+            transform: translateY(10px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
         }
         .animate-fade-in {
           animation: fadeIn 0.4s ease-out;

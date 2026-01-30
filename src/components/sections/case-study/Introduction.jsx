@@ -49,7 +49,7 @@ export default function CaseIntroduction({ data }) {
         {/* LEFT META COLUMN */}
         <div className="md:w-[35%]"></div>
         <div className="md:w-[65%] flex flex-col lg:flex-row md:gap-25">
-          <div className="md:w-[30%] space-y-6 text-gray-500">
+          <div className="md:w-[24%] space-y-6 text-gray-500">
             {/* Client */}
             {client_name && (
               <div>
@@ -68,7 +68,7 @@ export default function CaseIntroduction({ data }) {
                   {splitLines(services_offered).map((item, i) => (
                     <li
                       key={i}
-                      className="text-black"
+                      className="text-black font-medium"
                       dangerouslySetInnerHTML={{ __html: item }}
                     />
                   ))}
@@ -86,7 +86,7 @@ export default function CaseIntroduction({ data }) {
                   {splitLines(category).map((item, i) => (
                     <li
                       key={i}
-                      className="text-black"
+                      className="text-black font-medium"
                       dangerouslySetInnerHTML={{ __html: item }}
                     />
                   ))}
@@ -98,13 +98,13 @@ export default function CaseIntroduction({ data }) {
             {date && (
               <div>
                 <p className="uppercase text-xs tracking-widest mb-2">Date</p>
-                <p className="text-black">{date}</p>
+                <p className="text-black font-medium">{date}</p>
               </div>
             )}
           </div>
 
           {/* RIGHT CONTENT COLUMN */}
-          <div className="md:w-[70%] mt-10 lg:mt-0">
+          <div className="md:w-[76%] mt-10 lg:mt-0">
             {/* Content Heading */}
             {content_heading && (
               <h3 className="content-heading mb-6">{content_heading}</h3>

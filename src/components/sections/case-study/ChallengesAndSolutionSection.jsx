@@ -21,10 +21,10 @@ export default function ChallengesAndSolutionSection({ data }) {
     <section id="challenges-and-solution" className="py-15 md:py-30 web-width px-6">
       {/* Subheading with dot */}
       {sub_heading && (
-        <div className="flex items-center gap-2 mb-4">
-          <span className="h-2 w-2 rounded-full bg-[#00F5C4]"></span>
+        <div className="flex items-center gap-2 mb-2 md:mb-4">
+          <span className="h-2 w-2 rounded-full bg-[var(--color-accent)]"></span>
           <span className="subheading-label uppercase">{sub_heading}</span>
-        </div>
+        </div> 
       )}
 
       {/* Heading */}

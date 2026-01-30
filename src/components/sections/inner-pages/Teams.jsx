@@ -121,8 +121,8 @@ export default function TeamSection({ data, lang }) {
 
               {/* Info */}
               <div className="absolute rounded-sm inset-x-0 max-w-[270px] bottom-4 left-4 bg-white/10 backdrop-blur-[24px] p-4 text-white">
-                <p className="font-medium">{member.title.rendered}</p>
-                <p className="text-sm opacity-80 team-title">{member?.acf?.job_title}</p>
+                <p className="font-medium text-[20px] mb-1">{member.title.rendered}</p>
+                <p className="text-sm team-title">{member?.acf?.job_title}</p>
               </div>
 
               {/* Email Button */}
