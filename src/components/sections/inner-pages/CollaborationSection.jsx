@@ -45,7 +45,6 @@ const CollaborationSection = ({ data }) => {
                 src={image.url}
                 alt="Collaboration image"
                 layout="fill"
-                objectFit="cover"
                 className="object-cover"
               />
             </motion.div>
