@@ -31,18 +31,6 @@ export default function HomeServices({ data, lang = DEFAULT_LANG }) {
     load();
   }, [lang]);
 
-  // useEffect(() => {
-  //   const interval = setInterval(() => {
-  //   const btn = document.querySelector(".next-btn");
-  //     if (btn) {
-  //       btn.click();
-  //       clearInterval(interval); // Prevent repeated clicks
-  //     }
-  //   }, 100);
-
-  //   return () => clearInterval(interval);
-  // }, []);
-
   if (!services.length) return null;
 
   return (
