@@ -63,7 +63,7 @@ export default function KeyProblemSection({ data }) {
                   alt={item.heading || "icon"}
                   width={40}
                   height={40}
-                  className="object-contain mb-10 md:mb-20"
+                  className={`object-contain mb-10 md:mb-20 ${item.icon.name}`}
                 />
               )}
 

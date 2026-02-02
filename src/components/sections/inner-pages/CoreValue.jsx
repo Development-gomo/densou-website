@@ -114,7 +114,7 @@ export default function CoreValueSection({ data }) {
                 >
                   {/* Dot indicator */}
                   <span
-                    className={`h-8 w-8 shrink-0 rounded-full border-2 transition-all duration-300 ${
+                    className={`h-8 w-8 shrink-0 rounded-full transition-all duration-300 ${
                       isActive ? "opacity-100" : "opacity-60"
                     }`}
                   >

@@ -42,7 +42,7 @@ export default function OurServicesSection({ data }) {
                 initial={{ opacity: 0, y: 25 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8 }}
-                className="relative w-full h-[300px] lg:h-[400px] rounded-lg overflow-hidden mb-10"
+                className="relative w-full h-[300px] lg:h-[400px] rounded-lg mb-10"
               >
                 <Image
                   src={section_image.url}

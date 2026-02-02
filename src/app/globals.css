@@ -364,6 +364,9 @@ span.subheading-label.text-\[var\(--color-accent\)\],
     width: auto;
 }
 
+#key-problems .gap-4 img.object-contain.manual-workload {
+    height: 29px;
+}
 /* ==========================================
    SLIDER TEXT (client logos)
 ========================================== */

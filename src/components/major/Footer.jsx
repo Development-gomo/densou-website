@@ -113,7 +113,7 @@ export default async function Footer({ lang = DEFAULT_LANG }) {
     <>
       <section
         id="cta-section"
-        className="bg-[var(--color-brand)] text-white pt-12 lg:pt-30 border-solid border-b border-[#9293a066] relative overflow-x-hidden"
+        className="bg-[var(--color-brand)] text-white pt-12 lg:pt-30 relative overflow-x-hidden lg:top-[2px]"
       >
         <div className="web-width relative px-6 flex flex-col lg:flex-row gap-8 lg:gap-[50px]">
           {/* First Column with max-width 415px */}
@@ -264,7 +264,7 @@ export default async function Footer({ lang = DEFAULT_LANG }) {
       {/* =====================================================
           EXISTING FOOTER SECTION
          ===================================================== */}
-      <footer className="bg-[var(--color-brand)] text-white relative z-10">
+      <footer className="bg-[var(--color-brand)] text-white relative z-10  border-solid border-t border-[#9293a066]">
         <div className="mx-auto w-full web-width px-6 pb-12 pt-12 md:pt-25">
           {/* ============ MAIN FOOTER CONTENT ============ */}
           {hasMainContent && (
