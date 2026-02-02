@@ -34,9 +34,7 @@ function PostBody({ entry, lang }) {
 
   // Fallback message
   return (
-    <p className="text-center text-gray-500">
-      Content will be available soon.
-    </p>
+    <p className="text-center text-gray-500">Content will be available soon.</p>
   );
 }
 
@@ -70,10 +68,9 @@ export default async function postSinglePage({ params }) {
         pathPrefix="post"
         entryId={post?.id}
       />
-      <div className="h-[112px] w-full bg-black"></div> 
+      <div className="h-[112px] w-full bg-black"></div>
       <main className="px-4 py-15 space-y-8">
         <article className="max-w-4xl mx-auto space-y-6">
-
           {/* TITLE */}
           {post?.title?.rendered && (
             <h1
@@ -103,6 +100,14 @@ export default async function postSinglePage({ params }) {
               />
             </div>
           )}
+          <div className=" max-w-3xl mx-auto text-[14px] text-[#9192A0]">
+            <span>Published on: </span>
+            {new Date(post.date).toLocaleDateString(undefined, {
+              month: "short",
+              day: "numeric",
+              year: "numeric",
+            })}
+          </div>
 
           {/* BODY CONTENT (ACF OR WYSIWYG) */}
           <PostBody entry={post} lang={lang} />
