@@ -78,15 +78,6 @@ export default async function postSinglePage({ params }) {
               dangerouslySetInnerHTML={{ __html: post.title.rendered }}
             />
           )}
-
-          {/* EXCERPT */}
-          {/* {post?.excerpt?.rendered && (
-            <div
-              className="text-lg text-gray-600"
-              dangerouslySetInnerHTML={{ __html: post.excerpt.rendered }}
-            />
-          )} */}
-
           {/* HERO IMAGE */}
           {heroImage && (
             <div className="relative w-full h-80 rounded-lg overflow-hidden">
@@ -108,7 +99,6 @@ export default async function postSinglePage({ params }) {
               year: "numeric",
             })}
           </div>
-
           {/* BODY CONTENT (ACF OR WYSIWYG) */}
           <PostBody entry={post} lang={lang} />
         </article>
@@ -117,7 +107,6 @@ export default async function postSinglePage({ params }) {
     </>
   );
 }
-
 /* ---------------------------------------------------------
    METADATA (Yoast SEO)
 --------------------------------------------------------- */
