@@ -46,7 +46,7 @@ export default function ResultSection({ data }) {
                       </span>
 
                       {item.suffix && (
-                        <span className="suffix-text text-[50px] leading-[50px] font-medium text-[var(--color-accent)] ml-1 absolute top-[-5px]">
+                        <span className="suffix-text text-[40px] leading-[40px] font-medium text-[var(--color-accent)] ml-1 absolute top-[-5px]">
                           {item.suffix}
                         </span>
                       )}
