@@ -31,7 +31,7 @@ export default function Overview({ data }) {
           <span className="subheading-label uppercase">{sub_heading}</span>
         </div>
         <div
-          className="section-heading mb-6 md:mb-14"
+          className="section-heading mb-6 md:mb-14 max-w-[1100px]"
           dangerouslySetInnerHTML={{ __html: heading }}
         />
 
