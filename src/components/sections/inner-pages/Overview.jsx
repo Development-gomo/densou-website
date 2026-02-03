@@ -109,6 +109,7 @@ export default function Overview({ data }) {
           </div>
         </div>
       </section>
+      {highlighted_sub_heading && highlighted_heading && (
       <section className="pb-12 md:pb-30 web-width px-6">
         <div className="flex items-center gap-2 mb-2 md:mb-4">
           <span className="subheading-label uppercase text-[var(--color-accent)]">
@@ -120,6 +121,7 @@ export default function Overview({ data }) {
           dangerouslySetInnerHTML={{ __html: highlighted_heading }}
         />
       </section>
+      )}
     </>
   );
 }
