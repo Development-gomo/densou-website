@@ -47,7 +47,17 @@ export async function getCaseStudyBySlug(slug, lang = DEFAULT_LANG) {
 }
 
 export async function getPostBySlug(slug, lang = DEFAULT_LANG) {
-  return getSingleEntry("posts", slug, lang);
+  const post = await getSingleEntry("posts", slug, lang);
+
+  if (post) {
+    // Fetch related posts based on categories or tags
+    const relatedPosts = await fetchWP(
+      `/wp/v2/posts?categories=${post.categories?.join(",")}&exclude=${post.id}&per_page=5&lang=${lang}`
+    );
+    post.relatedPosts = relatedPosts || [];
+  }
+
+  return post;
 }
 
 export async function getAllTeam(lang = DEFAULT_LANG) {

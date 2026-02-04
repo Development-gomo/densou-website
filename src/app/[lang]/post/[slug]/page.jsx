@@ -9,6 +9,7 @@ import { buildMetadataFromYoast } from "@/lib/seo";
 import Image from "next/image";
 import { notFound } from "next/navigation";
 import { DEFAULT_LANG } from "@/config";
+import Link from "next/link";
 
 /* ---------------------------------------------------------
    COMPONENT: PostBody
@@ -39,6 +40,22 @@ function PostBody({ entry, lang }) {
 }
 
 /* ---------------------------------------------------------
+   FETCH RELATED MEDIA
+--------------------------------------------------------- */
+async function fetchRelatedMedia(relatedPosts) {
+  const postsWithMedia = await Promise.all(
+    relatedPosts.map(async (post) => {
+      if (post.featured_media) {
+        const media = await getMediaById(post.featured_media);
+        return { ...post, featured_media: media };
+      }
+      return post;
+    })
+  );
+  return postsWithMedia;
+}
+
+/* ---------------------------------------------------------
    MAIN PAGE
 --------------------------------------------------------- */
 export default async function postSinglePage({ params }) {
@@ -50,6 +67,11 @@ export default async function postSinglePage({ params }) {
 
   const post = await getPostBySlug(slug, lang);
   if (!post) notFound();
+
+  // Fetch related posts media details
+  if (post.relatedPosts) {
+    post.relatedPosts = await fetchRelatedMedia(post.relatedPosts);
+  }
 
   // Get the featured image
   const featuredMedia = await getMediaById(post.featured_media);
@@ -101,6 +123,54 @@ export default async function postSinglePage({ params }) {
           </div>
           {/* BODY CONTENT (ACF OR WYSIWYG) */}
           <PostBody entry={post} lang={lang} />
+          {/* RELATED POSTS */}
+          <section className="related-posts">
+            <h2 className="content-heading text-center mb-14 mt-14">
+              {lang === DEFAULT_LANG ? "Related Posts" : "Flere Nytherer"}
+            </h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {post.relatedPosts && post.relatedPosts.length > 0 ? (
+                post.relatedPosts.map((relatedPost) => (
+                  <article key={relatedPost.id} className="p-4 border rounded-lg">
+                    {relatedPost.featured_media?.source_url ? (
+                      <div className="relative w-full h-40 mb-4 rounded-lg overflow-hidden">
+                        <Image
+                          src={relatedPost.featured_media.source_url}
+                          alt={relatedPost.title?.rendered || "Related post image"}
+                          fill
+                          className="object-cover"
+                          sizes="(min-width: 1024px) 1024px, 100vw"
+                        />
+                      </div>
+                    ) : (
+                      <div className="relative w-full h-40 mb-4 rounded-lg overflow-hidden bg-gray-200">
+                        <span className="text-gray-500">No image available</span>
+                      </div>
+                    )}
+                    <h3 className="text-xl font-medium mb-4 ">
+                      <Link
+                        href={
+                          lang === DEFAULT_LANG
+                            ? `/post/${relatedPost.slug}`
+                            : `/${lang}/post/${relatedPost.slug}`
+                        }
+                        className="hover:underline"
+                      >
+                        {relatedPost.title?.rendered || "Untitled"}
+                      </Link>
+                    </h3>
+                    <p className="text-sm text-gray-600">
+                      {relatedPost.excerpt?.rendered || "No description available."}
+                    </p>
+                  </article>
+                ))
+              ) : (
+                <p className="text-center text-gray-500">
+                  No related posts available.
+                </p>
+              )}
+            </div>
+          </section>
         </article>
       </main>
       <Footer lang={lang} currentSlug={slug} />
