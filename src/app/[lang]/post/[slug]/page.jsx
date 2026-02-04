@@ -91,7 +91,7 @@ export default async function postSinglePage({ params }) {
         entryId={post?.id}
       />
       <div className="h-[112px] w-full bg-black"></div>
-      <main className="px-4 py-15 space-y-8">
+      <main className="py-15 md:py-30 web-width px-6">
         <article className="max-w-4xl mx-auto space-y-6">
           {/* TITLE */}
           {post?.title?.rendered && (
