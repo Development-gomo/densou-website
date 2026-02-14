@@ -73,12 +73,12 @@ export default function CoreValueSection({ data }) {
   const activeItem = core_value[activeIndex];
 
   return (
-    <section className="relative overflow-hidden bg-[var(--color-brand)] text-white">
+    <section className="relative overflow-hidden bg-(--color-brand) text-white">
       <div className="pt-15 md:pt-30 web-width px-6">
         {/* Sub heading */}
         {sub_heading && (
           <div className="flex items-center gap-2 mb-4">
-            <span className="h-2 w-2 rounded-full bg-[var(--color-accent)]" />
+            <span className="h-2 w-2 rounded-full bg-(--color-accent)" />
             <span className="subheading-label">{sub_heading}</span>
           </div>
         )}

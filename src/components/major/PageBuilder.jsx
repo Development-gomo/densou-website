@@ -2,6 +2,7 @@
 
 import dynamic from "next/dynamic";
 import { DEFAULT_LANG } from "@/config";
+import Cform from "../sections/inner-pages/Cform";
 
 const Hero = dynamic(() => import("../sections/home/HomeHero"));
 const AboutUs = dynamic(() => import("../sections/home/HomeAbout"));
@@ -15,6 +16,7 @@ const CollaborationSection = dynamic(() => import("../sections/inner-pages/Colla
 const TeamSection = dynamic(() => import("../sections/inner-pages/Teams"));
 const CoreValueSection = dynamic(() => import("../sections/inner-pages/CoreValue"));
 const LargeContent = dynamic(() => import("../sections/inner-pages/LargeContent"));
+const Connectform = dynamic(() => import("../sections/inner-pages/Cform"));
 
 export default function PageBuilder({ sections, lang = DEFAULT_LANG }) {
   if (!sections) return null;
@@ -58,6 +60,9 @@ export default function PageBuilder({ sections, lang = DEFAULT_LANG }) {
 
           case "large_content_section":
             return <LargeContent key={i} data={block} lang={lang} />;  
+
+          case "contact_form_section":
+            return <Connectform key={i} data={block} lang={lang} />;
 
           default:
             return null;

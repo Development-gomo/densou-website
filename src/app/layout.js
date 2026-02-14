@@ -21,11 +21,11 @@ const tinos = Tinos({
 
 export default function RootLayout({ children }) {
   return (
-    <html lang={DEFAULT_LANG} className={`${instrumentSans.variable} ${tinos.variable}`}>
+    <html lang={DEFAULT_LANG} className={`${instrumentSans.variable} ${tinos.variable}`} suppressHydrationWarning>
       <Head>
         {/* Add scrips here */}
       </Head>
-      <body>{children}</body>
+      <body suppressHydrationWarning>{children}</body>
     </html>
   );
 }
