@@ -2,7 +2,13 @@
 
 import { DEFAULT_LANG } from "@/config";
 import { useEffect, useMemo, useState } from "react";
-import { getCf7FormSchema, submitCf7Direct, submitCf7FormProxy } from "@/lib/wp";
+import {
+  getCf7FormSchema,
+  submitCf7Direct,
+  submitCf7FormProxy,
+} from "@/lib/wp";
+import Image from "next/image";
+import ArrowSvg from "../../../../public/right-arrow.svg";
 
 function Field({ field, value, setValue, error }) {
   const common =
@@ -52,7 +58,9 @@ function Field({ field, value, setValue, error }) {
   }
 
   // default input: text/email/tel/url
-  const type = ["email", "tel", "url"].includes(field.type) ? field.type : "text";
+  const type = ["email", "tel", "url"].includes(field.type)
+    ? field.type
+    : "text";
 
   return (
     <div className="space-y-2">
@@ -75,7 +83,12 @@ export default function ContactForm({ formId = 982, lang = DEFAULT_LANG }) {
   const [schema, setSchema] = useState(null);
   const [values, setValues] = useState({});
   const [errors, setErrors] = useState({});
-  const [state, setState] = useState({ loading: true, submitting: false, ok: false, msg: "" });
+  const [state, setState] = useState({
+    loading: true,
+    submitting: false,
+    ok: false,
+    msg: "",
+  });
 
   const fields = useMemo(() => schema?.fields || [], [schema]);
 
@@ -96,7 +109,12 @@ export default function ContactForm({ formId = 982, lang = DEFAULT_LANG }) {
 
         setState({ loading: false, submitting: false, ok: false, msg: "" });
       } catch (e) {
-        setState({ loading: false, submitting: false, ok: false, msg: "Failed to load form." });
+        setState({
+          loading: false,
+          submitting: false,
+          ok: false,
+          msg: "Failed to load form.",
+        });
       }
     })();
 
@@ -126,7 +144,12 @@ export default function ContactForm({ formId = 982, lang = DEFAULT_LANG }) {
     setState((s) => ({ ...s, submitting: true, ok: false, msg: "" }));
 
     if (!validate()) {
-      setState((s) => ({ ...s, submitting: false, ok: false, msg: "Please fill required fields." }));
+      setState((s) => ({
+        ...s,
+        submitting: false,
+        ok: false,
+        msg: "Please fill required fields.",
+      }));
       return;
     }
 
@@ -140,7 +163,11 @@ export default function ContactForm({ formId = 982, lang = DEFAULT_LANG }) {
       let res;
       try {
         // Primary: direct CF7 submit
-        res = await submitCf7Direct(formId, schema?.hidden || {}, transformedValues);
+        res = await submitCf7Direct(
+          formId,
+          schema?.hidden || {},
+          transformedValues,
+        );
       } catch (directErr) {
         const directStatus = directErr?.cf7?.status;
         const directMessage = (directErr?.message || "").toLowerCase();
@@ -180,7 +207,10 @@ export default function ContactForm({ formId = 982, lang = DEFAULT_LANG }) {
     } catch (err) {
       // If CF7 validation errors come back, map them
       const cf7 = err?.cf7;
-      if (cf7?.status === "validation_failed" && Array.isArray(cf7?.invalid_fields)) {
+      if (
+        cf7?.status === "validation_failed" &&
+        Array.isArray(cf7?.invalid_fields)
+      ) {
         const next = {};
         cf7.invalid_fields.forEach((f) => {
           if (f?.field) next[f.field] = f?.message || "Invalid";
@@ -202,19 +232,65 @@ export default function ContactForm({ formId = 982, lang = DEFAULT_LANG }) {
   return (
     <form onSubmit={onSubmit} className="space-y-5">
       {fields.map((f) => (
-        <Field key={f.key} field={f} value={values[f.key]} setValue={setValue} error={errors[f.key]} />
+        <Field
+          key={f.key}
+          field={f}
+          value={values[f.key]}
+          setValue={setValue}
+          error={errors[f.key]}
+        />
       ))}
 
       <button
         type="submit"
         disabled={state.submitting}
-        className="mt-2 inline-flex w-[300px] items-center justify-center rounded-md bg-blue-600 px-6 py-3 text-white disabled:opacity-60"
+        className=" cursor-pointer
+                    gap-3 group relative inline-flex items-center select-none 
+                    rounded-sm bg-[var(--color-brand)] px-6 py-4 text-white 
+                    transition-all duration-300 hover:bg-[var(--color-brand)] 
+                    w-[170px] overflow-hidden
+                  "
       >
-        {state.submitting ? "Sending…" : "Send Message"}
+        <span className="relative w-2 h-2 display-block flex items-center justify-center">
+          <span
+            className="absolute h-2 w-2 rounded-full bg-[#27E0C0]
+                        transition-all duration-300 ease-out
+                        group-hover:opacity-0 group-hover:-translate-x-1"
+          ></span>
+        </span>
+
+        {/* TEXT (slides left on hover) */}
+        <span
+          className="
+                      flex-1 text-[16px] leading-none
+                      transition-all duration-300 ease-out 
+                      group-hover:-translate-x-4
+                      whitespace-nowrap"
+        >
+          {state.submitting ? "Sending…" : "Send Message"}
+        </span>
+
+        {/* RIGHT SLOT (arrow area, fixed width) */}
+        <span className="relative w-4 flex items-center justify-center">
+          <span
+            className="
+                        w-4 absolute text-[16px]
+                        opacity-0 -translate-x-4
+                        transition-all duration-300 ease-out
+                        group-hover:opacity-100 group-hover:-translate-x-2
+                      "
+          >
+            <Image src={ArrowSvg} alt="arrow" width={13} height={13} />
+          </span>
+        </span>
       </button>
 
       {state.msg ? (
-        <p className={`text-sm ${state.ok ? "text-green-700" : "text-red-700"}`}>{state.msg}</p>
+        <p
+          className={`text-sm ${state.ok ? "text-green-700" : "text-red-700"}`}
+        >
+          {state.msg}
+        </p>
       ) : null}
     </form>
   );
