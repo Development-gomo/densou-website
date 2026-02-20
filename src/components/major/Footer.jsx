@@ -313,13 +313,13 @@ export default async function Footer({ lang = DEFAULT_LANG }) {
                   {/* OFFICES */}
                   {offices.length > 0 && (
                     <div>
-                      <p className="mb-6 text-[14px] font-[500] uppercase tracking-[0.17px] text-[#9192A0]">
+                      <p className="mb-6 text-[14px] font-medium uppercase tracking-[0.17px] text-[#9192A0]">
                         {officesTitle}
                       </p>
                       <div className="space-y-6 text-[16px]">
                         {offices.map((office) => (
                           <div key={office.title}>
-                            <p className="mb-3 font-[500] uppercase">
+                            <p className="mb-3 font-medium uppercase">
                               {office.title}
                             </p>
                             <ul className="space-y-1 text-white">
@@ -343,11 +343,12 @@ export default async function Footer({ lang = DEFAULT_LANG }) {
               {/* LOGO */}
               <div>
                 {footerLogo?.url && (
-                  <div className="relative h-[44px] w-[240px] opacity-80">
+                  <div className="relative h-[39px] w-[240px] opacity-80">
                     <Image
                       src={footerLogo.url}
                       alt="Footer Logo"
-                      fill
+                      width={240}
+                      height={39}
                       className="object-contain"
                     />
                   </div>

@@ -15,7 +15,6 @@ export default function Contactform({ data }) {
         id="next"
         className="about-section py-15 md:py-30 web-width px-6"
       >
-        {/* SUB HEADING WITH DOT */}
         {sub_heading && (
           <div className="flex items-center gap-2 mb-2 md:mb-4">
             <span className="h-2 w-2 rounded-full bg-(--color-accent)"></span>
@@ -28,15 +27,20 @@ export default function Contactform({ data }) {
             dangerouslySetInnerHTML={{ __html: heading }}
           />
         )}
-        
-        {short_text && (
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-12">
+          <div>
+            {short_text && (
               <div
                 className="max-w-[490px] mb-6"
                 dangerouslySetInnerHTML={{ __html: short_text }}
               />
             )}
-        <ContactForm formId={select_form} lang={DEFAULT_LANG} />
-
+          </div>
+          <div>
+            <ContactForm formId={select_form} lang={DEFAULT_LANG} />
+          </div>
+        </div>
       </section>
     </>
   );
