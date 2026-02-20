@@ -2,11 +2,12 @@
 
 "use client";
 
+import { DEFAULT_LANG } from "@/config";
 import ContactForm from "../contact-form/ContactForm";
 
 export default function Contactform({ data }) {
   if (!data) return null;
-  const { sub_heading, heading, short_text } = data;
+  const { sub_heading, heading, short_text, select_form } = data;
 
   return (
     <>
@@ -34,7 +35,8 @@ export default function Contactform({ data }) {
                 dangerouslySetInnerHTML={{ __html: short_text }}
               />
             )}
-        <ContactForm />
+        <ContactForm formId={select_form} lang={DEFAULT_LANG} />
+
       </section>
     </>
   );

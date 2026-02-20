@@ -1,99 +1,221 @@
-import { useState, useEffect } from 'react';
-import { WP_BASE } from "@/config";
+"use client";
 
-export default function DynamicContactForm({ formId = "965" }) {
-  const [formConfig, setFormConfig] = useState(null);
-  const [formData, setFormData] = useState({});
-  const [status, setStatus] = useState(null);
+import { DEFAULT_LANG } from "@/config";
+import { useEffect, useMemo, useState } from "react";
+import { getCf7FormSchema, submitCf7Direct, submitCf7FormProxy } from "@/lib/wp";
 
-  useEffect(() => {
-    // Fetch form configuration dynamically from the backend
-    const fetchFormConfig = async () => {
-      try {
-        const response = await fetch(`${WP_BASE}/custom-api/v1/form-config/${formId}`);
-        const data = await response.json();
-        console.log("Fetched form configuration:", data);
-        setFormConfig(data);
+function Field({ field, value, setValue, error }) {
+  const common =
+    "w-full rounded-md border px-4 py-3 text-sm outline-none " +
+    (error ? "border-red-500" : "border-black/15 focus:border-black/30");
 
-        // Initialize form data with empty values based on fields
-        const initialData = {};
-        Object.keys(data.fields).forEach((fieldKey) => {
-          initialData[fieldKey] = "";
-        });
-        setFormData(initialData);
-      } catch (error) {
-        console.error("Error fetching form configuration:", error);
-      }
-    };
+  const label = field.label || field.key;
 
-    fetchFormConfig();
-  }, [formId]);
-
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData((prevData) => ({
-      ...prevData,
-      [name]: value,
-    }));
-  };
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-
-    try {
-      console.log("Submitting form data:", formData);
-      const response = await fetch(`${WP_BASE}/custom-api/v1/submit-form`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(formData),
-      });
-
-      const result = await response.json();
-      console.log("Form submission response:", result);
-      if (response.ok) {
-        setStatus("Message sent successfully");
-      } else {
-        setStatus(result.error || "Failed to send message");
-      }
-    } catch (error) {
-      console.error("Error occurred while sending message:", error);
-      setStatus("Error occurred while sending message");
-    }
-  };
-
-  if (!formConfig) {
-    return <p>Loading form...</p>;
+  if (field.type === "textarea") {
+    return (
+      <div className="space-y-2">
+        <label className="text-sm font-medium">
+          {label} {field.required ? "*" : ""}
+        </label>
+        <textarea
+          className={common + " min-h-[140px]"}
+          value={value || ""}
+          placeholder={field.placeholder || ""}
+          onChange={(e) => setValue(field.key, e.target.value)}
+        />
+        {error ? <p className="text-xs text-red-600">{error}</p> : null}
+      </div>
+    );
   }
 
+  if (field.type === "select") {
+    return (
+      <div className="space-y-2">
+        <label className="text-sm font-medium">
+          {label} {field.required ? "*" : ""}
+        </label>
+        <select
+          className={common}
+          value={value || ""}
+          onChange={(e) => setValue(field.key, e.target.value)}
+        >
+          <option value="">{field.placeholder || "Select"}</option>
+          {(field.options || []).map((opt, idx) => (
+            <option key={idx} value={opt.label}>
+              {opt.label}
+            </option>
+          ))}
+        </select>
+        {error ? <p className="text-xs text-red-600">{error}</p> : null}
+      </div>
+    );
+  }
+
+  // default input: text/email/tel/url
+  const type = ["email", "tel", "url"].includes(field.type) ? field.type : "text";
+
   return (
-    <form onSubmit={handleSubmit} className="dynamic-form max-w-2xl">
-      {Object.keys(formConfig.fields).map((fieldKey) => (
-        <div key={fieldKey} className="form-group">
-          <label>{formConfig.fields[fieldKey].label}</label>
-          {formConfig.fields[fieldKey].type === "textarea" ? (
-            <textarea
-              className='mb-4 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm'
-              name={fieldKey}
-              value={formData[fieldKey]}
-              onChange={handleChange}
-              required={formConfig.fields[fieldKey].required}
-            ></textarea>
-          ) : (
-            <input
-              className='mb-4 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm'
-              type={formConfig.fields[fieldKey].type || "text"}
-              name={fieldKey}
-              value={formData[fieldKey]}
-              onChange={handleChange}
-              required={formConfig.fields[fieldKey].required}
-            />
-          )}
-        </div>
+    <div className="space-y-2">
+      <label className="text-sm font-medium">
+        {label} {field.required ? "*" : ""}
+      </label>
+      <input
+        className={common}
+        type={type}
+        value={value || ""}
+        placeholder={field.placeholder || ""}
+        onChange={(e) => setValue(field.key, e.target.value)}
+      />
+      {error ? <p className="text-xs text-red-600">{error}</p> : null}
+    </div>
+  );
+}
+
+export default function ContactForm({ formId = 982, lang = DEFAULT_LANG }) {
+  const [schema, setSchema] = useState(null);
+  const [values, setValues] = useState({});
+  const [errors, setErrors] = useState({});
+  const [state, setState] = useState({ loading: true, submitting: false, ok: false, msg: "" });
+
+  const fields = useMemo(() => schema?.fields || [], [schema]);
+
+  useEffect(() => {
+    let alive = true;
+
+    (async () => {
+      try {
+        setState({ loading: true, submitting: false, ok: false, msg: "" });
+        const data = await getCf7FormSchema(formId, lang);
+        if (!alive) return;
+
+        setSchema(data);
+
+        const initial = {};
+        (data.fields || []).forEach((f) => (initial[f.key] = ""));
+        setValues(initial);
+
+        setState({ loading: false, submitting: false, ok: false, msg: "" });
+      } catch (e) {
+        setState({ loading: false, submitting: false, ok: false, msg: "Failed to load form." });
+      }
+    })();
+
+    return () => {
+      alive = false;
+    };
+  }, [formId, lang]);
+
+  function setValue(key, val) {
+    setValues((p) => ({ ...p, [key]: val }));
+    setErrors((p) => ({ ...p, [key]: "" }));
+  }
+
+  function validate() {
+    const next = {};
+    for (const f of fields) {
+      if (!f.required) continue;
+      const v = (values[f.key] || "").toString().trim();
+      if (!v) next[f.key] = "This field is required";
+    }
+    setErrors(next);
+    return Object.keys(next).length === 0;
+  }
+
+  async function onSubmit(e) {
+    e.preventDefault();
+    setState((s) => ({ ...s, submitting: true, ok: false, msg: "" }));
+
+    if (!validate()) {
+      setState((s) => ({ ...s, submitting: false, ok: false, msg: "Please fill required fields." }));
+      return;
+    }
+
+    // Transform payload to match backend expectations
+    const transformedValues = Object.keys(values).reduce((acc, key) => {
+      acc[key] = values[key]?.toString().trim();
+      return acc;
+    }, {});
+
+    try {
+      let res;
+      try {
+        // Primary: direct CF7 submit
+        res = await submitCf7Direct(formId, schema?.hidden || {}, transformedValues);
+      } catch (directErr) {
+        const directStatus = directErr?.cf7?.status;
+        const directMessage = (directErr?.message || "").toLowerCase();
+        const isNetworkError =
+          directErr?.name === "TypeError" ||
+          directMessage.includes("failed to fetch") ||
+          directMessage.includes("networkerror");
+
+        if (directStatus || !isNetworkError) {
+          throw directErr;
+        }
+
+        // Fallback: proxy submit (only if direct failed due to network/CORS)
+        res = await submitCf7FormProxy(formId, {
+          lang,
+          values: transformedValues,
+        });
+      }
+
+      const okMessage =
+        res?.message ||
+        res?.cf7?.message ||
+        schema?.settings?.successMessage ||
+        "Sent!";
+
+      setState({
+        loading: false,
+        submitting: false,
+        ok: true,
+        msg: okMessage,
+      });
+
+      // Reset form values
+      const reset = {};
+      fields.forEach((f) => (reset[f.key] = ""));
+      setValues(reset);
+    } catch (err) {
+      // If CF7 validation errors come back, map them
+      const cf7 = err?.cf7;
+      if (cf7?.status === "validation_failed" && Array.isArray(cf7?.invalid_fields)) {
+        const next = {};
+        cf7.invalid_fields.forEach((f) => {
+          if (f?.field) next[f.field] = f?.message || "Invalid";
+        });
+        setErrors(next);
+      }
+
+      setState({
+        loading: false,
+        submitting: false,
+        ok: false,
+        msg: err?.message || err?.error || "Failed to send. Please try again.",
+      });
+    }
+  }
+
+  if (state.loading) return <div>Loading form…</div>;
+
+  return (
+    <form onSubmit={onSubmit} className="space-y-5">
+      {fields.map((f) => (
+        <Field key={f.key} field={f} value={values[f.key]} setValue={setValue} error={errors[f.key]} />
       ))}
-      <button type="submit" className='cursor-pointer mt-5 w-[300px] bg-blue-600 text-white py-2 px-4 rounded hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500'>Send Message</button>
-      {status && <p>{status}</p>}
+
+      <button
+        type="submit"
+        disabled={state.submitting}
+        className="mt-2 inline-flex w-[300px] items-center justify-center rounded-md bg-blue-600 px-6 py-3 text-white disabled:opacity-60"
+      >
+        {state.submitting ? "Sending…" : "Send Message"}
+      </button>
+
+      {state.msg ? (
+        <p className={`text-sm ${state.ok ? "text-green-700" : "text-red-700"}`}>{state.msg}</p>
+      ) : null}
     </form>
   );
 }
